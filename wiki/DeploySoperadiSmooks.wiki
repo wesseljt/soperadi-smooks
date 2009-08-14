@@ -1,0 +1,19 @@
+#summary Deploy a Soperadi-smooks components
+
+= Introduction =
+This page describes how to deploy a soperadi-smooks components into Talend Open Studio
+= Details =
+
+*Deploy a Soperadi-smooks components *
+
+*1. *Specify a “User components folder” in TOS preferences (preferences/Talend/Components)
+
+*2. *Use this command in the user components folder 
+_*svn checkout http://soperadi-smooks.googlecode.com/svn/trunk/releaseComponents *_
+to anonymously check out the latest components
+
+*3. *Restart your Talend Open Studio application.
+
+*4. *After launch, you should see soperadi-smooks components in folder “components/user” in org.talend.designer.components.localprovider plugin
+
+*5. *Soperadi-smooks components should also appear in the Palette in the job designer (in a family folder Smooks)
