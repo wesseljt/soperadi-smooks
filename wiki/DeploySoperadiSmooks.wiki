@@ -1,4 +1,5 @@
 #summary Deploy a Soperadi-smooks components
+#labels Featured
 
 = Introduction =
 This page describes how to deploy a soperadi-smooks components into Talend Open Studio
