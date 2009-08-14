@@ -1,0 +1,31 @@
+<%@ jet 
+	imports="
+		org.talend.core.model.process.INode 
+		org.talend.core.model.process.ElementParameterParser 
+		org.talend.core.model.metadata.IMetadataTable 
+		org.talend.core.model.metadata.IMetadataColumn 
+		org.talend.core.model.process.IConnection
+		org.talend.core.model.process.IConnectionCategory
+		org.talend.designer.codegen.config.CodeGeneratorArgument
+		org.talend.core.model.metadata.types.JavaTypesManager
+		org.talend.core.model.metadata.types.JavaType
+		java.util.List 
+    	java.util.Map		
+	" 
+%>
+<% 
+    CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
+    INode node = (INode)codeGenArgument.getArgument();
+    String cid = node.getUniqueName();
+    String label1 = ElementParameterParser.getValue(node,"__DINAMIC_PROPERTY__");
+    String label2 = ElementParameterParser.getValue(node,"__ADVANCED_PROPERTY__");
+    //List< ? extends IConnection> conns = node.getIncomingConnections();
+    	//for (IConnection conn : conns) {//1
+    		//if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)) {//2
+%>
+	  System.out.println("Hello World! I am <%=cid%>! OK.");
+	  System.out.println("DINAMIC_PROPERTY: <%=label1%> ADVANCED_PROPERTY: <%=label2%>");
+<%
+		//}//2
+			//}//1
+%>
