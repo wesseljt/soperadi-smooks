@@ -2,7 +2,9 @@
 #labels Featured
 
 = Introduction =
-This page describes how to deploy a soperadi-smooks components into Talend Open Studio
+This page describes how to establish a development environment where you can checkout/develop/run and checkin SOPERA-DI Smooks components.
+
+
 = Details =
 
 *Deploy a Soperadi-smooks components *
