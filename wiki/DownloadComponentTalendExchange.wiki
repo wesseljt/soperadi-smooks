@@ -1,0 +1,23 @@
+#summary Using of Talend Exchange.
+
+= Introduction =
+
+Talend Exchange is the place where Talend community can share items related to Talend opensource products, such as Talend Open Studio and Talend Open Profiler. Contribution is open to any user, no specific validation is needed. As soon as you have your forum account on *_[http://www.talendforge.org/forum]_*, you automatically get a Talend Exchange account on *_[http://www.talendforge.org/exchange]_*.
+
+Talend Exchange can help you to get Soperadi-smooks components.
+
+= Details =
+
+==Sequence of actions to download Soperadi-smooks components from Talend Exchange==
+
+1. Open Talend Open Studio.
+
+2. Select menu *Window->Show View...*. Then select *Talend* folder and *Talend Exchage* view from it. You will see Talend Exchange tab.
+
+3. From this tab select *compatible elements*. Then in *find* field type the name of Soperadi-smooks component that you need.
+
+4. After this click green arrow in the left side of component description and it would be downloaded. A window will appear in which you can read to what folder this component was installed.
+
+5. You can work with new component.
+
+You can also see a full list of the components installed in your Talend Open Studio by selecting *installed component* tab on Talend Exchange view window.
