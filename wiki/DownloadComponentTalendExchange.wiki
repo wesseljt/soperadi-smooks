@@ -1,4 +1,4 @@
-#summary Using of Talend Exchange.
+#summary Using of Talend Exchange to download and deploy Soperadi-smooks components.
 
 = Introduction =
 
