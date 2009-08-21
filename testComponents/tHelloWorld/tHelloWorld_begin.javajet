@@ -10,7 +10,8 @@
 		org.talend.core.model.metadata.types.JavaTypesManager
 		org.talend.core.model.metadata.types.JavaType
 		java.util.List 
-    	java.util.Map		
+    	java.util.Map
+    		
 	" 
 %>
 <% 
@@ -19,3 +20,7 @@
     String cid = node.getUniqueName();	
 %>
 	System.out.println("Begin in process!");
+	class HelloSmooks_API_<%=cid%> {
+	private String s = "Hello world!";
+	public String getS() {return s;}
+	}

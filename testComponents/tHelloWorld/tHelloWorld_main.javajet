@@ -23,8 +23,10 @@
     	//for (IConnection conn : conns) {//1
     		//if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)) {//2
 %>
-	  System.out.println("Hello World! I am <%=cid%>! OK.");
+	  HelloSmooks_API_<%=cid%> helloSmooks_API_<%=cid%> = new HelloSmooks_API_<%=cid%>();
+	  System.out.println(helloSmooks_API_<%=cid%>.getS());
 	  System.out.println("DINAMIC_PROPERTY: <%=label1%> ADVANCED_PROPERTY: <%=label2%>");
+	  
 <%
 		//}//2
 			//}//1
