@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<COMPONENT> 
+  <HEADER AUTHOR="Talend" COMPATIBILITY="ALL" DATA_AUTO_PROPAGATE="false" PLATEFORM="ALL" RELEASE_DATE="20080229A" SERIAL="" STARTABLE="false" STATUS="ALPHA" VERSION="0.102"> 
+    <SIGNATURE/> 
+  </HEADER>  
+  <FAMILIES> 
+    <FAMILY>MiRom</FAMILY> 
+  </FAMILIES>  
+  <DOCUMENTATION> 
+    <URL/> 
+  </DOCUMENTATION>  
+  <CONNECTORS> 
+    <CONNECTOR CTYPE="FLOW" MAX_INPUT="1"/> 
+  </CONNECTORS>  
+  <PARAMETERS> 
+    <PARAMETER FIELD="FILE" NAME="FILEPROP" NUM_ROW="1"  /> 
+  </PARAMETERS>  
+  <ADVANCED_PARAMETERS> 
+    <PARAMETER FIELD="TEXT" NAME="PROPERTYADVANCED" NUM_ROW="1"/> 
+  </ADVANCED_PARAMETERS>  
+  <CODEGENERATION>
+     <IMPORTS> 
+     <IMPORT NAME="commons-logging-1.1.jar" MODULE="commons-logging-1.1.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="freemarker-2.3.11.jar" MODULE="freemarker-2.3.11.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.1.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="milyn-edisax-parser-1.2.1.jar" MODULE="milyn-edisax-parser-1.2.1.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="milyn-smooks-core-1.2.1.jar" MODULE="milyn-smooks-core-1.2.1.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
+				REQUIRED="true" />
+	 </IMPORTS> 
+  </CODEGENERATION>  
+  
+  <RETURNS> 
+    <RETURN AVAILABILITY="AFTER" NAME="NB_LINE" TYPE="id_Integer"/> 
+  </RETURNS> 
+</COMPONENT>
