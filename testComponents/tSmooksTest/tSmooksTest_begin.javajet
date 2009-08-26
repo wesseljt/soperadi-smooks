@@ -1,0 +1,66 @@
+<%@ jet 
+	imports="
+		org.talend.core.model.process.INode 
+		org.talend.core.model.process.ElementParameterParser 
+		org.talend.core.model.metadata.IMetadataTable 
+		org.talend.core.model.metadata.IMetadataColumn 
+		org.talend.core.model.process.IConnection
+		org.talend.core.model.process.IConnectionCategory
+		org.talend.designer.codegen.config.CodeGeneratorArgument
+		org.talend.core.model.metadata.types.JavaTypesManager
+		org.talend.core.model.metadata.types.JavaType
+		java.util.List 
+    	java.util.Map		
+	" 
+%>
+<% 
+    CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
+    INode node = (INode)codeGenArgument.getArgument();
+    String cid = node.getUniqueName();	
+%>
+	System.out.println("Begin in process!");
+	class HelloSmooks_API_<%=cid%> {
+
+	private String s = "Hello world!";
+	public String getS() {return s;}
+	
+	private byte[] messageIn = readInputMessage();
+	
+	
+	private byte[] readInputMessage() {
+        try {
+            //return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("C:\\work\\depComponents\\tSmooksTest\\test.edi"));
+            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/./../work/depComponents/tSmooksTest/test.edi"));
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+            return "<no-message/>".getBytes();
+        }
+    }
+     protected String runSmooksTransform() throws java.io.IOException, org.xml.sax.SAXException, org.milyn.SmooksException {
+    	
+    	java.util.Locale defaultLocale = java.util.Locale.getDefault();
+    	java.util.Locale.setDefault(new java.util.Locale("en", "IE"));
+    	
+        // Instantiate Smooks with the config...
+        //org.milyn.Smooks smooks = new org.milyn.Smooks("file:///c:\\work\\depComponents\\tSmooksTest\\smooks-config.xml");
+        org.milyn.Smooks smooks = new org.milyn.Smooks("/./../work/depComponents/tSmooksTest/smooks-config.xml");
+		
+        try {
+             // Create an exec context - no profiles....
+        	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
+        	javax.xml.transform.dom.DOMResult domResult = new javax.xml.transform.dom.DOMResult();
+
+            // Configure the execution context to generate a report...
+            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("C:\\work\\depComponents\\tHelloWorld\\report.html"));
+
+            // Filter the input message to the outputWriter, using the execution context...
+            smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), domResult);
+
+            java.util.Locale.setDefault(defaultLocale);
+
+            return org.milyn.xml.XmlUtil.serialize(domResult.getNode().getChildNodes(), true);
+        } finally {
+            smooks.close();
+        }
+    }
+   }
