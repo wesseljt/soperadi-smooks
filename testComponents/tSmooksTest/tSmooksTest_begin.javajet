@@ -49,16 +49,18 @@
              // Create an exec context - no profiles....
         	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
         	javax.xml.transform.dom.DOMResult domResult = new javax.xml.transform.dom.DOMResult();
-
+			javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
+			streamResult.setOutputStream(new java.io.FileOutputStream("/./../work/depComponents/tSmooksTest/output-message.xml"));
+            
             // Configure the execution context to generate a report...
             executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("C:\\work\\depComponents\\tHelloWorld\\report.html"));
 
             // Filter the input message to the outputWriter, using the execution context...
-            smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), domResult);
+            smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), streamResult);
 
             java.util.Locale.setDefault(defaultLocale);
 
-            return org.milyn.xml.XmlUtil.serialize(domResult.getNode().getChildNodes(), true);
+            return "OK";
         } finally {
             smooks.close();
         }
