@@ -48,8 +48,7 @@
         try {
              // Create an exec context - no profiles....
         	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
-        	javax.xml.transform.dom.DOMResult domResult = new javax.xml.transform.dom.DOMResult();
-			javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
+        	javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
 			streamResult.setOutputStream(new java.io.FileOutputStream("/./../work/depComponents/tSmooksTest/output-message.xml"));
             
             // Configure the execution context to generate a report...
