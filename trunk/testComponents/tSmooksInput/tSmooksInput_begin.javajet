@@ -1,0 +1,118 @@
+<%@ jet 
+	imports="
+		org.talend.core.model.process.INode 
+		org.talend.core.model.process.ElementParameterParser 
+		org.talend.core.model.metadata.IMetadataTable 
+		org.talend.core.model.metadata.IMetadataColumn 
+		org.talend.core.model.process.IConnection
+		org.talend.core.model.process.IConnectionCategory
+		org.talend.designer.codegen.config.CodeGeneratorArgument
+		org.talend.core.model.metadata.types.JavaTypesManager
+		org.talend.core.model.metadata.types.JavaType
+		java.util.List 
+    	java.util.Map
+    		
+	" 
+%>
+<% 
+    CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
+    INode node = (INode)codeGenArgument.getArgument();
+    String cid = node.getUniqueName();	
+    List<Map<String, String>> schemas = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__SCHEMAS__");
+    String ediuri = ElementParameterParser.getValue(node, "__EDI_URI__");
+    boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
+    String outputS = "Begin:";
+
+    List< ? extends IConnection> connections = node.getOutgoingSortedConnections();
+    
+%>
+	System.out.println("Begin in process!");
+	class HelloSmooks_API_<%=cid%> {
+
+	private String s = "Hello world!";
+	public String getS() {return s;}
+	
+	private byte[] messageIn = readInputMessage();
+	
+	
+	private byte[] readInputMessage() {
+        try {
+        	if(<%=useediuri%>) {
+	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("<%=ediuri%>"));
+        	}
+        	else {
+	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/./../work/depComponents/tSmooksInput/test.edi"));
+        	}
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+            return "<no-message/>".getBytes();
+        }
+    }
+     protected String runSmooksTransform() throws java.io.IOException, org.xml.sax.SAXException, org.milyn.SmooksException {
+    	
+    	java.util.Locale defaultLocale = java.util.Locale.getDefault();
+    	java.util.Locale.setDefault(new java.util.Locale("en", "IE"));
+    	
+        // Instantiate Smooks with the config...
+        org.milyn.Smooks smooks = new org.milyn.Smooks("/./../work/depComponents/tSmooksInput/smooks-config.xml");
+		
+        try {
+             // Create an exec context - no profiles....
+        	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
+        	javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
+			streamResult.setOutputStream(new java.io.FileOutputStream("/./../work/depComponents/tSmooksInput/output-message.xml"));
+            
+            // Configure the execution context to generate a report...
+            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("C:\\work\\depComponents\\tSmooksInput\\report.html"));
+
+            // Filter the input message to the outputWriter, using the execution context...
+            smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), streamResult);
+
+            java.util.Locale.setDefault(defaultLocale);
+
+            return "OK";
+        } finally {
+            smooks.close();
+        }
+    }
+   }
+   
+   	  HelloSmooks_API_<%=cid%> helloSmooks_API_<%=cid%> = new HelloSmooks_API_<%=cid%>();
+	  System.out.println(helloSmooks_API_<%=cid%>.getS());
+      String messageOut = helloSmooks_API_<%=cid%>.runSmooksTransform();
+
+        System.out.println("==============Message Out=============");
+        System.out.println(messageOut);
+        System.out.println("======================================\n\n");
+   
+<%    
+    if(connections!=null && connections.size()>0) {
+	//get all the children collections of the loop node.
+	   for(IConnection conn : connections){
+	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)){
+		     String query = null;
+			 for(Map<String, String> schemaMap : schemas){
+			    if(schemaMap.get("SCHEMA").equals(conn.getName())){
+ 		           outputS = outputS  + " " + conn.getName() + ":";
+				   IMetadataTable metadata = conn.getMetadataTable();
+			       if(metadata!=null){
+		              List<IMetadataColumn> columns = metadata.getListColumns();
+		              for(IMetadataColumn column:columns) {
+ 		                 outputS = outputS  + column.getLabel() + ":";
+ 		                 if (conn.getName().equals("HDR")) {
+%>
+<%=conn.getName() %>.<%=column.getLabel() %> = "String value";
+<% 		
+ 		                 } // conn.getName().equals("s2")
+ 		              } // columns
+ 		           } // metadata!=null
+ 		        } // schemaMap.get("SCHEMA").equals(conn.getName())
+			 } // schemas
+		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
+%>
+	System.out.println("<%=outputS%> <%=conn.getName()%>");
+<%
+	   } // connections
+	}// connections!=null && connections.size()>0
+%>
+
