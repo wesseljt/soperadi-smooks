@@ -27,6 +27,7 @@
     
 %>
 	System.out.println("Begin in process!");
+	
 	class HelloSmooks_API_<%=cid%> {
 
 	private String s = "Hello world!";
@@ -80,7 +81,16 @@
    	  HelloSmooks_API_<%=cid%> helloSmooks_API_<%=cid%> = new HelloSmooks_API_<%=cid%>();
 	  System.out.println(helloSmooks_API_<%=cid%>.getS());
       String messageOut = helloSmooks_API_<%=cid%>.runSmooksTransform();
-
+      	org.dom4j.io.SAXReader reader_<%=cid %> = new org.dom4j.io.SAXReader();
+      	try {
+      		org.dom4j.Document doc_<%=cid %>= reader_<%=cid %>.read("/./../work/depComponents/tSmooksInput/output-message.xml");
+            	
+        	System.out.println(doc_<%=cid %>.asXML());
+        		// findNodes(doc_<%=cid %>);
+		} catch (org.dom4j.DocumentException e) {
+			e.printStackTrace();
+		}
+		
         System.out.println("==============Message Out=============");
         System.out.println(messageOut);
         System.out.println("======================================\n\n");
