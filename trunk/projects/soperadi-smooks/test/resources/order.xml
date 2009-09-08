@@ -29,4 +29,5 @@
                 <title>Pulp Fiction</title>
                 <price>29.99</price>
         </order-item>
+        <order-item position="3" quantity="2" product-id="299" title="Whatever" price="30.33"/>
 </Order>
