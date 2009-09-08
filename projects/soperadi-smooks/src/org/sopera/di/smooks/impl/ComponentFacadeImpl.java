@@ -17,5 +17,5 @@ import org.sopera.di.smooks.ComponentFacade;
  * @author zubairov
  */
 public class ComponentFacadeImpl implements ComponentFacade {
-
+	
 }
