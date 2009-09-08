@@ -8,6 +8,8 @@
  ******************************************************************************/
 package org.sopera.di.smooks;
 
+import org.sopera.di.smooks.impl.ComponentFacadeImpl;
+
 import com.google.inject.AbstractModule;
 
 /**
@@ -23,7 +25,7 @@ public class ComponentModule extends AbstractModule {
 	 */
 	@Override
 	protected void configure() {
-		// TODO Auto-generated method stub
+		bind(ComponentFacade.class).to(ComponentFacadeImpl.class);
 	}
 
 }

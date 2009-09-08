@@ -8,22 +8,23 @@
  ******************************************************************************/
 package org.sopera.di.smooks;
 
-import org.sopera.di.smooks.impl.ComponentFacadeImpl;
+import com.google.inject.Guice;
 
 /**
  * Component facade for interaction with Talend generated job.
  * 
- * This interface will be a primary facade that will be used
- * by Talend-Smooks jobs at runtime.
+ * This interface will be a primary facade that will be used by Talend-Smooks
+ * jobs at runtime.
  * 
  * @author zubairov
- *
+ * 
  */
 public interface ComponentFacade {
 
 	/**
 	 * Singleton instance
 	 */
-	public static final ComponentFacade INSTANCE = new ComponentFacadeImpl();
-	
+	public static final ComponentFacade INSTANCE = Guice.createInjector(
+			new ComponentModule()).getInstance(ComponentFacade.class);
+
 }
