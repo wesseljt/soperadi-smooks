@@ -17,7 +17,10 @@
 
 package org.sopera.di.smooks.tests;
 
+import javax.xml.namespace.QName;
+
 import org.junit.Test;
+import org.sopera.di.smooks.xpath.SAXLocation;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -31,7 +34,9 @@ import org.xml.sax.helpers.XMLReaderFactory;
  * @author zubairov
  */
 public class SAXParserTest extends DefaultHandler {
-
+	
+	private final SAXLocation location = new SAXLocation();
+	
 	@Test
 	public void testXMLParsing() throws Exception {
 		XMLReader reader = XMLReaderFactory.createXMLReader();
@@ -46,8 +51,11 @@ public class SAXParserTest extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		System.err.println("Started tag: " + "{" + uri + "}" + localName);
+		location.startElement(new QName(uri, localName));
+		System.out.println(location);
 	}
+	
+	
 	
 	/**
 	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
@@ -55,6 +63,7 @@ public class SAXParserTest extends DefaultHandler {
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		System.err.println("Ended tag: " + "{" + uri + "}" + localName);
+		location.endElement();
+		System.out.println(location);
 	}
 }

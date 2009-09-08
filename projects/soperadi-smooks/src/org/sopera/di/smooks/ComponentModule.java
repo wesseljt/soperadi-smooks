@@ -9,6 +9,7 @@
 package org.sopera.di.smooks;
 
 import org.sopera.di.smooks.impl.ComponentFacadeImpl;
+import org.sopera.di.smooks.impl.FilterBuilderImpl;
 
 import com.google.inject.AbstractModule;
 
@@ -26,6 +27,7 @@ public class ComponentModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(ComponentFacade.class).to(ComponentFacadeImpl.class);
+		bind(FilterBuilder.class).to(FilterBuilderImpl.class);
 	}
 
 }
