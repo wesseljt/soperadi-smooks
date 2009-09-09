@@ -15,48 +15,23 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  ******************************************************************************/
 
-package org.sopera.di.smooks.impl;
-
-import org.sopera.di.smooks.FilterBuilder;
-import org.sopera.di.smooks.xpath.SXPathExpr;
-import org.xml.sax.ContentHandler;
+package org.sopera.di.smooks.xpath;
 
 /**
- * Builder for filtered {@link ContentHandler} delegates
+ * Builder that is responsible for building Stirngs
+ * to the SXPath expressions which would be suitable
+ * for evaluation
  * 
  * @author zubairov
  */
-public class FilterBuilderImpl implements FilterBuilder {
+public interface SAXPathExpressionBuilder {
 
 	/**
-	 * {@inheritDoc}
+	 * Builds expression
+	 * 
+	 * @param xPath
+	 * @return
 	 */
-	public ContentHandler buildFilter() {
-		return null;
-	}
-
-	/**
-	 * @{inheritDoc}
-	 */
-	public FilterBuilder addXPathFilter(SXPathExpr expr) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @{inheritDoc}
-	 */
-	public ContentHandler build() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @{inheritDoc}
-	 */
-	public FilterBuilder startWith(ContentHandler delegate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public SXPathExpr buildExpression(String xPath);
+	
 }
