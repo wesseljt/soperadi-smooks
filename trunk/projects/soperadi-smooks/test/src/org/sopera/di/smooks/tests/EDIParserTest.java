@@ -21,8 +21,11 @@ import static junit.framework.Assert.assertNotNull;
 
 import java.io.InputStream;
 
+import javax.xml.namespace.QName;
+
 import org.junit.Test;
 import org.milyn.edisax.EDIParser;
+import org.sopera.di.smooks.xpath.SAXLocation;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -34,6 +37,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author zubairov
  */
 public class EDIParserTest extends DefaultHandler {
+	private final SAXLocation location = new SAXLocation();
 
 	@Test
 	public void testParser() throws Exception {
@@ -53,7 +57,20 @@ public class EDIParserTest extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
+		location.startElement(new QName(uri, localName));
 		System.err.println("Starting EDI element: " + "{" + uri + "}" + localName);
 	}
-	
+	@Override
+	public void endElement(String uri, String localName, String qName
+			) throws SAXException {
+		location.endElement();
+		System.err.println("Ending EDI element: " + "{" + uri + "}" + localName);
+	}
+	@Override
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		   String value = new String(ch,start,length);
+		   if (!Character.isISOControl(value.charAt(0))) {
+		    System.err.println("VALUE " + value + " FOUND IN " + location.toString());
+		   }
+	}
 }
