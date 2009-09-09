@@ -41,7 +41,7 @@ public class PathElementImpl implements PathElement {
 	 * @param name
 	 * @param position
 	 */
-	public PathElementImpl(QName name, PathElementImpl parent) {
+	public PathElementImpl(QName name, PathElement parent) {
 		super();
 		this.name = name;
 		if (parent != null) {

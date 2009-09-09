@@ -17,6 +17,7 @@
 
 package org.sopera.di.smooks;
 
+import org.sopera.di.smooks.xpath.SXPathExpr;
 import org.xml.sax.ContentHandler;
 
 /**
@@ -27,9 +28,25 @@ import org.xml.sax.ContentHandler;
 public interface FilterBuilder {
 
 	/**
+	 * Set the first delegate {@link ContentHandler}
+	 * @param delegate
+	 * @return
+	 */
+	public FilterBuilder startWith(ContentHandler delegate);
+	
+	/**
+	 * Fluent intermediate method to build filter
+	 * 
+	 * @param expr
+	 * @return
+	 */
+	public FilterBuilder addXPathFilter(SXPathExpr expr);
+	
+	/**
+	 * A fluent terminate method that will return a {@link ContentHandler}
 	 * 
 	 * @return
 	 */
-	public ContentHandler buildFilter();
+	public ContentHandler build();
 	
 }
