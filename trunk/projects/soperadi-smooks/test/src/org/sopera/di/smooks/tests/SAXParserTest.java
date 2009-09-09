@@ -21,6 +21,7 @@ import javax.xml.namespace.QName;
 
 import org.junit.Test;
 import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -35,7 +36,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
  */
 public class SAXParserTest extends DefaultHandler {
 	
-	private final SAXLocation location = new SAXLocation();
+	private final SAXLocation location = new SAXLocationImpl();
 	
 	@Test
 	public void testXMLParsing() throws Exception {
