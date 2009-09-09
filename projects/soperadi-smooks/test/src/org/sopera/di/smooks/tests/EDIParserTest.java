@@ -26,6 +26,7 @@ import javax.xml.namespace.QName;
 import org.junit.Test;
 import org.milyn.edisax.EDIParser;
 import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -37,7 +38,8 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author zubairov
  */
 public class EDIParserTest extends DefaultHandler {
-	private final SAXLocation location = new SAXLocation();
+	
+	private final SAXLocation location = new SAXLocationImpl();
 
 	@Test
 	public void testParser() throws Exception {

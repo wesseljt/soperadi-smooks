@@ -23,10 +23,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 
 
 /**
- * Test for {@link SAXLocation}
+ * Test for {@link SAXLocationImpl}
  * 
  * @author zubairov
  */
@@ -39,7 +40,7 @@ public class SAXLocationTest extends Assert {
 
 	@Test
 	public void testLocation() throws Exception {
-		SAXLocation location = new SAXLocation();
+		SAXLocation location = new SAXLocationImpl();
 		assertEquals(0, location.depth());			
 		location.startElement(new QName(NAMESPACE1, ELEMENT_ONE));
 		assertEquals(1, location.depth());
