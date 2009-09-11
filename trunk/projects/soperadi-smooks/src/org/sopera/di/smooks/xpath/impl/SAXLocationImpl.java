@@ -33,6 +33,10 @@ public class SAXLocationImpl implements SAXLocation {
 
 	private final Stack<PathElementImpl> stack = new Stack<PathElementImpl>();
 	
+	public Stack<PathElementImpl> getStack() {
+		return stack;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -69,4 +73,24 @@ public class SAXLocationImpl implements SAXLocation {
 	public int depth() {
 		return stack.size();
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		SAXLocationImpl other = (SAXLocationImpl) obj;
+		if(getStack().size()!=other.getStack().size())
+			return false;
+		for (int i=0; i<getStack().size(); i++) {
+			if(!getStack().elementAt(i).equals(other.getStack().elementAt(i)))
+				return false;
+		}
+		return true;
+	}
+
 }
