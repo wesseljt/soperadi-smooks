@@ -85,7 +85,10 @@
         System.out.println("==============Message Out=============");
         System.out.println(messageOut);
         System.out.println("======================================\n\n");
-   
+
+	int nb_line_<%=cid %> = 0;   
+	for (int i=0; i<10; i++) { // loop to iterate the data communication
+ 
 <%    
     if(connections!=null && connections.size()>0) {
 	//get all the children collections of the loop node.
@@ -110,9 +113,6 @@
  		        } // schemaMap.get("SCHEMA").equals(conn.getName())
 			 } // schemas
 		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
-%>
-	System.out.println("<%=outputS%> <%=conn.getName()%>");
-<%
 	   } // connections
 	}// connections!=null && connections.size()>0
 %>

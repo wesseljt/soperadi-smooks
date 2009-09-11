@@ -18,3 +18,11 @@
     INode node = (INode)codeGenArgument.getArgument();
     String cid = node.getUniqueName();	
 %>
+
+	nb_line_<%=cid %>++;
+	
+	   }// loop to iterate the data communication
+	   
+	System.out.println("nb_line:" + nb_line_<%=cid %>);
+	globalMap.put("<%=cid %>_NB_LINE",nb_line_<%=cid %>);
+	
