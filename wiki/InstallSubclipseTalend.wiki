@@ -71,7 +71,7 @@ Subclipse is a SVN graphic user interface (GUI) for Eclipse Platform. This page 
 
 Also copy directory *org.tigris.subversion.clientadapter.javahl.win32_1.6.5*.
 
-_ You can also copy these files from this place *http://soperadi-smooks.googlecode.com/files/plugins.rar* _
+_ You can also copy these files from this place *[http://soperadi-smooks.googlecode.com/files/plugins.rar]* _
 == Alternative variant of installing Subclipse ==
 
 You can also try to install Subclipse as it described at *[http://code.google.com/p/gadzlend/wiki/SubclipseInTalend]*
