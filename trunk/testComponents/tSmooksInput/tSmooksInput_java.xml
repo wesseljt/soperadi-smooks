@@ -50,13 +50,7 @@
 				REQUIRED="true" />
      <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
 				REQUIRED="true" />
-	 <IMPORT NAME="Java_DOM4J1.6" MODULE="dom4j-1.6.1.jar"
-				REQUIRED="true" />
-	 <IMPORT NAME="Java_JAXEN1.1" MODULE="jaxen-1.1.1.jar"
-				REQUIRED="true" />
-	 <IMPORT NAME="Java_talendSAX" MODULE="TalendSAX.jar"
-				REQUIRED="true" />
-	 </IMPORTS> 
+	  </IMPORTS> 
   </CODEGENERATION>  
   <RETURNS> 
     <RETURN AVAILABILITY="AFTER" NAME="NB_LINE" TYPE="id_Integer"/> 
