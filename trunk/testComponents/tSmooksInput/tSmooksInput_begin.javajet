@@ -103,11 +103,21 @@
 		              List<IMetadataColumn> columns = metadata.getListColumns();
 		              for(IMetadataColumn column:columns) {
  		                 outputS = outputS  + column.getLabel() + ":";
- 		                 if (conn.getName().equals("HDR")) {
+                         if (conn.getName().equals("ORD")) {
 %>
-<%=conn.getName() %>.<%=column.getLabel() %> = "String value";
-<% 		
- 		                 } // conn.getName().equals("s2")
+<%=conn.getName() %>.<%=column.getLabel() %> = "Iterate String value";
+<%
+ 		                 } // conn.getName().equals("ORD")
+ 		                 else {
+%>
+	if(nb_line_<%=cid %> > 0) {
+		<%=conn.getName() %> = null; 
+	}
+	else {
+		<%=conn.getName() %>.<%=column.getLabel() %> = "Single String value";
+	}
+<%
+ 		                 } // else (conn.getName().equals("ORD"))
  		              } // columns
  		           } // metadata!=null
  		        } // schemaMap.get("SCHEMA").equals(conn.getName())
