@@ -28,35 +28,33 @@ import org.xml.sax.ContentHandler;
  */
 public class FilterBuilderImpl implements FilterBuilder {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public ContentHandler buildFilter() {
-		return null;
-	}
+	private ContentHandler handler = null;
 
 	/**
-	 * @{inheritDoc}
+	 * @{inheritDoc
 	 */
 	public FilterBuilder addXPathFilter(SXPathExpr expr) {
-		// TODO Auto-generated method stub
-		return null;
+		if (handler == null) {
+			throw new RuntimeException("Internal handler is null, please call"
+					+ " method startWith(handler) before");
+		}
+		handler = new FilteredDelegateHandler(handler, expr);
+		return this;
 	}
 
 	/**
-	 * @{inheritDoc}
+	 * @{inheritDoc
 	 */
 	public ContentHandler build() {
-		// TODO Auto-generated method stub
-		return null;
+		return handler;
 	}
 
 	/**
-	 * @{inheritDoc}
+	 * @{inheritDoc
 	 */
 	public FilterBuilder startWith(ContentHandler delegate) {
-		// TODO Auto-generated method stub
-		return null;
+		handler = delegate;
+		return this;
 	}
 
 }

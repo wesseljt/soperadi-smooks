@@ -21,7 +21,11 @@ import org.sopera.di.smooks.xpath.SXPathExpr;
 import org.xml.sax.ContentHandler;
 
 /**
- * Build a {@link ContentHandler} filter based on the specified XPath-like expression
+ * Build a {@link ContentHandler} filter based on the specified XPath-like expression.
+ * Sample usage:
+ * <code>
+ * ContentHandler handler = filterBuilder.startWith(delegate).addXPathFilter(expr1).addXPathFilter(expr2).build();
+ * </code>
  * 
  * @author zubairov
  */

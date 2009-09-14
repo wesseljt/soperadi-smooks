@@ -24,4 +24,11 @@ package org.sopera.di.smooks.xpath;
  */
 public interface SXPathExpr {
 
+	/**
+	 * Returns true if current {@link SAXLocation} satisfy the {@link SXPathExpr}
+	 * @param location
+	 * @return
+	 */
+	boolean match(SAXLocation location);
+
 }

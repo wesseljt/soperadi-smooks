@@ -15,36 +15,26 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  ******************************************************************************/
 
-package org.sopera.di.smooks.xpath;
+package org.sopera.di.smooks.xpath.expr;
 
-import java.util.Map;
-
-import org.jaxen.saxpath.SAXPathException;
+import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.SXPathExpr;
 
 /**
- * Builder that is responsible for building Stirngs
- * to the SXPath expressions which would be suitable
- * for evaluation
+ * Basic class for chained expressions
  * 
  * @author zubairov
  */
-public interface SAXPathExpressionBuilder {
+public abstract class DefaultExpression implements SXPathExpr {
 
-	/**
-	 * Builds expression
-	 * 
-	 * @param xPath
-	 * @return
-	 * @throws SAXPathException 
-	 */
-	public SXPathExpr buildExpression(String xPath) throws SAXPathException;
-
-	/**
-	 * Set a {@link Map} that will map namespaces prefix to namespaces values
-	 * if map is set to null namespaces will be ignored
-	 * 
-	 * @param namespaces the namespaces to set
-	 */
-	public void setNamespacesMap(Map<String, String> namespaces);
 	
+	
+	/**
+	 * @{inheritDoc}
+	 */
+	public boolean match(SAXLocation location) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

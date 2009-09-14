@@ -15,36 +15,40 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  ******************************************************************************/
 
-package org.sopera.di.smooks.xpath;
+package org.sopera.di.smooks.xpath.expr;
 
-import java.util.Map;
-
-import org.jaxen.saxpath.SAXPathException;
+import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.SXPathExpr;
 
 /**
- * Builder that is responsible for building Stirngs
- * to the SXPath expressions which would be suitable
- * for evaluation
+ * {@link SXPathExpr} that represents a union of two other {@link SXPathExpr}
  * 
  * @author zubairov
  */
-public interface SAXPathExpressionBuilder {
+public class UnionExpr implements SXPathExpr {
 
-	/**
-	 * Builds expression
-	 * 
-	 * @param xPath
-	 * @return
-	 * @throws SAXPathException 
-	 */
-	public SXPathExpr buildExpression(String xPath) throws SAXPathException;
-
-	/**
-	 * Set a {@link Map} that will map namespaces prefix to namespaces values
-	 * if map is set to null namespaces will be ignored
-	 * 
-	 * @param namespaces the namespaces to set
-	 */
-	public void setNamespacesMap(Map<String, String> namespaces);
+	private SXPathExpr left;
 	
+	private SXPathExpr right;
+	
+	/**
+	 * Construt a Uniton expression
+	 * 
+	 * @param left
+	 * @param right
+	 */
+	public UnionExpr(SXPathExpr left, SXPathExpr right) {
+		super();
+		this.left = left;
+		this.right = right;
+	}
+
+
+	/**
+	 * @{inheritDoc}
+	 */
+	public boolean match(SAXLocation location) {
+		return left.match(location) || right.match(location);
+	}
+
 }

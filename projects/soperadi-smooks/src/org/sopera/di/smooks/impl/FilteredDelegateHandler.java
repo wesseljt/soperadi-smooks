@@ -6,17 +6,14 @@
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  ******************************************************************************/
-/*******************************************************************************
- * Copyright (c) 2009 SOPERA GmbH
- * All rights reserved. 
- * This program and the accompanying materials are made available
- * under the terms of the GNU Lesser General Public License v 3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/lgpl-3.0.txt
- ******************************************************************************/
 
 package org.sopera.di.smooks.impl;
 
+import javax.xml.namespace.QName;
+
+import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.SXPathExpr;
+import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -31,14 +28,17 @@ import org.xml.sax.SAXException;
  */
 public class FilteredDelegateHandler implements ContentHandler {
 
-	private ContentHandler delegate;
-
+	private final ContentHandler delegate;
+	private final SXPathExpr expr;
+	private final SAXLocation location = new SAXLocationImpl();
+	
 	/**
 	 * 
 	 * @param delegate
 	 */
-	public FilteredDelegateHandler(ContentHandler delegate) {
+	public FilteredDelegateHandler(ContentHandler delegate, SXPathExpr expr) {
 		this.delegate = delegate;
+		this.expr = expr;
 	}
 
 	
@@ -62,7 +62,10 @@ public class FilteredDelegateHandler implements ContentHandler {
 	 */
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		delegate.endElement(uri, localName, qName);
+		location.endElement();
+		if (expr.match(location)) {
+			delegate.endElement(uri, localName, qName);
+		}
 	}
 
 	/**
@@ -114,7 +117,10 @@ public class FilteredDelegateHandler implements ContentHandler {
 	 */
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
-		delegate.startElement(uri, localName, qName, atts);
+		location.startElement(new QName(uri, localName));
+		if (expr.match(location)) {
+			delegate.startElement(uri, localName, qName, atts);
+		}
 	}
 
 	/**
