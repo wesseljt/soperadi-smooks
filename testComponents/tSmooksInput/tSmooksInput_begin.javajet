@@ -42,7 +42,7 @@
 	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("<%=ediuri%>"));
         	}
         	else {
-	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/./../work/depComponents/tSmooksInput/test.edi"));
+	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/.././resources/test.edi"));
         	}
         } catch (java.io.IOException e) {
             e.printStackTrace();
@@ -55,16 +55,16 @@
     	java.util.Locale.setDefault(new java.util.Locale("en", "IE"));
     	
         // Instantiate Smooks with the config...
-        org.milyn.Smooks smooks = new org.milyn.Smooks("/./../work/depComponents/tSmooksInput/smooks-config.xml");
+        org.milyn.Smooks smooks = new org.milyn.Smooks("/.././resources/smooks-config.xml");
 		
         try {
              // Create an exec context - no profiles....
         	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
         	javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
-			streamResult.setOutputStream(new java.io.FileOutputStream("/./../work/depComponents/tSmooksInput/output-message.xml"));
+			streamResult.setOutputStream(new java.io.FileOutputStream("/.././resources/output-message.xml"));
             
             // Configure the execution context to generate a report...
-            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("C:\\work\\depComponents\\tSmooksInput\\report.html"));
+            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("/.././resources/report.html"));
 
             // Filter the input message to the outputWriter, using the execution context...
             smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), streamResult);
