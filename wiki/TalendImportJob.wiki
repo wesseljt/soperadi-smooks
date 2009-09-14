@@ -1,0 +1,19 @@
+#summary This page describes how to import job into Talend Open Studio.
+
+= Introduction =
+
+
+
+
+= Details =
+
+==Requirements==
+
+*1.* Talend Open Studio 1.3.1+
+
+
+==Sequence of actions to import job into Talend Open Studio==
+
+*1.* Open your Talend Open Studio.
+
+*2.* 
