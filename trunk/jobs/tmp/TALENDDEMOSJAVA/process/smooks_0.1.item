@@ -11,7 +11,7 @@
     <elementParameter field="TEXT" name="PURPOSE" value="" contextMode="false"/>
     <elementParameter field="TEXT" name="DESCRIPTION" value="" contextMode="false"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" contextMode="false"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="32" contextMode="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="36" contextMode="false"/>
     <elementParameter field="TEXT" name="SCHEMA_OPTIONS" value="none" contextMode="false"/>
     <elementParameter field="CHECK" name="IMPLICITCONTEXT_USE_PROJECT_SETTINGS" value="true" contextMode="false"/>
     <elementParameter field="CHECK" name="STATANDLOG_USE_PROJECT_SETTINGS" value="true" contextMode="false"/>
@@ -68,11 +68,11 @@
     <elementParameter field="CHECK" name="CATCH_USER_WARNING" value="true" contextMode="false"/>
     <elementParameter field="CHECK" name="CATCH_REALTIME_STATS" value="false" contextMode="false"/>
   </parameters>
-  <node componentName="tSmooksInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="160">
+  <node componentName="tSmooksInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooksInput_1" contextMode="false"/>
     <elementParameter field="CHECK" name="START" value="true" contextMode="false"/>
     <elementParameter field="CHECK" name="IS_EDI" value="true" contextMode="false"/>
-    <elementParameter field="TEXT" name="EDI_URI" value="/./../work/depComponents/tSmooksInput/test.edi" contextMode="false"/>
+    <elementParameter field="TEXT" name="EDI_URI" value="/./../resources/test.edi" contextMode="false"/>
     <elementParameter field="TABLE" name="SCHEMAS" contextMode="false">
       <elementValue elementRef="SCHEMA" value="CUS"/>
       <elementValue elementRef="MAPPING" value=""/>
@@ -107,7 +107,7 @@
       <column comment="" key="false" name="OrdName_2" nullable="true" pattern="" sourceType="" type="id_String"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="416">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_1" contextMode="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false" contextMode="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false" contextMode="false"/>
@@ -134,7 +134,7 @@
       <column comment="" key="false" name="HDR2" nullable="true" pattern="" sourceType="" type="id_String"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="864" posY="192">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_2" contextMode="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false" contextMode="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false" contextMode="false"/>
@@ -161,7 +161,7 @@
       <column comment="" key="false" name="OrdName_2" nullable="true" pattern="" sourceType="" type="id_String"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="0">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="0">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_3" contextMode="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false" contextMode="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="false" contextMode="false"/>
