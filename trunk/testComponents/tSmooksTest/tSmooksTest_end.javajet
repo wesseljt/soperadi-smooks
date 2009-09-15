@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Copyright (c) 2009 SOPERA GmbH
+ * All rights reserved. 
+ * This program and the accompanying materials are made available
+ * under the terms of the GNU Lesser General Public License v 3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl-3.0.txt
+ ******************************************************************************/
 <%@ jet 
 	imports="
 		org.talend.core.model.process.INode 
@@ -16,25 +24,13 @@
 <% 
     CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
     INode node = (INode)codeGenArgument.getArgument();
-    String cid = node.getUniqueName();
-    
+    String cid = node.getUniqueName();	
 %>
-	  HelloSmooks_API_<%=cid%> helloSmooks_API_<%=cid%> = new HelloSmooks_API_<%=cid%>();
-	  System.out.println(helloSmooks_API_<%=cid%>.getS());
-	  
-	  
-	  System.out.println("\n\n==============Message In==============");
 
-        System.out.println(new String(helloSmooks_API_<%=cid%>.messageIn));
-        System.out.println("======================================\n");
-
-        System.out.println("The EDI input stream can be seen above.");
-
-        
-        String messageOut = helloSmooks_API_<%=cid%>.runSmooksTransform();
-
-        System.out.println("==============Message Out=============");
-        System.out.println(messageOut);
-        System.out.println("======================================\n\n");
-
-        System.out.println("And that's it!");	  
+	nb_line_<%=cid %>++;
+	
+	   }// loop to iterate the data communication
+	   
+	System.out.println("nb_line:" + nb_line_<%=cid %>);
+	globalMap.put("<%=cid %>_NB_LINE",nb_line_<%=cid %>);
+	
