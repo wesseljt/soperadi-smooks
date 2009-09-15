@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Copyright (c) 2009 SOPERA GmbH
+ * All rights reserved. 
+ * This program and the accompanying materials are made available
+ * under the terms of the GNU Lesser General Public License v 3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl-3.0.txt
+ ******************************************************************************/
 <%@ jet 
 	imports="
 		org.talend.core.model.process.INode 
@@ -10,15 +18,24 @@
 		org.talend.core.model.metadata.types.JavaTypesManager
 		org.talend.core.model.metadata.types.JavaType
 		java.util.List 
-    	java.util.Map		
+    	java.util.Map
+    		
 	" 
 %>
 <% 
     CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
     INode node = (INode)codeGenArgument.getArgument();
     String cid = node.getUniqueName();	
+    List<Map<String, String>> schemas = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__SCHEMAS__");
+    String ediuri = ElementParameterParser.getValue(node, "__EDI_URI__");
+    boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
+    String outputS = "Begin:";
+
+    List< ? extends IConnection> connections = node.getOutgoingSortedConnections();
+    
 %>
 	System.out.println("Begin in process!");
+	
 	class HelloSmooks_API_<%=cid%> {
 
 	private String s = "Hello world!";
@@ -29,8 +46,12 @@
 	
 	private byte[] readInputMessage() {
         try {
-            //return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("C:\\work\\depComponents\\tSmooksTest\\test.edi"));
-            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/./../work/depComponents/tSmooksTest/test.edi"));
+        	if(<%=useediuri%>) {
+	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("<%=ediuri%>"));
+        	}
+        	else {
+	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/.././resources/test.edi"));
+        	}
         } catch (java.io.IOException e) {
             e.printStackTrace();
             return "<no-message/>".getBytes();
@@ -42,17 +63,16 @@
     	java.util.Locale.setDefault(new java.util.Locale("en", "IE"));
     	
         // Instantiate Smooks with the config...
-        //org.milyn.Smooks smooks = new org.milyn.Smooks("file:///c:\\work\\depComponents\\tSmooksTest\\smooks-config.xml");
-        org.milyn.Smooks smooks = new org.milyn.Smooks("/./../work/depComponents/tSmooksTest/smooks-config.xml");
+        org.milyn.Smooks smooks = new org.milyn.Smooks("/.././resources/smooks-config.xml");
 		
         try {
              // Create an exec context - no profiles....
         	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
         	javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
-			streamResult.setOutputStream(new java.io.FileOutputStream("/./../work/depComponents/tSmooksTest/output-message.xml"));
+			streamResult.setOutputStream(new java.io.FileOutputStream("/.././resources/output-message.xml"));
             
             // Configure the execution context to generate a report...
-            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("C:\\work\\depComponents\\tHelloWorld\\report.html"));
+            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("/.././resources/report.html"));
 
             // Filter the input message to the outputWriter, using the execution context...
             smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), streamResult);
@@ -65,3 +85,91 @@
         }
     }
    }
+   
+   	  HelloSmooks_API_<%=cid%> helloSmooks_API_<%=cid%> = new HelloSmooks_API_<%=cid%>();
+	  System.out.println(helloSmooks_API_<%=cid%>.getS());
+      String messageOut = helloSmooks_API_<%=cid%>.runSmooksTransform();
+		
+        System.out.println("==============Message Out=============");
+        System.out.println(messageOut);
+        System.out.println("======================================\n\n");
+
+	int nb_line_<%=cid %> = 0;   
+ 
+<%    
+    if(connections!=null && connections.size()>0) {
+	//get all the children collections of the loop node.
+	   for(IConnection conn : connections){
+	      IMetadataTable metadata = conn.getMetadataTable();
+		  if(metadata!=null){
+		  List<IMetadataColumn> columns = metadata.getListColumns();
+%>	   
+	   System.out.println("connName:<%=conn.getName()%>");
+<%
+			 for(IMetadataColumn column:columns) {
+			    String typeToGenerate = JavaTypesManager.getTypeToGenerate(column.getTalendType(), column.isNullable());
+				JavaType javaType = JavaTypesManager.getJavaTypeFromId(column.getTalendType());
+				String patternValue = column.getPattern() == null || column.getPattern().trim().length() == 0 ? null : column.getPattern();
+%>
+		System.out.println("colName:<%=column.getLabel()%> TalendType:<%=column.getTalendType()%>  Type:<%=column.getType()%> ");			 
+		System.out.println("typeToGenerate:<%=typeToGenerate%> patternValue:" + <%=patternValue%>);
+<%
+			 } // columns
+	      } // metadata!=null
+	   } // connections
+
+	   for(Map<String, String> schemaMap : schemas){
+%>
+	   System.out.println("schemaName:<%=schemaMap.get("SCHEMA")%>");
+<%	   
+	   }
+%>
+	for (int i=0; i<10; i++) { // loop to iterate the data communication
+<%
+	   for(IConnection conn : connections){
+	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)){
+		     String query = null;
+			 for(Map<String, String> schemaMap : schemas){
+			    if(schemaMap.get("SCHEMA").equals(conn.getName())){
+ 		           outputS = outputS  + " " + conn.getName() + ":";
+				   IMetadataTable metadata = conn.getMetadataTable();
+			       if(metadata!=null){
+		              List<IMetadataColumn> columns = metadata.getListColumns();
+		              for(IMetadataColumn column:columns) {
+        			     String typeToGenerate = JavaTypesManager.getTypeToGenerate(column.getTalendType(), column.isNullable());
+				         JavaType javaType = JavaTypesManager.getJavaTypeFromId(column.getTalendType());
+				         String patternValue = column.getPattern() == null || column.getPattern().trim().length() == 0 ? null : column.getPattern();
+ 		                 outputS = outputS  + column.getLabel() + ":";
+                         if (conn.getName().equals("ORD")) {
+                         if (javaType != JavaTypesManager.DATE) {
+%>
+<%=conn.getName() %>.<%=column.getLabel() %> = "Iterate String value";
+<%
+ 		                 } // javaType != JavaTypesManager.DATE
+ 		                 } // conn.getName().equals("ORD")
+ 		                 else {
+%>
+	if(nb_line_<%=cid %> > 0) {
+		<%=conn.getName() %> = null; 
+	}
+	else {
+
+<%
+                         if (javaType != JavaTypesManager.DATE) {
+%>
+		<%=conn.getName() %>.<%=column.getLabel() %> = "Single String value";
+<%
+						 }
+%>
+	}
+<%
+ 		                 } // else (conn.getName().equals("ORD"))
+ 		              } // columns
+ 		           } // metadata!=null
+ 		        } // schemaMap.get("SCHEMA").equals(conn.getName())
+			 } // schemas
+		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
+	   } // connections
+	}// connections!=null && connections.size()>0
+%>
+
