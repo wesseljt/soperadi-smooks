@@ -28,7 +28,7 @@
 %>
 
 	nb_line_<%=cid %>++;
-	
+	inputFlow_<%=cid %>.next();
 	   }// loop to iterate the data communication
 	   
 	System.out.println("nb_line:" + nb_line_<%=cid %>);
