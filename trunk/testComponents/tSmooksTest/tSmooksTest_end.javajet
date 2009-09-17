@@ -24,13 +24,32 @@
 <% 
     CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
     INode node = (INode)codeGenArgument.getArgument();
-    String cid = node.getUniqueName();	
+    String cid = node.getUniqueName();
+    
+    String mode = ElementParameterParser.getValue(node, "__INPUT_FORMAT__");
+    List< ? extends IConnection> connections = node.getOutgoingSortedConnections();
+
+if(connections!=null && connections.size()>0){
+
+	boolean hasConn = false;
+	
+	//get all the children collections of the loop node.
+	for(IConnection conn : connections){
+		if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)){
+			hasConn = true;
+		}
+	}
+	   if(hasConn == true && ("EDI").equals(mode)){
+    	
 %>
 
 	nb_line_<%=cid %>++;
 	inputFlow_<%=cid %>.next();
 	   }// loop to iterate the data communication
-	   
+<%
+	   }// if (mode)
+	}
+%>
 	System.out.println("nb_line:" + nb_line_<%=cid %>);
 	globalMap.put("<%=cid %>_NB_LINE",nb_line_<%=cid %>);
 	
