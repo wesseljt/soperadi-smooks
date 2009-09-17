@@ -27,8 +27,13 @@
     INode node = (INode)codeGenArgument.getArgument();
     String cid = node.getUniqueName();	
     List<Map<String, String>> schemas = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__SCHEMAS__");
-    String ediuri = ElementParameterParser.getValue(node, "__EDI_URI__");
-    boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
+    
+    String mode = ElementParameterParser.getValue(node, "__INPUT_FORMAT__");
+        
+    String inputuri = ElementParameterParser.getValue(node, "__INPUT_URI__");
+    String mappinguri = ElementParameterParser.getValue(node, "__MAPPING_URI__");
+    
+    //boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
     String encoding = ElementParameterParser.getValue(node, "__ENCODING__");
     
     String outputS = "Begin:";
@@ -42,19 +47,17 @@
 	int nb_line_<%=cid %> = 0;   
 	String str_inpt_<%=cid %> = "";
 	
-  	org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = new org.sopera.di.smooks.impl.ComponentFacadeImpl();
+<%
+// *** EDI transform begin *** //
+    if(("EDI").equals(mode)){
+%>
+  	   org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = new org.sopera.di.smooks.impl.ComponentFacadeImpl();
 
-  	inputFlow_<%=cid %>.setMapping(new java.io.FileInputStream("/.././resources/smooks-mapping.xml"));
+  	   inputFlow_<%=cid %>.setMapping(new java.io.FileInputStream("<%=mappinguri%>"));
 
-	inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("/.././resources/test.edi"));
+	   inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("<%=inputuri%>"));
 
-	inputFlow_<%=cid %>.setXPath("/Order/order-item");
-	
-	
-	//String value = inputFlow_<%=cid %>.process();
-	//System.out.println((String)list_<%=cid %>.get(j));
-    
-	
+	   inputFlow_<%=cid %>.setXPath("/Order/order-item");
  
 <%    
     if(connections!=null && connections.size()>0) {
@@ -86,6 +89,7 @@
 %>
 	inputFlow_<%=cid %>.start();
 	while (!inputFlow_<%=cid %>.isEndOfFlow()) { // loop to iterate the data communication
+	System.out.println("!!!nb_line:" + nb_line_<%=cid %>);
 <%
 	   for(IConnection conn : connections){
 	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)){
@@ -170,5 +174,8 @@
 		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
 	   } // connections
 	}// connections!=null && connections.size()>0
+%>
+<%
+	}// if (mode)
 %>
 
