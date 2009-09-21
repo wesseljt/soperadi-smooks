@@ -27,111 +27,176 @@
     INode node = (INode)codeGenArgument.getArgument();
     String cid = node.getUniqueName();	
     List<Map<String, String>> schemas = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__SCHEMAS__");
-    String ediuri = ElementParameterParser.getValue(node, "__EDI_URI__");
-    boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
+    
+    String mode = ElementParameterParser.getValue(node, "__INPUT_FORMAT__");
+        
+    String inputuri = ElementParameterParser.getValue(node, "__INPUT_URI__");
+    String mappinguri = ElementParameterParser.getValue(node, "__MAPPING_URI__");
+    
+    //boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
+    String encoding = ElementParameterParser.getValue(node, "__ENCODING__");
+    
     String outputS = "Begin:";
+    String strQuery = "";
 
     List< ? extends IConnection> connections = node.getOutgoingSortedConnections();
+    String xPath = "";
     
 %>
 	System.out.println("Begin in process!");
 	
-	class HelloSmooks_API_<%=cid%> {
-
-	private String s = "Hello world!";
-	public String getS() {return s;}
-	
-	private byte[] messageIn = readInputMessage();
-	
-	
-	private byte[] readInputMessage() {
-        try {
-        	if(<%=useediuri%>) {
-	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("<%=ediuri%>"));
-        	}
-        	else {
-	            return org.milyn.io.StreamUtils.readStream(new java.io.FileInputStream("/.././resources/test.edi"));
-        	}
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-            return "<no-message/>".getBytes();
-        }
-    }
-     protected String runSmooksTransform() throws java.io.IOException, org.xml.sax.SAXException, org.milyn.SmooksException {
-    	
-    	java.util.Locale defaultLocale = java.util.Locale.getDefault();
-    	java.util.Locale.setDefault(new java.util.Locale("en", "IE"));
-    	
-        // Instantiate Smooks with the config...
-        org.milyn.Smooks smooks = new org.milyn.Smooks("/.././resources/smooks-config.xml");
-		
-        try {
-             // Create an exec context - no profiles....
-        	org.milyn.container.ExecutionContext executionContext = smooks.createExecutionContext();
-        	javax.xml.transform.stream.StreamResult streamResult = new javax.xml.transform.stream.StreamResult();
-			streamResult.setOutputStream(new java.io.FileOutputStream("/.././resources/output-message.xml"));
-            
-            // Configure the execution context to generate a report...
-            executionContext.setEventListener(new org.milyn.event.report.HtmlReportGenerator("/.././resources/report.html"));
-
-            // Filter the input message to the outputWriter, using the execution context...
-            smooks.filterSource(executionContext, new javax.xml.transform.stream.StreamSource(new java.io.ByteArrayInputStream(messageIn)), streamResult);
-
-            java.util.Locale.setDefault(defaultLocale);
-
-            return "OK";
-        } finally {
-            smooks.close();
-        }
-    }
-   }
    
-   	  HelloSmooks_API_<%=cid%> helloSmooks_API_<%=cid%> = new HelloSmooks_API_<%=cid%>();
-	  System.out.println(helloSmooks_API_<%=cid%>.getS());
-      String messageOut = helloSmooks_API_<%=cid%>.runSmooksTransform();
-		
-        System.out.println("==============Message Out=============");
-        System.out.println(messageOut);
-        System.out.println("======================================\n\n");
-
 	int nb_line_<%=cid %> = 0;   
-	for (int i=0; i<10; i++) { // loop to iterate the data communication
- 
+	String str_inpt_<%=cid %> = "";
+	java.util.List<String> list_<%=cid %> = new java.util.ArrayList<String>(); // List of used XPaths
+	
+<%
+// *** EDI transform begin *** //
+    if(("EDI").equals(mode)){
+%>
+	   int concol_<%=cid %> = 0;
+	   int notNullColumns_<%=cid %> = 0;	
+  	   org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = new org.sopera.di.smooks.impl.ComponentFacadeImpl();
+
+
 <%    
     if(connections!=null && connections.size()>0) {
-	//get all the children collections of the loop node.
-	   for(IConnection conn : connections){
-	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)){
+
+// Step 1 Begin
+// Calculate the number of active connections
+	   for(IConnection conn : connections) {
+	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)) {
 		     String query = null;
-			 for(Map<String, String> schemaMap : schemas){
-			    if(schemaMap.get("SCHEMA").equals(conn.getName())){
- 		           outputS = outputS  + " " + conn.getName() + ":";
-				   IMetadataTable metadata = conn.getMetadataTable();
-			       if(metadata!=null){
-		              List<IMetadataColumn> columns = metadata.getListColumns();
-		              for(IMetadataColumn column:columns) {
- 		                 outputS = outputS  + column.getLabel() + ":";
-                         if (conn.getName().equals("ORD")) {
+			 for(Map<String, String> schemaMap : schemas) {
+			    if(schemaMap.get("SCHEMA").equals(conn.getName())) {
 %>
-<%=conn.getName() %>.<%=column.getLabel() %> = "Iterate String value";
+		concol_<%=cid %>++;
+		if (concol_<%=cid %>==1) {
 <%
- 		                 } // conn.getName().equals("ORD")
- 		                 else {
+		xPath = schemaMap.get("XPATH");
 %>
-	if(nb_line_<%=cid %> > 0) {
-		<%=conn.getName() %> = null; 
-	}
-	else {
-		<%=conn.getName() %>.<%=column.getLabel() %> = "Single String value";
-	}
-<%
- 		                 } // else (conn.getName().equals("ORD"))
- 		              } // columns
- 		           } // metadata!=null
+			}
+<%			
  		        } // schemaMap.get("SCHEMA").equals(conn.getName())
 			 } // schemas
 		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
 	   } // connections
+// Step 1 End
+%>	
+
+// Step 2 
+// Activate the inputFlow 
+
+    inputFlow_<%=cid %>.setMapping(new java.io.FileInputStream("<%=mappinguri%>"));
+    
+    inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("<%=inputuri%>"));
+    
+    list_<%=cid %>.add(<%=xPath%>);
+    
+    inputFlow_<%=cid %>.setXPath(<%=xPath%>);
+    
+	inputFlow_<%=cid %>.start();
+	
+	inputFlow_<%=cid %>.startRead();
+
+// Step 3 
+// Loop for the data communication iterations
+
+	while (!inputFlow_<%=cid %>.isEndOfFlow() || concol_<%=cid %>!=0) { // loop to iterate the data communication
+
+	if (inputFlow_<%=cid %>.isEndOfFlow()) {
+	   concol_<%=cid %>--;
+    }	
+	
+	System.out.println("!!!nb_line:" + nb_line_<%=cid %>);
+<%
+
+// Step 3.1 Begin
+// Loop for active connections
+	   
+	   for(IConnection conn : connections) {
+	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)) {
+		     String query = null;
+		     String mapping = "";
+		     String[] paramNames = null;
+			 for(Map<String, String> schemaMap : schemas) {
+			       mapping = schemaMap.get("MAPPING");	
+ 			       if(mapping != null){
+		              paramNames = mapping.split(",");
+	               }	
+			    if(schemaMap.get("SCHEMA").equals(conn.getName())) {
+			    xPath = schemaMap.get("XPATH");
+%>
+	<%=conn.getName() %>=new <%=conn.getName() %>Struct();
+
+	if (inputFlow_<%=cid %>.isEndOfFlow() && !list_<%=cid %>.contains(<%=xPath%>)) {
+	
+	   list_<%=cid %>.add(<%=xPath%>);
+
+  	   inputFlow_<%=cid %>.setMapping(new java.io.FileInputStream("<%=mappinguri%>"));
+
+	   inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("<%=inputuri%>"));
+	
+  	   inputFlow_<%=cid %>.setXPath(<%=xPath%>);
+
+	   inputFlow_<%=cid %>.start();
+
+	   inputFlow_<%=cid %>.startRead();
+
+	}
+	if (inputFlow_<%=cid %>.getXPath().equals(<%=xPath%>) && !inputFlow_<%=cid %>.isEndOfFlow()) {
+<%
+ 		           outputS = outputS  + " " + conn.getName() + ":";
+				   IMetadataTable metadata = conn.getMetadataTable();
+			       if(metadata!=null){
+		              List<IMetadataColumn> columns = metadata.getListColumns();
+		              int i = 0;
+		              for(IMetadataColumn column:columns) {
+        			     String typeToGenerate = JavaTypesManager.getTypeToGenerate(column.getTalendType(), column.isNullable());
+				         JavaType javaType = JavaTypesManager.getJavaTypeFromId(column.getTalendType());
+				         String patternValue = column.getPattern() == null || column.getPattern().trim().length() == 0 ? null : column.getPattern();
+%>
+ 		str_inpt_<%=cid %> = inputFlow_<%=cid %>.findTagValue(<%=paramNames[i]%>);
+<%
+        i++;
+                         	if (javaType == JavaTypesManager.DATE) {
+%>
+		<%=conn.getName() %>.<%=column.getLabel() %> = ParserUtils.parseTo_Date(str_inpt_<%=cid %>, <%= patternValue %>);
+<%
+						 	} else if (javaType == JavaTypesManager.STRING || javaType == JavaTypesManager.OBJECT) {
+%>
+		<%=conn.getName() %>.<%=column.getLabel() %> = str_inpt_<%=cid %>;
+<%						 
+						 	} else if (javaType == JavaTypesManager.BYTE_ARRAY) {
+%>
+		<%=conn.getName() %>.<%=column.getLabel() %> = str_inpt_<%=cid %>.getBytes(<%=encoding %>);
+<%						 
+							} else if(JavaTypesManager.isNumberType(javaType)) { 
+%>
+		<%=conn.getName() %>.<%=column.getLabel() %> = ParserUtils.parseTo_<%= typeToGenerate %>(ParserUtils.parseTo_Number(str_inpt_<%=cid %>, ',', '.'));
+<%
+							} else {
+%>
+		<%=conn.getName() %>.<%=column.getLabel() %> = ParserUtils.parseTo_<%= typeToGenerate %>(str_inpt_<%=cid %>);
+<%
+						 	}
+ 		              } // columns
+ 		           } // metadata!=null
+%>
+     }  //inputFlow_<=cid>.getXPath().equals(<=xPath>)
+     else {
+		<%=conn.getName() %> = null;
+     }
+<%
+ 		        } // schemaMap.get("SCHEMA").equals(conn.getName())
+	            } // schemas
+			 } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
+		  } // connections
+
+
+	  
+		  
 	}// connections!=null && connections.size()>0
+	}// if (mode)
 %>
 
