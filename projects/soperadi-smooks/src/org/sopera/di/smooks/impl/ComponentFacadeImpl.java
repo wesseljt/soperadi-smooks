@@ -10,6 +10,8 @@
 package org.sopera.di.smooks.impl;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.milyn.edisax.EDIParser;
 import org.sopera.di.smooks.ComponentFacade;
@@ -69,7 +71,7 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	}
 
 	public boolean isEndOfFlow() {
-		return writer == null || !writer.isAlive();
+		return res.isEnd();//writer == null || !writer.isAlive();
 	}
 
 
@@ -85,13 +87,20 @@ public class ComponentFacadeImpl implements ComponentFacade {
 		res.startRead();
 		return;
 	}
-	public void next() {
-					
-		return;		
+	public boolean next() {
+		
+		res.endRead();
+		res.startRead();
+		if(res.isEnd())			
+			return false;
+		else
+		    return true;
 	}
 
+	
 
 	public void start() {
+		
 		res = new StringTags();
 		EDIProcess parser = new EDIProcess(res,EDI,mapping,loc);
 		writer = new Thread(parser);

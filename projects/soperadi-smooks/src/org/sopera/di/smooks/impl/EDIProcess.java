@@ -168,8 +168,12 @@ import org.xml.sax.helpers.DefaultHandler;
 
 	@Override
 	public void endDocument() throws SAXException {
-		 // res.startWrite();
-		 // res.endWrite();
+		System.out.println("endDocument BEGIN");
+		res.startWrite();
+		res.setEnd(true);
+		res.endWrite();
+		System.out.println("endDocument END");
+		
 	}
 	 
 }
