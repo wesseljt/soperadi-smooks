@@ -6,7 +6,16 @@ public class StringTags
 {
 	HashMap<String,String> tags = new HashMap<String,String>();;
 	boolean state = false;
+	boolean end = false;
 	
+	public boolean isEnd() {
+		return end;
+	}
+
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
 	String findTagValue(String tagName)
 	{
 		System.out.println("read: "+tags.get(tagName));

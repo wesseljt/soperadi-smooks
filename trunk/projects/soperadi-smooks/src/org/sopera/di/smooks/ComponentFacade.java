@@ -43,7 +43,7 @@ public interface ComponentFacade {
 	
 	public void start();
 	
-	public void next();
+	public boolean next();
 	
 	public String  findTagValue(String tagName);
 	
