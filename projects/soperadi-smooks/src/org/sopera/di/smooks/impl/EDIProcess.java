@@ -114,12 +114,12 @@ import org.xml.sax.helpers.DefaultHandler;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		loc.startElement(new QName("", "Order"));
-		loc.startElement(new QName("", "order-item"));
+		//loc.startElement(new QName("", "Order"));
+		//loc.startElement(new QName("", "order-item"));
 		
 		
 		this.res = res;
-		new Thread(this, "EDIProcess").start();
+		//new Thread(this, "EDIProcess").start();
 
 	}
 
@@ -165,5 +165,11 @@ import org.xml.sax.helpers.DefaultHandler;
 		     }
 	     }
 	 }
+
+	@Override
+	public void endDocument() throws SAXException {
+		 // res.startWrite();
+		 // res.endWrite();
+	}
 	 
 }
