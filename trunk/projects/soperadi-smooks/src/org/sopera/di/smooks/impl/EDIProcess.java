@@ -24,73 +24,78 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Run as a thread, filling the structure StringTags res using the flow of SAX events. 
+ * This class transforms the EDI-message data in the flow of SAX-events. Run as
+ * a thread, EDIProcess filling the structure StringTags <i>res</i> using the
+ * present location SAXLocation <i>loc</i> to determine the necessary data.
+ * Iteratively perform recording sessions, after each session, waiting the
+ * ending of reading session. To use this class, we have to organize the read
+ * sessions loop for StringTags structure.
+ * 
  * @author mirom
- *
+ * 
  */
-	public class EDIProcess extends DefaultHandler implements Runnable
-	{
-		StringTags res; // TugString resource
-		String tagKey;  // Current tag
-		EDIParser parser; // Parser
-		InputStream edi; // EDI-massage stream
-		InputStream mapping; // Mapping stream
-		private int flagXPath = 0; // location flag
-		
-	
-		private SAXLocation location = new SAXLocationImpl(); // Current location
-		private SAXLocation loc = new SAXLocationImpl(); // Location 
-	
-	
-		public SAXLocation getLocation() {
-			return location;
-		}
+public class EDIProcess extends DefaultHandler implements Runnable {
+	private StringTags res; // TugString resource
+	private String tagKey; // Current tag
+	private EDIParser parser; // Parser
+	private InputStream edi; // EDI-massage stream
+	private InputStream mapping; // Mapping stream
+	private boolean flagXPath = false; // location flag
 
-		public SAXLocation getLoc() {
-			return loc;
-		}
+	private SAXLocation location = new SAXLocationImpl(); // Current location
+	private SAXLocation loc = new SAXLocationImpl(); // Present location
 
-		public void setLocation(SAXLocation location) {
-			this.location = location;
-		}
+	/**
+	 * Set the present location to determine the necessary data.
+	 * 
+	 * @param loc
+	 */
+	public void setLoc(SAXLocation loc) {
+		this.loc = loc;
+	}
 
-		public void setLoc(SAXLocation loc) {
-			this.loc = loc;
-		}
-	
-	public EDIProcess(StringTags res) 
-	{
+	/**
+	 * Class constructor specifying just structure for filling and
+	 * synchronization. The present location set by default.
+	 * 
+	 * @param res
+	 *            the structure for filling
+	 */
+	public EDIProcess(StringTags res) {
 		parser = new EDIParser();
 		edi = getClass().getResourceAsStream("/smooks.edi");
-		assertNotNull("Can't find EDI file for test",edi);
+		assertNotNull("Can't find EDI file for test", edi);
 		mapping = getClass().getResourceAsStream("/smooks-mapping.xml");
 		assertNotNull("Can't find mapping file", mapping);
 		parser.setContentHandler(this);
 		try {
 			parser.setMappingModel(EDIParser.parseMappingModel(mapping));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (EDIConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		loc.startElement(new QName("", "Order"));
 		loc.startElement(new QName("", "order-item"));
-		//System.err.println(loc);
-		
+
 		new Thread(this, "EDIProcess").start();
 		this.res = res;
 	}
+
 	/**
+	 * Class constructor specifying necessary streams, structure for filling and
+	 * synchronization, location of reading data
 	 * 
 	 * @param res
+	 *            structure for filling
 	 * @param edi
-	 * @param mapping Mapping stream
+	 *            input stream of EDI-file
+	 * @param mapping
+	 *            input stream of Smooks mapping file (EDI-to-XML)
 	 * @param loc
+	 *            location of reading data
 	 */
 	public EDIProcess(StringTags res, InputStream edi, InputStream mapping,
 			SAXLocation loc) {
@@ -98,74 +103,103 @@ import org.xml.sax.helpers.DefaultHandler;
 		this.res = res;
 		this.edi = edi;
 		this.loc = loc;
-		
+
 		parser = new EDIParser();
 		parser.setContentHandler(this);
-		
+
 		try {
 			parser.setMappingModel(EDIParser.parseMappingModel(mapping));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (EDIConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//loc.startElement(new QName("", "Order"));
-		//loc.startElement(new QName("", "order-item"));
-		
-		
+
 		this.res = res;
-		//new Thread(this, "EDIProcess").start();
 
 	}
 
-	public void run()
-	{
+	/**
+	 * Starts the flow of SAX-events
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
+	public void run() {
 		try {
 			parser.parse(new InputSource(edi));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Change the current location. Set the name of current element to class
+	 * field. Compares the current and preset location. If they coincide, starts
+	 * the session recording into structure. If the read session not ended yet,
+	 * waiting for this.
+	 * 
+	 * 
+	 * @see org.xml.sax.helpers.DefaultHandler#startElement(String, String,
+	 *      String, Attributes)
+	 */
 	@Override
-	 public void startElement(String uri, String localName, String qName,
-	   Attributes attributes) throws SAXException {
+	public void startElement(String uri, String localName, String qName,
+			Attributes attributes) throws SAXException {
 		tagKey = localName;
-	  location.startElement(new QName(uri, localName));
-	  if (location.equals(loc)) {
-		  flagXPath = 1;
-		  res.startWrite();
-	  }
-	 }
-	 @Override
-	 public void endElement(String uri, String localName, String qName
-	   ) throws SAXException {
-	  if (location.equals(loc)) {
-		  flagXPath = 0;
-		  res.endWrite();
-	  }   
+		location.startElement(new QName(uri, localName));
+		if (location.equals(loc)) {
+			flagXPath = true;
+			res.startWrite();
+		}
+	}
 
-	  location.endElement();
-	 }
-	 @Override
-	 public void characters(char[] ch, int start, int length) throws SAXException {
-	     String value = new String(ch,start,length);
-	     if (flagXPath>0) {
-		     if (!Character.isISOControl(value.charAt(0))) {
-		    	 res.write(tagKey, value);
-		     }
-	     }
-	 }
+	/**
+	 * Compares the current and preset location, if they coincide, ends the
+	 * session recording into structure. If the read-stream waiting for this
+	 * structure, it can start. <br>
+	 * Change the current location.
+	 * 
+	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
+	 *      java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void endElement(String uri, String localName, String qName)
+			throws SAXException {
+		if (location.equals(loc)) {
+			flagXPath = false;
+			res.endWrite();
+		}
 
+		location.endElement();
+	}
+
+	/**
+	 * If the recording session started, write the current String value to the
+	 * structure. Else, do nothing.
+	 * 
+	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+	 */
+	@Override
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
+		if (flagXPath) {
+			String value = new String(ch, start, length);
+			if (!Character.isISOControl(value.charAt(0))) {
+				res.write(tagKey, value);
+			}
+		}
+	}
+
+	/**
+	 * If the read session not ended yet, waiting for this. Set the state of
+	 * structure to END.
+	 * 
+	 * @see org.xml.sax.helpers.DefaultHandler#endDocument()
+	 */
 	@Override
 	public void endDocument() throws SAXException {
 		System.out.println("endDocument BEGIN");
@@ -173,7 +207,7 @@ import org.xml.sax.helpers.DefaultHandler;
 		res.setEnd(true);
 		res.endWrite();
 		System.out.println("endDocument END");
-		
+
 	}
-	 
+
 }
