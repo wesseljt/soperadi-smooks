@@ -69,13 +69,9 @@
 		     String query = null;
 			 for(Map<String, String> schemaMap : schemas) {
 			    if(schemaMap.get("SCHEMA").equals(conn.getName())) {
-%>
-		concol_<%=cid %>++;
-		if (concol_<%=cid %>==1) {
-<%
 		xPath = schemaMap.get("XPATH");
 %>
-			}
+			inputFlow_<%=cid %>.setXPath(<%=xPath%>);
 <%			
  		        } // schemaMap.get("SCHEMA").equals(conn.getName())
 			 } // schemas
@@ -91,9 +87,9 @@
     
     inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("<%=inputuri%>"));
     
-    list_<%=cid %>.add(<%=xPath%>);
+    //list_<%=cid %>.add(<%=xPath%>);
     
-    inputFlow_<%=cid %>.setXPath(<%=xPath%>);
+    //inputFlow_<%=cid %>.setXPath(<%=xPath%>);
     
 	inputFlow_<%=cid %>.start();
 	
@@ -102,11 +98,8 @@
 // Step 3 
 // Loop for the data communication iterations
 
-	while (!inputFlow_<%=cid %>.isEndOfFlow() || concol_<%=cid %>!=0) { // loop to iterate the data communication
+	while (!inputFlow_<%=cid %>.isEndOfFlow()) { // loop to iterate the data communication
 
-	if (inputFlow_<%=cid %>.isEndOfFlow()) {
-	   concol_<%=cid %>--;
-    }	
 	
 	System.out.println("!!!nb_line:" + nb_line_<%=cid %>);
 <%
@@ -125,21 +118,6 @@
 %>
 	<%=conn.getName() %>=new <%=conn.getName() %>Struct();
 
-	if (inputFlow_<%=cid %>.isEndOfFlow() && !list_<%=cid %>.contains(<%=xPath%>)) {
-	
-	   list_<%=cid %>.add(<%=xPath%>);
-
-  	   inputFlow_<%=cid %>.setMapping(new java.io.FileInputStream("<%=mappinguri%>"));
-
-	   inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("<%=inputuri%>"));
-	
-  	   inputFlow_<%=cid %>.setXPath(<%=xPath%>);
-
-	   inputFlow_<%=cid %>.start();
-
-	   inputFlow_<%=cid %>.startRead();
-
-	}
 	if (inputFlow_<%=cid %>.getXPath().equals(<%=xPath%>) && !inputFlow_<%=cid %>.isEndOfFlow()) {
 <%
  		           outputS = outputS  + " " + conn.getName() + ":";
