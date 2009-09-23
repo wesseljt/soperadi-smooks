@@ -16,6 +16,7 @@ import java.io.InputStream;
 import javax.xml.namespace.QName;
 import org.milyn.edisax.EDIConfigurationException;
 import org.milyn.edisax.EDIParser;
+import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.Attributes;
@@ -25,13 +26,13 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * This class transforms the EDI-message data in the flow of SAX-events. Run as
- * a thread, EDIProcess filling the structure StringTags <i>res</i> using the
- * present location SAXLocation <i>loc</i> to determine the necessary data.
+ * a thread, EDIProcess filling the structure {@link StringTags} using the
+ * present location {@link SAXLocation} to determine the necessary data.
  * Iteratively perform recording sessions, after each session, waiting the
  * ending of reading session. To use this class, we have to organize the read
- * sessions loop for StringTags structure.
+ * sessions loop for {@link StringTags} structure.
  * 
- * @author mirom
+ * @author soperadi-smooks
  * 
  */
 public class EDIProcess extends DefaultHandler implements Runnable {
