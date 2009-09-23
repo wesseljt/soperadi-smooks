@@ -38,7 +38,6 @@
 			<ITEMS>
 				<ITEM NAME="SCHEMA" FIELD="SCHEMA_TYPE" />	
 				<ITEM NAME="XPATH" FIELD="TEXT" />
-				<ITEM NAME="MAPPING" FIELD="SCHEMA_XPATH_QUERYS" />
 				<ITEM NAME="JOIN_STRATEGY" FIELD="CHECK" />
 			</ITEMS>
    </PARAMETER> 
@@ -51,7 +50,6 @@
 		<DEFAULT>"ISO-8859-15"</DEFAULT>
 	</PARAMETER>
 	
-	<PARAMETER FIELD="MEMO" NAME="SMOOKS_MAPPING" NB_LINES="2" SHOW="true" NUM_ROW="2"/>
 	
   </ADVANCED_PARAMETERS>  
   
@@ -70,6 +68,10 @@
      <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
 				REQUIRED="true" />
      <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="guice-2.0.jar" MODULE="guice-2.0.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="aopalliance.jar" MODULE="aopalliance.jar"
 				REQUIRED="true" />
 	  </IMPORTS> 
   </CODEGENERATION>  

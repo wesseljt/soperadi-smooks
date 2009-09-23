@@ -56,7 +56,7 @@
 %>
 	   int concol_<%=cid %> = 0;
 	   int notNullColumns_<%=cid %> = 0;	
-  	   org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = new org.sopera.di.smooks.impl.ComponentFacadeImpl();
+  	   org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = org.sopera.di.smooks.ComponentFacade.INSTANCE;
 
 
 <%    
@@ -120,10 +120,6 @@
 		     String mapping = "";
 		     String[] paramNames = null;
 			 for(Map<String, String> schemaMap : schemas) {
-			       mapping = schemaMap.get("MAPPING");	
- 			       if(mapping != null){
-		              paramNames = mapping.split(",");
-	               }	
 			    if(schemaMap.get("SCHEMA").equals(conn.getName())) {
 			    xPath = schemaMap.get("XPATH");
 %>
@@ -156,7 +152,7 @@
 				         JavaType javaType = JavaTypesManager.getJavaTypeFromId(column.getTalendType());
 				         String patternValue = column.getPattern() == null || column.getPattern().trim().length() == 0 ? null : column.getPattern();
 %>
- 		str_inpt_<%=cid %> = inputFlow_<%=cid %>.findTagValue(<%=paramNames[i]%>);
+ 		str_inpt_<%=cid %> = inputFlow_<%=cid %>.findTagValue("<%=column.getLabel()%>");
 <%
         i++;
                          	if (javaType == JavaTypesManager.DATE) {
