@@ -13,10 +13,12 @@ import static junit.framework.Assert.assertNotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Iterator;
+
 import javax.xml.namespace.QName;
 import org.milyn.edisax.EDIConfigurationException;
 import org.milyn.edisax.EDIParser;
-import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.Attributes;
@@ -42,9 +44,15 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 	private InputStream edi; // EDI-massage stream
 	private InputStream mapping; // Mapping stream
 	private boolean flagXPath = false; // location flag
+	private String xPath = null; // location flag
+
+	public String getXPath() {
+		return xPath;
+	}
 
 	private SAXLocation location = new SAXLocationImpl(); // Current location
 	private SAXLocation loc = new SAXLocationImpl(); // Present location
+	private HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
 
 	/**
 	 * Set the present location to determine the necessary data.
@@ -99,11 +107,11 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 	 *            location of reading data
 	 */
 	public EDIProcess(StringTags res, InputStream edi, InputStream mapping,
-			SAXLocation loc) {
+			HashMap<String, SAXLocation> xPaths) {
 		super();
 		this.res = res;
 		this.edi = edi;
-		this.loc = loc;
+		this.xPaths = xPaths;
 
 		parser = new EDIParser();
 		parser.setContentHandler(this);
@@ -152,9 +160,14 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 			Attributes attributes) throws SAXException {
 		tagKey = localName;
 		location.startElement(new QName(uri, localName));
-		if (location.equals(loc)) {
-			flagXPath = true;
-			res.startWrite();
+		Iterator<String> iter = xPaths.keySet().iterator();
+		while (iter.hasNext()) {
+			String nextXPath = iter.next();
+			if (location.equals(xPaths.get(nextXPath))) {
+				flagXPath = true;
+				res.startWrite();
+				xPath = nextXPath;
+			}
 		}
 	}
 
@@ -170,9 +183,12 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		if (location.equals(loc)) {
-			flagXPath = false;
-			res.endWrite();
+		Iterator<String> iter = xPaths.keySet().iterator();
+		while (iter.hasNext()) {
+			if (location.equals(xPaths.get(iter.next()))) {
+				flagXPath = false;
+				res.endWrite();
+			}
 		}
 
 		location.endElement();

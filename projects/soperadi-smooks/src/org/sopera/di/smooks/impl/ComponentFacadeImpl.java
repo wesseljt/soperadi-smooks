@@ -11,11 +11,11 @@ package org.sopera.di.smooks.impl;
 
 import java.io.InputStream;
 
-import org.milyn.edisax.EDIParser;
 import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import javax.xml.namespace.QName;
+import java.util.HashMap;
 
 /**
  * This class organize the read sessions loop for StringTags structure.
@@ -27,12 +27,12 @@ public class ComponentFacadeImpl implements ComponentFacade {
 
 	StringTags res;
 	Thread writer;
-	EDIParser parser; // Parser
+	EDIProcess parser; // Parser
 	InputStream EDI; // EDI-massage stream
 	InputStream mapping; // Mapping stream
 
-	private SAXLocation loc = null; // new SAXLocationImpl(); // Location
-	private String xPath = null;
+	// private SAXLocation loc = null; // new SAXLocationImpl(); // Location
+	private HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
 
 	/**
 	 * 
@@ -55,21 +55,23 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 * 
 	 * @see org.sopera.di.smooks.ComponentFacade#setXPath(java.lang.String)
 	 */
-	public void setXPath(String loopXPath) {
-		xPath = loopXPath;
-		String[] paramNames = null;
-		loc = new SAXLocationImpl();
-		if (loopXPath != null) {
-			paramNames = loopXPath.split("/");
-		}
-		if (paramNames != null) {
-			for (int i = 0; i < paramNames.length; i++) {
-				if (paramNames[i] != null && !("").equals(paramNames[i])) {
-					loc.startElement(new QName("", paramNames[i]));
-					System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-					System.out.println(loc);
+	public void setXPath(String loopPath) {
+		if (xPaths.get(loopPath) == null) {
+			String[] paramNames = null;
+			SAXLocation loc = new SAXLocationImpl();
+			if (loopPath != null) {
+				paramNames = loopPath.split("/");
+			}
+			if (paramNames != null) {
+				for (int i = 0; i < paramNames.length; i++) {
+					if (paramNames[i] != null && !("").equals(paramNames[i])) {
+						loc.startElement(new QName("", paramNames[i]));
+						System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+						System.out.println(loc);
+					}
 				}
 			}
+			xPaths.put(loopPath, loc);
 		}
 		return;
 	}
@@ -129,7 +131,7 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	public void start() {
 
 		res = new StringTags();
-		EDIProcess parser = new EDIProcess(res, EDI, mapping, loc);
+		this.parser = new EDIProcess(res, EDI, mapping, xPaths);
 		writer = new Thread(parser);
 		writer.start();
 	}
@@ -139,6 +141,7 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 * @see org.sopera.di.smooks.ComponentFacade#getXPath()
 	 */
 	public String getXPath() {
-		return xPath;
+		System.err.println(parser.getXPath());
+		return parser.getXPath();
 	}
 }
