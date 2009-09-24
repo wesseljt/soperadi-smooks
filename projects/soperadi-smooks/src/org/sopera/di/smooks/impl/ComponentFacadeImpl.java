@@ -18,7 +18,6 @@ import org.sopera.di.smooks.EDIProcess;
 import org.sopera.di.smooks.EDIProcessModule;
 import org.sopera.di.smooks.StringTags;
 import org.sopera.di.smooks.xpath.SAXLocation;
-import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -38,8 +37,6 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	private EDIProcess parser = EDIProcess.INSTANCE; // Parser
 	@Inject
 	private StringTags res;
-	@Inject
-	private SAXLocation loc;
 	private InputStream EDI; // EDI-massage stream
 	private InputStream mapping; // Mapping stream
 
@@ -69,8 +66,8 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	public void setXPath(String loopPath) {
 		if (xPaths.get(loopPath) == null) {
 			String[] paramNames = null;
-			SAXLocation loc = Guice.createInjector(
-					new EDIProcessModule()).getInstance(SAXLocation.class); 
+			SAXLocation loc = Guice.createInjector(new EDIProcessModule())
+					.getInstance(SAXLocation.class);
 			if (loopPath != null) {
 				paramNames = loopPath.split("/");
 			}
