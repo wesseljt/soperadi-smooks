@@ -10,7 +10,7 @@ package org.sopera.di.smooks;
 
 import java.io.InputStream;
 
-import org.sopera.di.smooks.impl.StringTags;
+import org.sopera.di.smooks.impl.StringTagsImpl;
 import org.sopera.di.smooks.xpath.SAXLocation;
 
 import com.google.inject.Guice;
@@ -66,18 +66,18 @@ public interface ComponentFacade {
 	public String getXPath();
 
 	/**
-	 * Ends the read session of current {@link StringTags} structure
+	 * Ends the read session of current {@link StringTagsImpl} structure
 	 */
 	public void endRead();
 
 	/**
-	 * Starts the read session of current {@link StringTags} structure
+	 * Starts the read session of current {@link StringTagsImpl} structure
 	 */
 	public void startRead();
 
 	/**
-	 * Initializes {@link StringTags} structure, create and run
-	 * {@link EDIProcess} to start the write sessions loop
+	 * Initializes {@link StringTagsImpl} structure, create and run
+	 * {@link EDIProcessImpl} to start the write sessions loop
 	 * 
 	 */
 	public void start();
