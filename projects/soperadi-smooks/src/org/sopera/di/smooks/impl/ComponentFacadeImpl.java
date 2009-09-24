@@ -12,6 +12,8 @@ package org.sopera.di.smooks.impl;
 import java.io.InputStream;
 
 import org.sopera.di.smooks.ComponentFacade;
+import org.sopera.di.smooks.EDIProcess;
+import org.sopera.di.smooks.StringTags;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import javax.xml.namespace.QName;
@@ -130,8 +132,8 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 */
 	public void start() {
 
-		res = new StringTags();
-		this.parser = new EDIProcess(res, EDI, mapping, xPaths);
+		res = new StringTagsImpl();
+		this.parser = new EDIProcessImpl(res, EDI, mapping, xPaths);
 		writer = new Thread(parser);
 		writer.start();
 	}

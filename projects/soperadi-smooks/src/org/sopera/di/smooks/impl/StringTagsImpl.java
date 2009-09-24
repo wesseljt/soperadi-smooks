@@ -2,6 +2,8 @@ package org.sopera.di.smooks.impl;
 
 import java.util.HashMap;
 
+import org.sopera.di.smooks.StringTags;
+
 /**
  * This class contains a data structure and methods to work with this structure.
  * The data structure consists of names of tags and corresponding values of
@@ -10,7 +12,7 @@ import java.util.HashMap;
  * @author soperadi-smooks
  * 
  */
-public class StringTags {
+public class StringTagsImpl implements StringTags {
 	private HashMap<String, String> tags = new HashMap<String, String>();
 	private boolean state = false;
 	private boolean end = false;

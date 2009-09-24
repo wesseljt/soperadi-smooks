@@ -19,6 +19,8 @@ import java.util.Iterator;
 import javax.xml.namespace.QName;
 import org.milyn.edisax.EDIConfigurationException;
 import org.milyn.edisax.EDIParser;
+import org.sopera.di.smooks.EDIProcess;
+import org.sopera.di.smooks.StringTags;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.Attributes;
@@ -28,16 +30,16 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * This class transforms the EDI-message data in the flow of SAX-events. Run as
- * a thread, EDIProcess filling the structure {@link StringTags} using the
+ * a thread, EDIProcess filling the structure {@link StringTagsImpl} using the
  * present location {@link SAXLocation} to determine the necessary data.
  * Iteratively perform recording sessions, after each session, waiting the
  * ending of reading session. To use this class, we have to organize the read
- * sessions loop for {@link StringTags} structure.
+ * sessions loop for {@link StringTagsImpl} structure.
  * 
  * @author soperadi-smooks
  * 
  */
-public class EDIProcess extends DefaultHandler implements Runnable {
+public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 	private StringTags res; // TugString resource
 	private String tagKey; // Current tag
 	private EDIParser parser; // Parser
@@ -63,6 +65,22 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 		this.loc = loc;
 	}
 
+	public void setRes(StringTags res) {
+		this.res = res;
+	}
+
+	public void setEdi(InputStream edi) {
+		this.edi = edi;
+	}
+
+	public void setMapping(InputStream mapping) {
+		this.mapping = mapping;
+	}
+
+	public void setXPaths(HashMap<String, SAXLocation> paths) {
+		xPaths = paths;
+	}
+
 	/**
 	 * Class constructor specifying just structure for filling and
 	 * synchronization. The present location set by default.
@@ -70,7 +88,7 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 	 * @param res
 	 *            the structure for filling
 	 */
-	public EDIProcess(StringTags res) {
+	public EDIProcessImpl(StringTags res) {
 		parser = new EDIParser();
 		edi = getClass().getResourceAsStream("/smooks.edi");
 		assertNotNull("Can't find EDI file for test", edi);
@@ -89,7 +107,6 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 		loc.startElement(new QName("", "Order"));
 		loc.startElement(new QName("", "order-item"));
 
-		new Thread(this, "EDIProcess").start();
 		this.res = res;
 	}
 
@@ -106,8 +123,8 @@ public class EDIProcess extends DefaultHandler implements Runnable {
 	 * @param loc
 	 *            location of reading data
 	 */
-	public EDIProcess(StringTags res, InputStream edi, InputStream mapping,
-			HashMap<String, SAXLocation> xPaths) {
+	public EDIProcessImpl(StringTags res, InputStream edi,
+			InputStream mapping, HashMap<String, SAXLocation> xPaths) {
 		super();
 		this.res = res;
 		this.edi = edi;
