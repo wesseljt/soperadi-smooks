@@ -31,10 +31,19 @@ import org.sopera.di.smooks.xpath.SAXLocation;
  */
 public class SAXLocationImpl implements SAXLocation {
 
-	private final Stack<PathElementImpl> stack = new Stack<PathElementImpl>();
-	
+	private Stack<PathElementImpl> stack = new Stack<PathElementImpl>();
+
 	public Stack<PathElementImpl> getStack() {
+
 		return stack;
+	}
+	public void setStack(Stack<PathElementImpl> stack) {
+		this.stack = stack;
+	}
+
+	public void clear() {
+		while (!this.stack.empty())
+			this.stack.pop();
 	}
 
 	/**
@@ -47,14 +56,14 @@ public class SAXLocationImpl implements SAXLocation {
 		}
 		stack.add(new PathElementImpl(name, parent));
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void endElement() {
 		stack.pop();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -73,7 +82,7 @@ public class SAXLocationImpl implements SAXLocation {
 	public int depth() {
 		return stack.size();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -84,10 +93,10 @@ public class SAXLocationImpl implements SAXLocation {
 		if (obj == null)
 			return false;
 		SAXLocationImpl other = (SAXLocationImpl) obj;
-		if(getStack().size()!=other.getStack().size())
+		if (getStack().size() != other.getStack().size())
 			return false;
-		for (int i=0; i<getStack().size(); i++) {
-			if(!getStack().elementAt(i).equals(other.getStack().elementAt(i)))
+		for (int i = 0; i < getStack().size(); i++) {
+			if (!getStack().elementAt(i).equals(other.getStack().elementAt(i)))
 				return false;
 		}
 		return true;

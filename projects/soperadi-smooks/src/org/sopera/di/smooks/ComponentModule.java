@@ -9,7 +9,10 @@
 package org.sopera.di.smooks;
 
 import org.sopera.di.smooks.impl.ComponentFacadeImpl;
+import org.sopera.di.smooks.impl.StringTagsImpl;
 import org.sopera.di.smooks.impl.FilterBuilderImpl;
+import org.sopera.di.smooks.xpath.SAXLocation;
+import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 
 import com.google.inject.AbstractModule;
 
@@ -28,6 +31,8 @@ public class ComponentModule extends AbstractModule {
 	protected void configure() {
 		bind(ComponentFacade.class).to(ComponentFacadeImpl.class);
 		bind(FilterBuilder.class).to(FilterBuilderImpl.class);
+		bind(StringTags.class).to(StringTagsImpl.class);
+		bind(SAXLocation.class).to(SAXLocationImpl.class);
 	}
 
 }

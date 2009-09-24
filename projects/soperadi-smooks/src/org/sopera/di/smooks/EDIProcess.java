@@ -3,8 +3,9 @@ package org.sopera.di.smooks;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import org.sopera.di.smooks.impl.StringTagsImpl;
 import org.sopera.di.smooks.xpath.SAXLocation;
+
+import com.google.inject.Guice;
 
 /**
  * Basic interface for organize the thread, with uses the smooks to transform
@@ -14,6 +15,11 @@ import org.sopera.di.smooks.xpath.SAXLocation;
  * 
  */
 public interface EDIProcess extends Runnable {
+	/**
+	 * Singleton instance
+	 */
+	public static final EDIProcess INSTANCE = Guice.createInjector(
+			new EDIProcessModule()).getInstance(EDIProcess.class);
 
 	public String getXPath();
 

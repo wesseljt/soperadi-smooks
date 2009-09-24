@@ -21,7 +21,7 @@ import javax.xml.namespace.QName;
 
 /**
  * @author zubairov
- *
+ * 
  */
 public interface SAXLocation {
 
@@ -38,8 +38,15 @@ public interface SAXLocation {
 	public abstract void endElement();
 
 	/**
+	 * Clears the stack of elements
+	 */
+	public void clear();
+
+
+	/**
 	 * @return
 	 */
 	public abstract int depth();
-
+	
+	
 }

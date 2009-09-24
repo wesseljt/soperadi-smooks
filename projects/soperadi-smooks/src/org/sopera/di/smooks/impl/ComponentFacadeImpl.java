@@ -9,13 +9,18 @@
 
 package org.sopera.di.smooks.impl;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import org.junit.Test;
 import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.EDIProcess;
 import org.sopera.di.smooks.StringTags;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
+
+import com.google.inject.Inject;
+
 import javax.xml.namespace.QName;
 import java.util.HashMap;
 
@@ -27,13 +32,15 @@ import java.util.HashMap;
  */
 public class ComponentFacadeImpl implements ComponentFacade {
 
-	StringTags res;
-	Thread writer;
-	EDIProcess parser; // Parser
-	InputStream EDI; // EDI-massage stream
-	InputStream mapping; // Mapping stream
+	private Thread writer;
+	private EDIProcess parser = EDIProcess.INSTANCE; // Parser
+	@Inject
+	private StringTags res;
+	@Inject
+	private SAXLocation loc;
+	private InputStream EDI; // EDI-massage stream
+	private InputStream mapping; // Mapping stream
 
-	// private SAXLocation loc = null; // new SAXLocationImpl(); // Location
 	private HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
 
 	/**
@@ -60,6 +67,7 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	public void setXPath(String loopPath) {
 		if (xPaths.get(loopPath) == null) {
 			String[] paramNames = null;
+			loc.clear();
 			SAXLocation loc = new SAXLocationImpl();
 			if (loopPath != null) {
 				paramNames = loopPath.split("/");
@@ -72,8 +80,9 @@ public class ComponentFacadeImpl implements ComponentFacade {
 						System.out.println(loc);
 					}
 				}
+				xPaths.put(loopPath, loc);
 			}
-			xPaths.put(loopPath, loc);
+
 		}
 		return;
 	}
@@ -132,8 +141,11 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 */
 	public void start() {
 
-		res = new StringTagsImpl();
-		this.parser = new EDIProcessImpl(res, EDI, mapping, xPaths);
+		this.parser.setMapping(mapping);
+		this.parser.setRes(res);
+		this.parser.setXPaths(xPaths);
+		this.parser.setEdi(EDI);
+
 		writer = new Thread(parser);
 		writer.start();
 	}
@@ -143,7 +155,42 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 * @see org.sopera.di.smooks.ComponentFacade#getXPath()
 	 */
 	public String getXPath() {
-		System.err.println(parser.getXPath());
 		return parser.getXPath();
+	}
+
+	@Test
+	public void Test() {
+		org.sopera.di.smooks.ComponentFacade inputFlow_tSmooksInput_1 = org.sopera.di.smooks.ComponentFacade.INSTANCE;
+
+		inputFlow_tSmooksInput_1.setXPath("/Order/header");
+		inputFlow_tSmooksInput_1.setXPath("/Order/customer-details");
+		inputFlow_tSmooksInput_1.setXPath("/Order/order-item");
+		inputFlow_tSmooksInput_1.setXPath("/Order/order-item");
+
+		// Step 2
+		// Activate the inputFlow
+
+		try {
+			inputFlow_tSmooksInput_1.setMapping(new java.io.FileInputStream(
+					"/.././resources/smooks-mapping.xml"));
+			inputFlow_tSmooksInput_1.setEDI(new java.io.FileInputStream(
+					"/.././resources/test.edi"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		inputFlow_tSmooksInput_1.start();
+
+		inputFlow_tSmooksInput_1.startRead();
+
+		// Step 3
+		// Loop for the data communication iterations
+
+		while (!inputFlow_tSmooksInput_1.isEndOfFlow()) { // loop to iterate
+			// the data
+			// communication
+			System.out.println("!!!");
+			inputFlow_tSmooksInput_1.next();
+		}
 	}
 }
