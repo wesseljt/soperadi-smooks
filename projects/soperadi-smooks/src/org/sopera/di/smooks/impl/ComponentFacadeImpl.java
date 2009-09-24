@@ -15,10 +15,12 @@ import java.io.InputStream;
 import org.junit.Test;
 import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.EDIProcess;
+import org.sopera.di.smooks.EDIProcessModule;
 import org.sopera.di.smooks.StringTags;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
 
 import javax.xml.namespace.QName;
@@ -67,8 +69,8 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	public void setXPath(String loopPath) {
 		if (xPaths.get(loopPath) == null) {
 			String[] paramNames = null;
-			loc.clear();
-			SAXLocation loc = new SAXLocationImpl();
+			SAXLocation loc = Guice.createInjector(
+					new EDIProcessModule()).getInstance(SAXLocation.class); 
 			if (loopPath != null) {
 				paramNames = loopPath.split("/");
 			}
