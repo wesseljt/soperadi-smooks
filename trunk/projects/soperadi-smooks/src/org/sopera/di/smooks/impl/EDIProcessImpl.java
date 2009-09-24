@@ -28,6 +28,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.google.inject.Inject;
+
 /**
  * This class transforms the EDI-message data in the flow of SAX-events. Run as
  * a thread, EDIProcess filling the structure {@link StringTagsImpl} using the
@@ -52,17 +54,17 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 		return xPath;
 	}
 
-	private SAXLocation location = new SAXLocationImpl(); // Current location
-	private SAXLocation loc = new SAXLocationImpl(); // Present location
+	@Inject private SAXLocation location = new SAXLocationImpl(); // Current location
+	@Inject private SAXLocation loc; // Present location
 	private HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
 
-	/**
-	 * Set the present location to determine the necessary data.
-	 * 
-	 * @param loc
-	 */
+	
 	public void setLoc(SAXLocation loc) {
 		this.loc = loc;
+	}
+	
+	public void setLocation(SAXLocation location) {
+		this.location = location;
 	}
 
 	public void setRes(StringTags res) {
@@ -75,10 +77,23 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 
 	public void setMapping(InputStream mapping) {
 		this.mapping = mapping;
+		try {
+			parser.setMappingModel(EDIParser.parseMappingModel(this.mapping));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (EDIConfigurationException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setXPaths(HashMap<String, SAXLocation> paths) {
 		xPaths = paths;
+	}
+	public EDIProcessImpl() {
+		parser = new EDIParser();
+		parser.setContentHandler(this);
 	}
 
 	/**
@@ -143,8 +158,6 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 			e.printStackTrace();
 		}
 
-		this.res = res;
-
 	}
 
 	/**
@@ -155,6 +168,7 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 	public void run() {
 		try {
 			parser.parse(new InputSource(edi));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
