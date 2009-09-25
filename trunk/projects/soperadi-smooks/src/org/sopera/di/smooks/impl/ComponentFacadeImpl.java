@@ -169,14 +169,9 @@ public class ComponentFacadeImpl implements ComponentFacade {
 		// Step 2
 		// Activate the inputFlow
 
-		try {
-			inputFlow_tSmooksInput_1.setMapping(new java.io.FileInputStream(
-					"/.././resources/smooks-mapping.xml"));
-			inputFlow_tSmooksInput_1.setEDI(new java.io.FileInputStream(
-					"/.././resources/test.edi"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		inputFlow_tSmooksInput_1.setMapping(getClass().getResourceAsStream(
+		"/smooks-mapping.xml"));
+		inputFlow_tSmooksInput_1.setEDI(getClass().getResourceAsStream("/smooks.edi"));
 
 		inputFlow_tSmooksInput_1.start();
 
