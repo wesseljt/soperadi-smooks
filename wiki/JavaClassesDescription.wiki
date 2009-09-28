@@ -7,13 +7,13 @@ This page describes Java classes, which are needed for the iterative reading dat
 
 = Details =
 
-*1.* Create an instance of _ComponentFacade_. _ComponentFacade_ - interface, which provides _Smooks-functionality_ for _Talend-component_. This interface will be a primary facade that will be used by Talend-Smooks jobs at runtime.
+*1.* Create an instance of _*<font size="4">`ComponentFacade`</font>*_. _*<font size="4">`ComponentFacade`</font>*_ - interface, which provides _Smooks-functionality_ for _Talend-component_. This interface will be a primary facade that will be used by Talend-Smooks jobs at runtime.
 
 {{{
 org.sopera.di.smooks.ComponentFacade inputFlow = org.sopera.di.smooks.ComponentFacade.INSTANCE;
 }}}
 
-*2.* Then we set _path_ for tag (which is necessary for reading the needed data) with help of method _*setXPath()*_. Method _*setXPath()*_ have a string parameter with the path to the tag, which we need. This parameter will be a key in the _*HashMap<>*_ and will point to the _*SAXLocation*_ (which indicates the position in the document). 
+*2.* Then we set _path_ for tag (which is necessary for reading the needed data) with help of method _*setXPath()*_. Method _*setXPath()*_ have a string parameter with the path to the tag, which we need. This parameter will be a key in the _*<font size="4">`HashMap`<></font>*_ and will point to the _*SAXLocation*_ (which indicates the position in the document). 
 
 {{{
 inputFlow.setXPath("/Order/header");
@@ -22,7 +22,7 @@ inputFlow.setXPath("/Order/order-item");
 inputFlow.setXPath("/Order/order-item");
 }}}
 
-If the string that we passed as a parameter is already present in the _*HashMap<>*_ as a key, then we just finish the work of our function. Otherwise, we check that the string was not equal to null and divide it into parts. Then we form _*SAXLocation*_ with the help of these parts. We put in compliance _*loopPath*_ and _*SAXLocation*_ and puts them into a _*HashMap<>*_.
+If the string that we passed as a parameter is already present in the _*<font size="4">`HashMap`<></font>*_ as a key, then we just finish the work of our function. Otherwise, we check that the string was not equal to null and divide it into parts. Then we form _*SAXLocation*_ with the help of these parts. We put in compliance _*loopPath*_ and _*SAXLocation*_ and puts them into a _*<font size="4">`HashMap`<></font>*_.
 
 *3.* With the help of methods _*setMapping()*_ and _*setEDI()*_ we set the stream of mapping file and the stream of _EDI-data_ file.
 
@@ -39,7 +39,7 @@ inputFlow.setEDI(getClass().getResourceAsStream(
 inputFlow.start();
 }}}
 
-In this method we call the methods of _*EDIProcess*_ (basic interface for organize the thread, with uses the smooks to transform the data from _EDI-massage_ to the _SAX-events_ flow) _*setMapping()*_ to set the mapping, _*setRes()*_ to set the _*StringTags*_ (contains _*HashMap<>*_ with the names of tags and corresponding to these names _*SAXLocations)*_, _*setXPaths()*_ to set the _XPath_, _*setEdi()*_ to set the stream of _EDI-message_ file. Then we run the writing thread.
+In this method we call the methods of _*EDIProcess*_ (basic interface for organize the thread, with uses the smooks to transform the data from _EDI-massage_ to the _SAX-events_ flow) _*setMapping()*_ to set the mapping, _*setRes()*_ to set the _*<font size="4">`StringTags`</font>*_ (contains _*<font size="4">`HashMap`<></font>*_ with the names of tags and corresponding to these names _*SAXLocations)*_, _*setXPaths()*_ to set the _XPath_, _*setEdi()*_ to set the stream of _EDI-message_ file. Then we run the writing thread.
 
 {{{
 this.parser.setMapping(mapping);
@@ -51,7 +51,7 @@ writer = new Thread(parser);
 writer.start();
 }}}
 
-*5.* Invoke method _*startRead()*_ from _*StringTags*_ interface.
+*5.* Invoke method _*startRead()*_ from _*<font size="4">`StringTags`</font>*_ interface.
 
 {{{
 inputFlow.startRead();
@@ -73,7 +73,7 @@ parser.parse(new InputSource(edi));
 }}}
 
 This method starts parsing our _EDI-file_. If we find element  in the document, which corresponds to one of the given _XPath_, we write it to our data structure  
-with the help of method _*write()*_ of interface _*StringTags*_.
+with the help of method _*write()*_ of interface _*<font size="4">`StringTags`</font>*_.
 
 {{{
 res.write();
@@ -85,7 +85,7 @@ After we recorded the necessary data we suspend the writing thread and resume th
 res.endWrite();
 }}}
 
-*7.* In the thread of reading we start the loop of data transmission. After reading the data we stop the flow of reading again and start the thread of writing and we do so until the end of _EDI-file_ is reached. The loop will continue until the state of our data structure will equal *end*. This state indicates whether the end of the stream is reached. We check this state using the method _*isEnd()*_ from interface _*StringTags*_, and set it using the method _*setEnd()*_.
+*7.* In the thread of reading we start the loop of data transmission. After reading the data we stop the flow of reading again and start the thread of writing and we do so until the end of _EDI-file_ is reached. The loop will continue until the state of our data structure will equal *end*. This state indicates whether the end of the stream is reached. We check this state using the method _*isEnd()*_ from interface _*<font size="4">`StringTags`</font>*_, and set it using the method _*setEnd()*_.
 
 {{{
 while (!inputFlow.isEndOfFlow()) { 
