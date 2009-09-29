@@ -9,7 +9,6 @@
 
 package org.sopera.di.smooks.impl;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.junit.Test;
@@ -21,6 +20,7 @@ import org.sopera.di.smooks.xpath.SAXLocation;
 
 import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 import javax.xml.namespace.QName;
 import java.util.HashMap;
@@ -39,6 +39,8 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	private StringTags res;
 	private InputStream EDI; // EDI-massage stream
 	private InputStream mapping; // Mapping stream
+	Injector injector = Guice.createInjector(new EDIProcessModule());
+
 
 	private HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
 
@@ -66,8 +68,7 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	public void setXPath(String loopPath) {
 		if (xPaths.get(loopPath) == null) {
 			String[] paramNames = null;
-			SAXLocation loc = Guice.createInjector(new EDIProcessModule())
-					.getInstance(SAXLocation.class);
+			SAXLocation loc = injector.getInstance(SAXLocation.class);
 			if (loopPath != null) {
 				paramNames = loopPath.split("/");
 			}
