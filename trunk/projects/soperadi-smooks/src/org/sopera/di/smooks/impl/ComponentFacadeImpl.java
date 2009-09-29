@@ -11,7 +11,6 @@ package org.sopera.di.smooks.impl;
 
 import java.io.InputStream;
 
-import org.junit.Test;
 import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.EDIProcess;
 import org.sopera.di.smooks.EDIProcessModule;
@@ -40,7 +39,6 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	private InputStream EDI; // EDI-massage stream
 	private InputStream mapping; // Mapping stream
 	Injector injector = Guice.createInjector(new EDIProcessModule());
-
 
 	private HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
 
@@ -140,11 +138,18 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 * @see org.sopera.di.smooks.ComponentFacade#start()
 	 */
 	public void start() {
-
-		this.parser.setMapping(mapping);
+		if (mapping == null) {
+			throw new RuntimeException("Can't find mapping file for set up");
+		} else {
+			this.parser.setMapping(mapping);
+		}
 		this.parser.setRes(res);
 		this.parser.setXPaths(xPaths);
-		this.parser.setEdi(EDI);
+		if (EDI == null) {
+			throw new RuntimeException("Can't find EDI file for set up");
+		} else {
+			this.parser.setEdi(EDI);
+		}
 
 		writer = new Thread(parser);
 		writer.start();
@@ -156,36 +161,5 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 */
 	public String getXPath() {
 		return parser.getXPath();
-	}
-
-	@Test
-	public void Test() {
-		org.sopera.di.smooks.ComponentFacade inputFlow_tSmooksInput_1 = org.sopera.di.smooks.ComponentFacade.INSTANCE;
-
-		inputFlow_tSmooksInput_1.setXPath("/Order/header");
-		inputFlow_tSmooksInput_1.setXPath("/Order/customer-details");
-		inputFlow_tSmooksInput_1.setXPath("/Order/order-item");
-		inputFlow_tSmooksInput_1.setXPath("/Order/order-item");
-
-		// Step 2
-		// Activate the inputFlow
-
-		inputFlow_tSmooksInput_1.setMapping(getClass().getResourceAsStream(
-		"/smooks-mapping.xml"));
-		inputFlow_tSmooksInput_1.setEDI(getClass().getResourceAsStream("/smooks.edi"));
-
-		inputFlow_tSmooksInput_1.start();
-
-		inputFlow_tSmooksInput_1.startRead();
-
-		// Step 3
-		// Loop for the data communication iterations
-
-		while (!inputFlow_tSmooksInput_1.isEndOfFlow()) { // loop to iterate
-			// the data
-			// communication
-			System.out.println("!!!");
-			inputFlow_tSmooksInput_1.next();
-		}
 	}
 }
