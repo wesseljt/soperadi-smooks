@@ -143,7 +143,11 @@ public class ComponentFacadeImpl implements ComponentFacade {
 		} else {
 			this.parser.setMapping(mapping);
 		}
-		this.parser.setRes(res);
+		if (res == null) {
+			throw new RuntimeException("Can't find StringTags structure for set up");
+		} else {
+			this.parser.setRes(res);
+		}
 		this.parser.setXPaths(xPaths);
 		if (EDI == null) {
 			throw new RuntimeException("Can't find EDI file for set up");
