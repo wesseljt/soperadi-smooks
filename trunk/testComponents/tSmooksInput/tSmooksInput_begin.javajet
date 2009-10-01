@@ -30,8 +30,8 @@
     
     String mode = ElementParameterParser.getValue(node, "__INPUT_FORMAT__");
         
-    String inputuri = ElementParameterParser.getValue(node, "__INPUT_URI__");
-    String mappinguri = ElementParameterParser.getValue(node, "__MAPPING_URI__");
+    String inputfile = ElementParameterParser.getValue(node, "__INPUT_FILE__");
+    String mappingfile = ElementParameterParser.getValue(node, "__MAPPING_FILE__");
     
     //boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
     String encoding = ElementParameterParser.getValue(node, "__ENCODING__");
@@ -43,12 +43,10 @@
     String xPath = "";
     
 %>
-	System.out.println("Begin in process!");
 	
-   
+    try { // main block
 	int nb_line_<%=cid %> = 0;   
 	String str_inpt_<%=cid %> = "";
-	java.util.List<String> list_<%=cid %> = new java.util.ArrayList<String>(); // List of used XPaths
 	
 <%
 // *** EDI transform begin *** //
@@ -56,7 +54,7 @@
 %>
 	   int concol_<%=cid %> = 0;
 	   int notNullColumns_<%=cid %> = 0;	
-  	   org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = org.sopera.di.smooks.ComponentFacade.INSTANCE;
+  	   org.sopera.di.smooks.ComponentFacade inputFlow_<%=cid %> = com.google.inject.Guice.createInjector(new org.sopera.di.smooks.ComponentModule()).getInstance(org.sopera.di.smooks.ComponentFacade.class);
 
 
 <%    
@@ -83,13 +81,10 @@
 // Step 2 
 // Activate the inputFlow 
 
-    inputFlow_<%=cid %>.setMapping(new java.io.FileInputStream("<%=mappinguri%>"));
+
+    inputFlow_<%=cid %>.setMapping(<%=mappingfile%>);
     
-    inputFlow_<%=cid %>.setEDI(new java.io.FileInputStream("<%=inputuri%>"));
-    
-    //list_<%=cid %>.add(<%=xPath%>);
-    
-    //inputFlow_<%=cid %>.setXPath(<%=xPath%>);
+    inputFlow_<%=cid %>.setEDI(<%=inputfile%>);
     
 	inputFlow_<%=cid %>.start();
 	
@@ -101,7 +96,6 @@
 	while (!inputFlow_<%=cid %>.isEndOfFlow()) { // loop to iterate the data communication
 
 	
-	System.out.println("!!!nb_line:" + nb_line_<%=cid %>);
 <%
 
 // Step 3.1 Begin
