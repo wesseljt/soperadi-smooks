@@ -9,6 +9,7 @@
 
 package org.sopera.di.smooks.impl;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.sopera.di.smooks.ComponentFacade;
@@ -47,16 +48,32 @@ public class ComponentFacadeImpl implements ComponentFacade {
 	 * @see org.sopera.di.smooks.ComponentFacade#setEDI(java.io.InputStream)
 	 */
 
-	public void setEDI(InputStream edi) {
-		EDI = edi;
+	public void setEDI(String edi) {
+		try {
+			this.EDI = new java.io.FileInputStream(edi);
+		} catch (FileNotFoundException e) {
+			System.err.println("FileNotFoundException for " + edi);
+			throw new RuntimeException("Can't find EDI file for set up");
+		} catch (SecurityException e) {
+			System.err.println("SecurityException for " + edi);
+			throw new RuntimeException("Denied read access to the EDI file.");
+		}
 	}
 
 	/**
 	 * 
 	 * @see org.sopera.di.smooks.ComponentFacade#setMapping(java.io.InputStream)
 	 */
-	public void setMapping(InputStream mapping) {
-		this.mapping = mapping;
+	public void setMapping(String mapping) {
+		try {
+			this.mapping = new java.io.FileInputStream(mapping);
+		} catch (FileNotFoundException e) {
+			System.err.println("FileNotFoundException for " + mapping);
+			throw new RuntimeException("Can't find mapping file for set up");
+		} catch (SecurityException e) {
+			System.err.println("SecurityException for " + mapping);
+			throw new RuntimeException("Denied read access to the mapping file.");
+		}
 	}
 
 	/**
@@ -74,8 +91,8 @@ public class ComponentFacadeImpl implements ComponentFacade {
 				for (int i = 0; i < paramNames.length; i++) {
 					if (paramNames[i] != null && !("").equals(paramNames[i])) {
 						loc.startElement(new QName("", paramNames[i]));
-						System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-						System.out.println(loc);
+						// System.out.println(" ------ location in process ------ ");
+						// System.out.println(loc);
 					}
 				}
 				xPaths.put(loopPath, loc);

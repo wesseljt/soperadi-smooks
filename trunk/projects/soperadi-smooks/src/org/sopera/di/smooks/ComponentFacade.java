@@ -33,20 +33,20 @@ public interface ComponentFacade {
 			new ComponentModule()).getInstance(ComponentFacade.class);
 
 	/**
-	 * Set the stream of Smooks mapping file (EDI-to-XML)
+	 * Set the stream file of Smooks mapping (EDI-to-XML)
 	 * 
 	 * @param res
-	 *            input stream of Smooks mapping file
+	 *            URI or Path of Smooks mapping file
 	 */
-	public void setMapping(InputStream res);
+	public void setMapping(String res);
 
 	/**
-	 * Set the stream of EDI-massage file to transfer
+	 * Set the stream file of EDI-massage to transfer
 	 * 
 	 * @param res
-	 *            input stream of EDI-file
+	 *            URI or Path of input stream EDI-file
 	 */
-	public void setEDI(InputStream res);
+	public void setEDI(String res);
 
 	/**
 	 * Set the Path to determine the necessary data, and make location
