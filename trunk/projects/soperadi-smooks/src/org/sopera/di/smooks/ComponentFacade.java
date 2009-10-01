@@ -8,8 +8,6 @@
  ******************************************************************************/
 package org.sopera.di.smooks;
 
-import java.io.InputStream;
-
 import org.sopera.di.smooks.impl.StringTagsImpl;
 import org.sopera.di.smooks.xpath.SAXLocation;
 

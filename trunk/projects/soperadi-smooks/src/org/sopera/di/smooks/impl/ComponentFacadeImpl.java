@@ -72,7 +72,8 @@ public class ComponentFacadeImpl implements ComponentFacade {
 			throw new RuntimeException("Can't find mapping file for set up");
 		} catch (SecurityException e) {
 			System.err.println("SecurityException for " + mapping);
-			throw new RuntimeException("Denied read access to the mapping file.");
+			throw new RuntimeException(
+					"Denied read access to the mapping file.");
 		}
 	}
 
@@ -161,16 +162,17 @@ public class ComponentFacadeImpl implements ComponentFacade {
 		} else {
 			this.parser.setMapping(mapping);
 		}
-		
+
 		if (res == null) {
 			System.err.println("Null pointer exception for StringTags");
-			throw new RuntimeException("Can't find StringTags structure for set up");
+			throw new RuntimeException(
+					"Can't find StringTags structure for set up");
 		} else {
 			this.parser.setRes(res);
 		}
-		
+
 		this.parser.setXPaths(xPaths);
-		
+
 		if (EDI == null) {
 			System.err.println("Null pointer exception for EDI");
 			throw new RuntimeException("Can't find EDI file for set up");
