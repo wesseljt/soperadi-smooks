@@ -19,7 +19,7 @@ import java.io.InputStream;
  * @author Alexander
  * 
  */
-public class ComponentFacadeTest extends TestCase {
+public class ComponentFacadeTest extends ProjectTest {
 
 	private static org.sopera.di.smooks.ComponentFacade inputFlow;
 
