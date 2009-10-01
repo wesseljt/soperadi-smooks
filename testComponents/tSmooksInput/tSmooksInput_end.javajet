@@ -50,6 +50,12 @@ if(connections!=null && connections.size()>0){
 	   }// if (mode)
 	}
 %>
-	System.out.println("nb_line:" + nb_line_<%=cid %>);
+	//System.out.println("nb_line:" + nb_line_<%=cid %>);
 	globalMap.put("<%=cid %>_NB_LINE",nb_line_<%=cid %>);
-	
+	} // try main block
+	catch (java.lang.Exception e) {
+		System.err.println("There is an Exception in <%=cid %>!");
+		System.err.println("The process is interrupted.");
+		System.err.println();
+		throw e;
+	}
