@@ -9,7 +9,6 @@
 
 package org.sopera.di.smooks.tests;
 
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
@@ -20,7 +19,7 @@ import junit.framework.TestSuite;
  * 
  * @author Alexander
  */
-public class MainTestClass extends TestCase {
+public class MainTestClass extends ProjectTest {
 
 	/**
 	 * @param name
