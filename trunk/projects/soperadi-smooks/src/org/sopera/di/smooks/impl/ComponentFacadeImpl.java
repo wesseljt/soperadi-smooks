@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.sopera.di.smooks.ComponentFacade;
-import org.sopera.di.smooks.ComponentModule;
 import org.sopera.di.smooks.EDIProcess;
 import org.sopera.di.smooks.EDIProcessModule;
 import org.sopera.di.smooks.StringTags;
