@@ -250,11 +250,11 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 	 */
 	@Override
 	public void endDocument() throws SAXException {
-		System.out.println("endDocument BEGIN");
+		//System.out.println("endDocument BEGIN");
 		res.startWrite();
 		res.setEnd(true);
 		res.endWrite();
-		System.out.println("endDocument END");
+		//System.out.println("endDocument END");
 
 	}
 

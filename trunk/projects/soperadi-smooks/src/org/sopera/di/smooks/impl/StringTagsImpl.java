@@ -43,7 +43,7 @@ public class StringTagsImpl implements StringTags {
 	 * @return value of corresponding tag.
 	 */
 	public String findTagValue(String tagName) {
-		System.out.println("read: " + tags.get(tagName));
+		//System.out.println("read: " + tags.get(tagName));
 		return tags.get(tagName);
 	}
 
@@ -61,7 +61,7 @@ public class StringTagsImpl implements StringTags {
 	 */
 	public void write(String key, String res) {
 		this.tags.put(key, res);
-		System.out.println("write: " + key + "    " + res);
+		//System.out.println("write: " + key + "    " + res);
 	}
 
 	/**
