@@ -67,10 +67,18 @@
 		     String query = null;
 			 for(Map<String, String> schemaMap : schemas) {
 			    if(schemaMap.get("SCHEMA").equals(conn.getName())) {
-		xPath = schemaMap.get("XPATH");
+					xPath = schemaMap.get("XPATH");
+					if (xPath == null || xPath.equals("")) {
+%>
+			if(true) {
+				throw new RuntimeException("Can't find LoopPath to current scheme <%=schemaMap.get("SCHEMA")%>!");
+			}
+<%			
+					} else { // Xpath is null
 %>
 			inputFlow_<%=cid %>.setXPath(<%=xPath%>);
-<%			
+<%
+ 		        	}
  		        } // schemaMap.get("SCHEMA").equals(conn.getName())
 			 } // schemas
 		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
@@ -107,8 +115,8 @@
 		     String mapping = "";
 		     String[] paramNames = null;
 			 for(Map<String, String> schemaMap : schemas) {
-			    if(schemaMap.get("SCHEMA").equals(conn.getName())) {
 			    xPath = schemaMap.get("XPATH");
+			    if(schemaMap.get("SCHEMA").equals(conn.getName()) && !(xPath == null || xPath.equals(""))) {
 %>
 	<%=conn.getName() %>=new <%=conn.getName() %>Struct();
 
