@@ -1,9 +1,12 @@
 #summary This page contains examples of how tSmooksInput works.
 
+<font size="4">
+<wiki:toc max_depth="2" />
+</font>
+
 = Introduction =
 
 You can find some examples of how tSmooksInput component works on this page. 
-
 
 = Details =
 
