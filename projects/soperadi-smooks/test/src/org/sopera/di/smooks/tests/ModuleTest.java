@@ -16,8 +16,6 @@
  ******************************************************************************/
 package org.sopera.di.smooks.tests;
 
-import junit.framework.TestCase;
-
 import org.sopera.di.smooks.ComponentFacade;
 
 /**

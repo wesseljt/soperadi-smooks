@@ -9,24 +9,18 @@
 
 package org.sopera.di.smooks.tests;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
-
-import org.milyn.edisax.EDIParser;
-import org.sopera.di.smooks.EDIProcess;
 import org.sopera.di.smooks.StringTags;
 import org.sopera.di.smooks.impl.EDIProcessImpl;
 import org.sopera.di.smooks.impl.StringTagsImpl;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 import org.xml.sax.SAXException;
-
 import junit.extensions.TestSetup;
 import junit.framework.Test;
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class EDIProcessTest extends ProjectTest{
