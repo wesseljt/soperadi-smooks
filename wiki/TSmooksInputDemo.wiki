@@ -7,7 +7,20 @@ You can find some examples of how tSmooksInput component works on this page.
 
 = Details =
 
-<wiki:video url="http://www.youtube.com/watch?v=N-YHMPkZcdc">
-<wiki:video url="http://www.youtube.com/watch?v=Qt9XNTxgnTY">
-<wiki:video url="http://www.youtube.com/watch?v=z40Y9RN4OV0">
-<wiki:video url="http://www.youtube.com/watch?v=DZ72sQA2Mp4">
+==Scenario 1: Reading of multi-structured EDI-message file==
+<wiki:video url="http://www.youtube.com/watch?v=N-YHMPkZcdc" width="956" height="600">
+<br>
+<br>
+
+==Scenario 2: Reading of EDI-message files iterating on a file directory==
+<wiki:video url="http://www.youtube.com/watch?v=Qt9XNTxgnTY" width="956" height="600">
+<br>
+<br>
+
+==Scenario 3: Using of the triggered connectors==
+<wiki:video url="http://www.youtube.com/watch?v=z40Y9RN4OV0" width="956" height="600">
+<br>
+<br>
+
+==Scenario 4: Exception handling==
+<wiki:video url="http://www.youtube.com/watch?v=DZ72sQA2Mp4" width="956" height="600">
