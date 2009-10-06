@@ -20,6 +20,7 @@ package org.sopera.di.smooks.tests;
 import javax.xml.namespace.QName;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.sopera.di.smooks.xpath.SAXLocation;
@@ -31,14 +32,17 @@ import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
  * 
  * @author zubairov
  */
-public class SAXLocationTest extends Assert {
+public class SAXLocationTest extends ProjectTest {
 
 	private static final String ELEMENT_ONE = "parent";
 	private static final String NAMESPACE1 = "namespace";
 	private static final String ELEMENT_TWO = "child";
 	private static final String NAMESPACE2 = "namespace2";
 
-	@Test
+	public SAXLocationTest(String name) {
+		super(name);
+	}
+	
 	public void testLocation() throws Exception {
 		SAXLocation location = new SAXLocationImpl();
 		assertEquals(0, location.depth());			

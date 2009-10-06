@@ -16,18 +16,20 @@
  ******************************************************************************/
 package org.sopera.di.smooks.tests;
 
-import static junit.framework.Assert.*;
+import junit.framework.TestCase;
 
-import org.junit.Test;
 import org.sopera.di.smooks.ComponentFacade;
 
 /**
  * Basic test that tests that {@link ComponentFacade} can be created
  * @author zubairov
  */
-public class ModuleTest {
+public class ModuleTest extends ProjectTest {
 
-	@Test
+	public ModuleTest(String name) {
+		super(name);
+	}
+	
 	public void testInit() throws Exception {
 		ComponentFacade instance = ComponentFacade.INSTANCE;
 		assertNotNull(instance);

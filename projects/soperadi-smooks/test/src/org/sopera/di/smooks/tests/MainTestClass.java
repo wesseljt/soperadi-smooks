@@ -37,6 +37,13 @@ public class MainTestClass extends ProjectTest {
 	public static TestSuite suite() {
 		TestSuite suite = new TestSuite();
 		suite.addTest(ComponentFacadeTest.suite());
+		suite.addTest(StringTagsTest.suite());
+		suite.addTest(EDIProcessTest.suite());
+		suite.addTestSuite(SAXLocationTest.class);
+		suite.addTestSuite(XPathParsingTest.class);
+		suite.addTestSuite(ModuleTest.class);
+		//suite.addTest();
+		//suite.addTestSuite(EDIParserTest.class);
 		return suite;
 	}
 }

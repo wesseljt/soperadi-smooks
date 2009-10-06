@@ -11,7 +11,11 @@ package org.sopera.di.smooks.tests;
 
 import junit.extensions.TestSetup;
 import junit.framework.*;
+
+import java.io.File;
+import java.io.FilePermission;
 import java.io.InputStream;
+import java.security.Permission;
 
 /**
  * Test for {@link org.sopera.di.smooks.impl.ComponentFacadeImpl}
@@ -77,7 +81,13 @@ public class ComponentFacadeTest extends ProjectTest {
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
 		suite.addTest(new ComponentFacadeTest("testSetEDI"));
+		suite.addTest(new ComponentFacadeTest("testSetEDIFileNotFoundException"));
+		suite.addTest(new ComponentFacadeTest("testSetEDISecurityException"));
 		suite.addTest(new ComponentFacadeTest("testSetMapping"));
+		suite.addTest(new ComponentFacadeTest("testSetMappingFileNotFoundException"));
+		suite.addTest(new ComponentFacadeTest("testSetMappingSecurityException"));
+		//suite.addTest(new ComponentFacadeTest("testSetXPath"));
+		//suite.addTest(new ComponentFacadeTest("testGetXPath"));
 		TestSetup wrapper = new TestSetup(suite) {
 			protected void setUp() {
 				oneTimeSetUp();
@@ -96,9 +106,43 @@ public class ComponentFacadeTest extends ProjectTest {
 	 * method.
 	 */
 	public void testSetEDI() {
-		InputStream edi = getClass().getResourceAsStream("/smooks.edi");
-		assertNotNull("Can't find EDI file for test", edi);
+		String edi = (new File("").getAbsolutePath())+"\\test\\resources\\smooks.edi";
+		assertNotNull("Can't find EDI file", edi);
 		inputFlow.setEDI(edi);
+	}
+	
+	/**
+	 * Test case for
+	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#setEDI(InputStream)}
+	 * method.
+	 */
+	public void testSetEDIFileNotFoundException() {
+		try {
+			inputFlow.setEDI("incorrect edi");
+			fail("Should have thrown an exception");
+		} catch (RuntimeException e) {
+			assertTrue(true);
+		}
+	}
+
+	/**
+	 * Test case for
+	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#setEDI(InputStream)}
+	 * method.
+	 */
+	public void testSetEDISecurityException() {
+
+	}
+	
+	/**
+	 * Test case for
+	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#setMapping(InputStream)}
+	 * method.
+	 */
+	public void testSetMapping() {
+		String mapping = (new File("").getAbsolutePath())+"\\test\\resources\\smooks-mapping.xml";
+		assertNotNull("Can't find mapping file", mapping);
+		inputFlow.setMapping(mapping);
 	}
 
 	/**
@@ -106,10 +150,42 @@ public class ComponentFacadeTest extends ProjectTest {
 	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#setMapping(InputStream)}
 	 * method.
 	 */
-	public void testSetMapping() {
-		InputStream mapping = getClass().getResourceAsStream(
-				"/smooks-mapping.xml");
-		assertNotNull("Can't find mapping file for test", mapping);
-		inputFlow.setMapping(mapping);
+	public void testSetMappingFileNotFoundException() {
+		try {
+			inputFlow.setMapping("incorrect mapping");
+			fail("Should throw an exception");
+		} catch (RuntimeException e) {
+			assertTrue(true);
+		}
+	}
+	
+	/**
+	 * Test case for
+	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#setMapping(InputStream)}
+	 * method.
+	 */
+	public void testSetMappingSecurityException() {
+		
+	}
+	
+	/**
+	 * Test case for
+	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#setXPath(String)}
+	 * method
+	 */
+	public void testSetXPath() {
+		//HashMap<String, SAXLocation> xPaths = new HashMap<String, SAXLocation>();
+	}
+
+	/**
+	 * Test case for
+	 * {@link org.sopera.di.smooks.impl.ComponentFacadeImpl#getXPath()} method
+	 */
+	public void testGetXPath() {
+		//EDIProcess parser = EDIProcess.INSTANCE;
+		//assertNotNull("Can't create EDIProcess instance", parser);
+		//String xPath = null;
+		//xPath = inputFlow.getXPath();
+		//assertNull(xPath);
 	}
 }
