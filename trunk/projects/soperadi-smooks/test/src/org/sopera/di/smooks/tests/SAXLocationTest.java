@@ -18,11 +18,6 @@
 package org.sopera.di.smooks.tests;
 
 import javax.xml.namespace.QName;
-
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
-import org.junit.Test;
 import org.sopera.di.smooks.xpath.SAXLocation;
 import org.sopera.di.smooks.xpath.impl.SAXLocationImpl;
 

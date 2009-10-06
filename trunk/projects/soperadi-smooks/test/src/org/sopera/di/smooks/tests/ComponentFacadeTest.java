@@ -11,11 +11,8 @@ package org.sopera.di.smooks.tests;
 
 import junit.extensions.TestSetup;
 import junit.framework.*;
-
 import java.io.File;
-import java.io.FilePermission;
 import java.io.InputStream;
-import java.security.Permission;
 
 /**
  * Test for {@link org.sopera.di.smooks.impl.ComponentFacadeImpl}

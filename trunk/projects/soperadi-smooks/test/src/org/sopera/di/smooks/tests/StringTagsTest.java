@@ -9,8 +9,6 @@
 
 package org.sopera.di.smooks.tests;
 
-import org.sopera.di.smooks.EDIProcess;
-
 import junit.extensions.TestSetup;
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -24,7 +22,7 @@ import junit.framework.TestSuite;
 public class StringTagsTest extends ProjectTest {
 	
 	private static org.sopera.di.smooks.StringTags strTags;
-	private EDIProcess parser = EDIProcess.INSTANCE;
+//	private EDIProcess parser = EDIProcess.INSTANCE;
 	
 	public StringTagsTest(String name) {
 		super(name);
@@ -120,7 +118,7 @@ public class StringTagsTest extends ProjectTest {
 	}
 	
 	public void testStartWrite() {
-		Thread writer = new Thread(parser);
+//		Thread writer = new Thread(parser);
 	}
 	
 	public void testStartRead() {

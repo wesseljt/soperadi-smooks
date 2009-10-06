@@ -18,9 +18,6 @@
 package org.sopera.di.smooks.tests;
 
 import java.util.List;
-
-import junit.framework.TestCase;
-
 import org.jaxen.JaxenHandler;
 import org.jaxen.expr.Expr;
 import org.jaxen.expr.LocationPath;
@@ -30,7 +27,6 @@ import org.jaxen.expr.UnionExpr;
 import org.jaxen.expr.XPathExpr;
 import org.jaxen.saxpath.Axis;
 import org.jaxen.saxpath.XPathReader;
-import org.junit.Test;
 
 /**
  * Test for parsing XPath using SAXPath

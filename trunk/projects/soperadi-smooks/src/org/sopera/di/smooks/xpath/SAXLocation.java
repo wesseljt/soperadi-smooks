@@ -18,8 +18,6 @@
 package org.sopera.di.smooks.xpath;
 
 import javax.xml.namespace.QName;
-
-import org.sopera.di.smooks.ComponentFacade;
 import org.sopera.di.smooks.ComponentModule;
 
 import com.google.inject.Guice;
