@@ -9,6 +9,7 @@
 package org.sopera.di.smooks;
 
 import org.sopera.di.smooks.impl.ComponentFacadeImpl;
+import org.sopera.di.smooks.impl.EDIProcessImpl;
 import org.sopera.di.smooks.impl.StringTagsImpl;
 import org.sopera.di.smooks.impl.FilterBuilderImpl;
 import org.sopera.di.smooks.xpath.SAXLocation;
@@ -33,6 +34,7 @@ public class ComponentModule extends AbstractModule {
 		bind(FilterBuilder.class).to(FilterBuilderImpl.class);
 		bind(StringTags.class).to(StringTagsImpl.class);
 		bind(SAXLocation.class).to(SAXLocationImpl.class);
+		bind(EDIProcess.class).to(EDIProcessImpl.class);
 	}
 
 }

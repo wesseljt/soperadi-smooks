@@ -1,5 +1,7 @@
 package org.sopera.di.smooks;
 
+import com.google.inject.Guice;
+
 /**
  * Basic interface for organize the MAP structure, synchronized the input and
  * output flows
@@ -9,6 +11,12 @@ package org.sopera.di.smooks;
  */
 public interface StringTags {
 
+	/**
+	 * Singleton instance
+	 */
+	public static final StringTags INSTANCE = Guice.createInjector(
+			new ComponentModule()).getInstance(StringTags.class);
+	
 	public void startRead();
 
 	public void startWrite();
