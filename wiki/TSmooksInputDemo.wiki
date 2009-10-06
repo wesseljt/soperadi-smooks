@@ -1,0 +1,13 @@
+#summary This page contains examples of how tSmooksInput works.
+
+= Introduction =
+
+You can find some examples of how tSmooksInput component works on this page. 
+
+
+= Details =
+
+<wiki:video url="http://www.youtube.com/watch?v=N-YHMPkZcdc">
+<wiki:video url="http://www.youtube.com/watch?v=Qt9XNTxgnTY">
+<wiki:video url="http://www.youtube.com/watch?v=z40Y9RN4OV0">
+<wiki:video url="http://www.youtube.com/watch?v=DZ72sQA2Mp4">
