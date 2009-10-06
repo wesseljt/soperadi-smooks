@@ -91,6 +91,7 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 	public void setXPaths(HashMap<String, SAXLocation> paths) {
 		xPaths = paths;
 	}
+	
 	public EDIProcessImpl() {
 		parser = new EDIParser();
 		parser.setContentHandler(this);

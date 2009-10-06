@@ -19,6 +19,8 @@ package org.sopera.di.smooks.tests;
 
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.jaxen.JaxenHandler;
 import org.jaxen.expr.Expr;
 import org.jaxen.expr.LocationPath;
@@ -35,9 +37,12 @@ import org.junit.Test;
  * 
  * @author zubairov
  */
-public class XPathParsingTest {
+public class XPathParsingTest extends ProjectTest {
 
-	@Test
+	public XPathParsingTest(String name) {
+		super(name);
+	}
+	
 	public void testXPath() throws Exception {
 		XPathReader reader = new org.jaxen.saxpath.base.XPathReader();
 		JaxenHandler handler = new JaxenHandler();
