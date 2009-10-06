@@ -19,7 +19,7 @@ public interface EDIProcess extends Runnable {
 	 * Singleton instance
 	 */
 	public static final EDIProcess INSTANCE = Guice.createInjector(
-			new EDIProcessModule()).getInstance(EDIProcess.class);
+			new ComponentModule()).getInstance(EDIProcess.class);
 
 	public String getXPath();
 

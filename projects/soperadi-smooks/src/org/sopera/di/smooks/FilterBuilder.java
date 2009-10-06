@@ -20,6 +20,8 @@ package org.sopera.di.smooks;
 import org.sopera.di.smooks.xpath.SXPathExpr;
 import org.xml.sax.ContentHandler;
 
+import com.google.inject.Guice;
+
 /**
  * Build a {@link ContentHandler} filter based on the specified XPath-like expression.
  * Sample usage:
@@ -31,6 +33,9 @@ import org.xml.sax.ContentHandler;
  */
 public interface FilterBuilder {
 
+	public static final FilterBuilder INSTANCE = Guice.createInjector(
+			new ComponentModule()).getInstance(FilterBuilder.class);
+	
 	/**
 	 * Set the first delegate {@link ContentHandler}
 	 * @param delegate
