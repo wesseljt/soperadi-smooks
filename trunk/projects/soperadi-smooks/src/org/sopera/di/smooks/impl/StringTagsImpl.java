@@ -84,6 +84,8 @@ public class StringTagsImpl implements StringTags {
 			try {
 				wait();
 			} catch (InterruptedException e) {
+				e.printStackTrace();
+				throw new RuntimeException("startWrite() InterruptedException!!!");
 			}
 		}
 	}
@@ -99,6 +101,8 @@ public class StringTagsImpl implements StringTags {
 			try {
 				wait();
 			} catch (InterruptedException e) {
+				e.printStackTrace();
+				throw new RuntimeException("startRead() InterruptedException!!!");
 			}
 		}
 	}

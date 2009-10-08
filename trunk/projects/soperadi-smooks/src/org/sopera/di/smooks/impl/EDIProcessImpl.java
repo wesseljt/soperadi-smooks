@@ -81,10 +81,13 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 			parser.setMappingModel(EDIParser.parseMappingModel(this.mapping));
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping IOException!!!");
 		} catch (SAXException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping SAXException!!!");
 		} catch (EDIConfigurationException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping EDIConfigurationException");
 		}
 	}
 
@@ -115,10 +118,13 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 			parser.setMappingModel(EDIParser.parseMappingModel(mapping));
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping IOException!!!");
 		} catch (SAXException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping SAXException!!!");
 		} catch (EDIConfigurationException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping EDIConfigurationException");
 		}
 		loc.startElement(new QName("", "Order"));
 		loc.startElement(new QName("", "order-item"));
@@ -153,10 +159,13 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 			parser.setMappingModel(EDIParser.parseMappingModel(mapping));
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping IOException!!!");
 		} catch (SAXException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping SAXException!!!");
 		} catch (EDIConfigurationException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Mapping EDIConfigurationException");
 		}
 
 	}
@@ -172,8 +181,10 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("EDI IOException!!!");
 		} catch (SAXException e) {
 			e.printStackTrace();
+			throw new RuntimeException("EDI SAXException!!!");
 		}
 	}
 
