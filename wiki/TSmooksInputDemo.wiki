@@ -21,7 +21,7 @@ You can find some examples of how tSmooksInput component works on this page.
 <br>
 <br>
 
-==Scenario 3: Using of the triggered connectors==
+==Scenario 3: Use of triggered connectors==
 <wiki:video url="http://www.youtube.com/watch?v=z40Y9RN4OV0" width="956" height="600">
 <br>
 <br>
