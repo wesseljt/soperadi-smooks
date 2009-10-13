@@ -1,0 +1,59 @@
+<%@ jet 
+	imports="
+		org.talend.core.model.process.INode 
+		org.talend.core.model.process.ElementParameterParser 
+		org.talend.core.model.metadata.IMetadataTable 
+		org.talend.core.model.metadata.IMetadataColumn 
+		org.talend.core.model.process.IConnection
+		org.talend.core.model.process.IConnectionCategory
+		org.talend.designer.codegen.config.CodeGeneratorArgument
+		org.talend.core.model.metadata.types.JavaTypesManager
+		org.talend.core.model.metadata.types.JavaType
+		java.util.List 
+    	java.util.Map
+    		
+	" 
+%>
+<% 
+    CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
+    INode node = (INode)codeGenArgument.getArgument();
+    String cid = node.getUniqueName();	
+    List<Map<String, String>> schemas = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__SCHEMAS__");
+    
+    String outputS = "Begin:";
+
+    List< ? extends IConnection> connections = node.getOutgoingSortedConnections();
+    if(connections!=null && connections.size()>0) {
+	//get all the children collections of the loop node.
+	   for(IConnection conn : connections){
+	      if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)){
+		     String query = null;
+			 for(Map<String, String> schemaMap : schemas){
+			    if(schemaMap.get("SCHEMA").equals(conn.getName())){
+ 		           outputS = outputS  + " " + conn.getName() + ":";
+				   IMetadataTable metadata = conn.getMetadataTable();
+			       if(metadata!=null){
+		              List<IMetadataColumn> columns = metadata.getListColumns();
+		              for(IMetadataColumn column:columns) {
+ 		                 outputS = outputS  + column.getLabel() + ":";
+ 		                 if (conn.getName().equals("s2")) {
+%>
+<%=conn.getName() %>.<%=column.getLabel() %> = "Fuck";
+<% 		
+ 		                 } // conn.getName().equals("s2")
+ 		              } // columns
+ 		           } // metadata!=null
+ 		        } // schemaMap.get("SCHEMA").equals(conn.getName())
+			 } // schemas
+		  } // conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)
+%>
+	System.out.println("<%=outputS%> <%=conn.getName()%>");
+<%
+	   } // connections
+	}// connections!=null && connections.size()>0
+%>
+    //System.out.println("Begin!");
+	class HelloSmooks_API_<%=cid%> {
+	private String s = "Hello world!";
+	public String getS() {return s;}
+	}
