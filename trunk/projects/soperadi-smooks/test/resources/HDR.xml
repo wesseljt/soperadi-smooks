@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+    <column comment="" default="" key="false" label="order_id"
+        length="-1" nullable="true" originalDbColumnName="order_id"
+        pattern="" precision="-1" talendType="id_Integer" type=""/>
+    <column comment="" default="" key="false" label="total_amount"
+        length="-1" nullable="true" originalDbColumnName="total_amount"
+        pattern="" precision="-1" talendType="id_Float" type=""/>
+</schema>
