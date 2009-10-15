@@ -18,7 +18,7 @@
 		<mkdir dir="${project_dir}"/>
 	</target>
 	<target name="zipFiles" depends="init">
-		<svn>
+		<svn javahl="false">
 			<info target="${svn_repository}" propPrefix="Revision."/>
 			<checkout url="${svn_repository}/components/tSmooksInput" destPath="${component_dir}"/>
 			<checkout url="${svn_repository}/jobs/tmp/TALENDDEMOSJAVA" destPath="${jobs_dir}"/>
@@ -26,7 +26,7 @@
 			<checkout url="${svn_repository}/projects/soperadi-smooks/test/resources" destPath="${res_dir}"/>
 		</svn>
 		<move file="${component_dir}/readme.txt" tofile="${project_dir}/readme.txt"/>
-		<replace file="${project_dir}/readme.txt" token="%MAX_REVISION%" value="${Revision.rev}"/>
+		<replace file="${project_dir}/readme.txt" token="!MAX_REVISION!" value="${Revision.rev}"/>
 		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
 		<delete dir="${project_dir}"/>
 	</target>
