@@ -9,8 +9,6 @@
 
 package org.sopera.di.smooks.impl;
 
-import static junit.framework.Assert.assertNotNull;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -110,9 +108,7 @@ public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
 	public EDIProcessImpl(StringTags res) {
 		parser = new EDIParser();
 		edi = getClass().getResourceAsStream("/smooks.edi");
-		assertNotNull("Can't find EDI file for test", edi);
 		mapping = getClass().getResourceAsStream("/smooks-mapping.xml");
-		assertNotNull("Can't find mapping file", mapping);
 		parser.setContentHandler(this);
 		try {
 			parser.setMappingModel(EDIParser.parseMappingModel(mapping));
