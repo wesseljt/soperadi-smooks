@@ -1,3 +1,5 @@
+Revision # !!!!!.
+
 This is the sourses for using and testing component tSmooksInput (the beta-version)
 
 Use this component to read a multi-schema file and separate fields using a Smooks mapping capabilities.
