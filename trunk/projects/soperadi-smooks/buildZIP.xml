@@ -1,0 +1,62 @@
+<project name="tSmooksInput" default="zipFiles" basedir=".">
+	<target name="zipFiles">
+		<property name="mainDir" value="tSmooksInput" />
+		<property name="readmeFile" value="http://soperadi-smooks.googlecode.com/svn/trunk/components/tSmooksInput/readme.txt" />
+		<property name="componentDir" value="${mainDir}/component/tSmooksInput" />
+		<property name="componentDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/components/tSmooksInput" />
+		<property name="jobsDir" value="${mainDir}/job" />
+		<property name="jobsDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/jobs/tmp/TALENDDEMOSJAVA" />
+		<property name="talendProjectFile" value="	${jobsDirSVN}/talend.project" />
+		<property name="libDir" value="${mainDir}/lib" />
+		<property name="libDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/projects/soperadi-smooks/lib" />
+		<property name="resDir" value="${mainDir}/resources" />
+		<property name="resDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/projects/soperadi-smooks/test/resources" />
+		<delete file="tSmooksInput.zip" />
+		<delete dir="tSmooksInput" />
+		<mkdir dir="tSmooksInput" />
+		<mkdir dir="${mainDir}/component" />
+		<mkdir dir="${componentDir}" />
+		<get src="${componentDirSVN}/tSmooksInput_begin.javajet" dest="${componentDir}/tSmooksInput_begin.javajet" />
+		<get src="${componentDirSVN}/tSmooksInput_main.javajet" dest="${componentDir}/tSmooksInput_main.javajet" />
+		<get src="${componentDirSVN}/tSmooksInput_end.javajet" dest="${componentDir}/tSmooksInput_end.javajet" />
+		<get src="${componentDirSVN}/tSmooksInput_icon32.png" dest="${componentDir}/tSmooksInput_icon32.png" />
+		<get src="${componentDirSVN}/tSmooksInput_java.xml" dest="${componentDir}/tSmooksInput_java.xml" />
+		<get src="${componentDirSVN}/tSmooksInput_messages.properties" dest="${componentDir}/tSmooksInput_messages.properties" />
+		<mkdir dir="${jobsDir}" />
+		<mkdir dir="${jobsDir}/process" />
+		<get src="${jobsDirSVN}/process/test_001_0.1.item" dest="${jobsDir}/process/test_001_0.1.item" />
+		<get src="${jobsDirSVN}/process/test_001_0.1.properties" dest="${jobsDir}/process/test_001_0.1.properties" />
+		<get src="${jobsDirSVN}/process/test_002_0.1.item" dest="${jobsDir}/process/test_002_0.1.item" />
+		<get src="${jobsDirSVN}/process/test_002_0.1.properties" dest="${jobsDir}/process/test_002_0.1.properties" />
+		<get src="${jobsDirSVN}/process/test_003_0.1.item" dest="${jobsDir}/process/test_003_0.1.item" />
+		<get src="${jobsDirSVN}/process/test_003_0.1.properties" dest="${jobsDir}/process/test_003_0.1.properties" />
+		<get src="${jobsDirSVN}/process/test_004_0.1.item" dest="${jobsDir}/process/test_004_0.1.item" />
+		<get src="${jobsDirSVN}/process/test_004_0.1.properties" dest="${jobsDir}/process/test_004_0.1.properties" />
+		<get src="${talendProjectFile}" dest="${jobsDir}/talend.project" />
+		<mkdir dir="${libDir}" />
+		<get src="${libDirSVN}/aopalliance.jar" dest="${libDir}/aopalliance.jar" />
+		<get src="${libDirSVN}/commons-logging-1.1.jar" dest="${libDir}/commons-logging-1.1.jar" />
+		<get src="${libDirSVN}/guice-2.0.jar" dest="${libDir}/guice-2.0.jar" />
+		<get src="${libDirSVN}/jaxen-1.1.1.jar" dest="${libDir}/jaxen-1.1.1.jar" />
+		<get src="${libDirSVN}/log4j-1.2.14.jar" dest="${libDir}/log4j-1.2.14.jar" />
+		<get src="${libDirSVN}/freemarker-2.3.11.jar" dest="${libDir}/freemarker-2.3.11.jar" />
+		<get src="${libDirSVN}/milyn-commons-1.2.2.jar" dest="${libDir}/milyn-commons-1.2.2.jar" />
+		<get src="${libDirSVN}/milyn-edisax-parser-1.2.2.jar" dest="${libDir}/milyn-edisax-parser-1.2.2.jar" />
+		<get src="${libDirSVN}/milyn-smooks-core-1.2.2.jar" dest="${libDir}/milyn-smooks-core-1.2.2.jar" />
+		<get src="${libDirSVN}/milyn-smooks-edi-1.2.2.jar" dest="${libDir}/milyn-smooks-edi-1.2.2.jar" />
+		<get src="${libDirSVN}/milyn-commons-1.2.1.jar" dest="${libDir}/milyn-commons-1.2.1.jar" />
+		<get src="${libDirSVN}/milyn-edisax-parser-1.2.1.jar" dest="${libDir}/milyn-edisax-parser-1.2.1.jar" />
+		<get src="${libDirSVN}/milyn-smooks-core-1.2.1.jar" dest="${libDir}/milyn-smooks-core-1.2.1.jar" />
+		<get src="${libDirSVN}/milyn-smooks-edi-1.2.1.jar" dest="${libDir}/milyn-smooks-edi-1.2.1.jar" />
+		<mkdir dir="${resDir}" />
+		<mkdir dir="${resDir}/messages" />
+		<get src="${resDirSVN}/messages/test1.edi" dest="${resDir}/messages/test1.edi" />
+		<get src="${resDirSVN}/messages/test2.edi" dest="${resDir}/messages/test2.edi" />
+		<get src="${resDirSVN}/messages/test3.edi" dest="${resDir}/messages/test3.edi" />
+		<get src="${resDirSVN}/smooks-mapping.xml" dest="${resDir}/smooks-mapping.xml" />
+		<get src="${resDirSVN}/test.edi" dest="${resDir}/test.edi" />
+		<get src="${readmeFile}" dest="${mainDir}/readme.txt" />
+		<zip destfile="tSmooksInput.zip" basedir="${mainDir}" />
+		<delete dir="tSmooksInput" />
+	</target>
+</project>
