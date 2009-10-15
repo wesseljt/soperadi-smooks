@@ -1,4 +1,4 @@
-Revision # !!!!!.
+Revision # <MAX_REVISION>.
 
 This is the sourses for using and testing component tSmooksInput (the beta-version)
 
