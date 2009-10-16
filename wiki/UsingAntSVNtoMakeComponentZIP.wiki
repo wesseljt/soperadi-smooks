@@ -2,7 +2,7 @@
 
 = Introduction =
 
-This page describes how to make ZIP-archive of tSmooksInput component from SVN-repository with help of Ant. You need to do next steps and you will have the latest version of tSmooksInput in ZIP-archive named "tSmooksInput.zip"
+This page describes how to make ZIP-archive of *tSmooksInput* component from SVN-repository with help of [http://ant.apache.org/bindownload.cgi Ant]. You need to do next steps and you will have the latest version of *tSmooksInput* in ZIP-archive named *"tSmooksInput.zip"*
 
 
 = Details =
@@ -14,15 +14,15 @@ This page describes how to make ZIP-archive of tSmooksInput component from SVN-r
   # [http://subclipse.tigris.org/svnant.html SvnAnt] version 1.3.0.
 
 
-==Ant installing==
+==[http://ant.apache.org/bindownload.cgi Ant] installing==
 
   # Download [http://ant.apache.org/bindownload.cgi Ant].
   # You need only *bin* and *lib* directories. Copy them to directory you need.
   # Add the *bin* directory to your path.
-  # Set the *ANT_HOME* environment variable to the directory where you installed Ant.
+  # Set the *ANT_HOME* environment variable to the directory where you installed [http://ant.apache.org/bindownload.cgi Ant].
 
 
-==Subversion client installing==
+==[http://subversion.tigris.org Subversion] client installing==
 
   # Download [http://subversion.tigris.org Subversion] client, which compatible with your platform.
   # Install Subversion with help of it documentation (if you need, of course).
@@ -33,15 +33,15 @@ This page describes how to make ZIP-archive of tSmooksInput component from SVN-r
 
   # Download [http://subclipse.tigris.org/svnant.html SvnAnt].
   # Unzip archive to the directory you need.
-  # Add the *lib* directory to your CLASSPATH.
+  # Add the *lib* directory to your *CLASSPATH* environment variable.
 
 
-==Making component ZIP-archive with Ant==
+==Making component ZIP-archive with [http://ant.apache.org/bindownload.cgi Ant]==
 
   # Create directory, where you want to make component archive.
   # Copy *buildZIP.xml* file to this directory.
   # Create subdirectory *lib*.
-  # Copy SvnAnt libraries to this directory. You need: *svnant.jar, svnClientAdapter.jar, svnjavahl.jar, svnkit.jar*
+  # Copy [http://subclipse.tigris.org/svnant.html SvnAnt] libraries to this directory. You need: *svnant.jar, svnClientAdapter.jar, svnjavahl.jar, svnkit.jar*
   # Open command line in this directory and type "ant -f buildZIP.xml".
   
 If you did all steps correctly, than you would have tSmooksComponent.zip file in your directory.
