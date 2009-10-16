@@ -54,6 +54,16 @@
 		</svn>
 		<move file="${component_dir}/readme.txt" tofile="${project_dir}/readme.txt"/>
 		<replace file="${project_dir}/readme.txt" token="!MAX_REVISION!" value="${Revision.rev}"/>
+		<delete>
+			<fileset dir="${res_dir}">
+				<exclude name="CUS.xml"/>
+				<exclude name="HDR.xml"/>
+				<exclude name="ORD.xml"/>
+				<exclude name="smooks-mapping.xml"/>
+				<exclude name="test.edi"/>
+				<exclude name="messages/*.edi"/>
+			</fileset>
+		</delete>
 		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin"/>
 		<delete dir="${temp_dir}"/>
 		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
