@@ -29,7 +29,7 @@ This page describes how to make ZIP-archive of tSmooksInput component from SVN-r
   # Add the *bin* directory to your path.
 
 
-==SvnAnt installing==
+==[http://subclipse.tigris.org/svnant.html SvnAnt] installing==
 
   # Download [http://subclipse.tigris.org/svnant.html SvnAnt].
   # Unzip archive to the directory you need.
