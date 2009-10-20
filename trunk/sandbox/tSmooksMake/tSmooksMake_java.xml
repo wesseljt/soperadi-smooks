@@ -59,20 +59,20 @@
   </ADVANCED_PARAMETERS>  
   
   <CODEGENERATION>
+
       <IMPORTS> 
-     <IMPORT NAME="commons-logging-1.1.jar" MODULE="commons-logging-1.1.jar"
+      
+     <IMPORT NAME="milyn-smooks-core-1.2.2.jar" MODULE="milyn-smooks-core-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="freemarker-2.3.11.jar" MODULE="freemarker-2.3.11.jar"
+     <IMPORT NAME="milyn-commons-1.2.2.jar" MODULE="milyn-commons-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-ejc-1.2.1.jar" MODULE="milyn-smooks-ejc-1.2.1.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-edisax-parser-1.2.1.jar" MODULE="milyn-edisax-parser-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-routing-1.2.1.jar" MODULE="milyn-smooks-routing-1.2.1.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-core-1.2.1.jar" MODULE="milyn-smooks-core-1.2.1.jar"
+     <IMPORT NAME="hsqldb.jar" MODULE="hsqldb.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
-				REQUIRED="true" />
-     <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
+     <IMPORT NAME="sandbox.sopera.di.jar" MODULE="sandbox.sopera.di.jar"
 				REQUIRED="true" />
 	  </IMPORTS> 
   </CODEGENERATION>  
