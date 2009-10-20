@@ -32,5 +32,19 @@
     String outmode = ElementParameterParser.getValue(node, "__OUTPUT_FORMAT__");
         
     String encoding = ElementParameterParser.getValue(node, "__ENCODING__");
+    String outFileName = ElementParameterParser.getValue(node, "__OUTPUT_FILE__");
 %>
    System.out.println("Begin in process!");
+   main.java.example.Main main<%=cid%> = new main.java.example.Main();
+		try {
+   			main<%=cid%>.startDatabase();
+   			main<%=cid%>.runSmooksTransform(<%=outFileName%>);
+   			main<%=cid%>.printOrders();
+   			}
+   			catch (java.lang.Exception e) {
+		System.err.println("There is an Exception in <%=cid %>!");
+		System.err.println("The process is interrupted.");
+		System.err.println();
+		throw e;
+	    }
+   
