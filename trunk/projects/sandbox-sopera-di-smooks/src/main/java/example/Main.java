@@ -3,6 +3,7 @@ package main.java.example;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,6 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.milyn.Smooks;
@@ -53,7 +55,7 @@ public class Main {
 			System.out.println();
 			Main
 					.pause("Now press return to execute Smooks over the EDI message to load the database...");
-			main.runSmooksTransform();
+			main.runSmooksTransform("out.xml");
 			System.out.println();
 			Main
 					.pause("Smooks has processed the message.  Now press return to view the contents of the database again.  This time there should be rows...");
@@ -65,13 +67,15 @@ public class Main {
 		}
 	}
 
-	public void runSmooksTransform() throws IOException, SAXException,
-			SmooksException {
+	public void runSmooksTransform(String outFileName) throws IOException,
+			SAXException, SmooksException {
 		Locale defaultLocale = Locale.getDefault();
 		Locale.setDefault(new Locale("en", "IE"));
 
 		Smooks smooks = new Smooks(
-				"./resources/smooks-configs/smooks-config.xml");
+				"C:/resources/compMake/resources/smooks-configs/smooks-config.xml");
+		// Smooks smooks = new Smooks(
+		// "smooks-config.xml");
 
 		try {
 			ExecutionContext executionContext = smooks.createExecutionContext();
@@ -81,7 +85,8 @@ public class Main {
 					"target/report/report.html"));
 
 			smooks.filterSource(executionContext, new StreamSource(
-					new ByteArrayInputStream(messageIn)), null);
+					new ByteArrayInputStream(messageIn)), new StreamResult(
+					new FileOutputStream(outFileName)));
 
 			Locale.setDefault(defaultLocale);
 		} finally {
@@ -136,8 +141,10 @@ public class Main {
 	}
 
 	public void startDatabase() throws Exception {
-		InputStream schema = getClass()
-				.getResourceAsStream("/db-create.script");
+		InputStream schema = new FileInputStream(
+				"C:/resources/compMake/resources/db-create.script");
+		// InputStream schema = new FileInputStream(
+		// "/db-create.script");
 
 		try {
 			dbServer = new HsqlServer(9201);
@@ -154,7 +161,9 @@ public class Main {
 	private static byte[] readInputMessage() {
 		try {
 			return StreamUtils.readStream(new FileInputStream(
-					"./resources/input-message.edi"));
+					"C:/resources/compMake/resources/input-message.edi"));
+			//return StreamUtils.readStream(new FileInputStream(
+			//		"/resources/input-message.edi"));
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "<no-message/>".getBytes();

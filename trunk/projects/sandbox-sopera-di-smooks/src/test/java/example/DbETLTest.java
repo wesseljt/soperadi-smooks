@@ -19,7 +19,7 @@ public class DbETLTest extends TestCase {
 		main.startDatabase();
 
 		try {
-			main.runSmooksTransform();
+			main.runSmooksTransform("out.xml");
 			List<Map<String, Object>> orders = main.getOrders();
 			List<Map<String, Object>> orderItems = main.getOrderItems();
 
@@ -43,6 +43,12 @@ public class DbETLTest extends TestCase {
 			assertEquals(
 					"{ORDERNUMBER=2, QUANTITY=3, PRODUCT=299, TITLE=Lethal Weapon 2, PRICE=55.5}",
 					orderItems.get(3).toString());
+			for (int j=0; j < orders.size(); j++) {
+				System.out.println(orders.get(j).toString());
+			}
+			for (int j=0; j < orderItems.size(); j++) {
+				System.out.println(orderItems.get(j).toString());
+			}
 			// Run the working with big edi file
 			// writeBigFile();
 			// eatBigFile();
