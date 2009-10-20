@@ -1,63 +1,137 @@
-<project name="tSmooksInput" default="zipFiles" basedir=".">
-	<target name="zipFiles">
-		<property name="mainDir" value="tSmooksInput"/>
-		<property name="readmeFile" value="http://soperadi-smooks.googlecode.com/svn/trunk/components/tSmooksInput/readme.txt"/>
-		<property name="componentDir" value="${mainDir}/component/tSmooksInput"/>
-		<property name="componentDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/components/tSmooksInput"/>
-		<property name="jobsDir" value="${mainDir}/job"/>
-		<property name="jobsDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/jobs/tmp/TALENDDEMOSJAVA"/>
-		<property name="talendProjectFile" value="	${jobsDirSVN}/talend.project"/>
-		<property name="libDir" value="${mainDir}/lib"/>
-		<property name="libDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/projects/soperadi-smooks/lib"/>
-		<property name="resDir" value="${mainDir}/resources"/>
-		<property name="resDirSVN" value="http://soperadi-smooks.googlecode.com/svn/trunk/projects/soperadi-smooks/test/resources"/>
-		<delete file="tSmooksInput.zip"/>
-		<delete dir="tSmooksInput"/>
-		<mkdir dir="tSmooksInput"/>
-		<mkdir dir="${mainDir}/component"/>
-		<mkdir dir="${componentDir}"/>
-		<get src="${componentDirSVN}/tSmooksInput_begin.javajet" dest="${componentDir}/tSmooksInput_begin.javajet"/>
-		<get src="${componentDirSVN}/tSmooksInput_main.javajet" dest="${componentDir}/tSmooksInput_main.javajet"/>
-		<get src="${componentDirSVN}/tSmooksInput_end.javajet" dest="${componentDir}/tSmooksInput_end.javajet"/>
-		<get src="${componentDirSVN}/tSmooksInput_icon32.png" dest="${componentDir}/tSmooksInput_icon32.png"/>
-		<get src="${componentDirSVN}/tSmooksInput_java.xml" dest="${componentDir}/tSmooksInput_java.xml"/>
-		<get src="${componentDirSVN}/tSmooksInput_messages.properties" dest="${componentDir}/tSmooksInput_messages.properties"/>
-		<mkdir dir="${jobsDir}"/>
-		<mkdir dir="${jobsDir}/process"/>
-		<get src="${jobsDirSVN}/process/test_001_0.1.item" dest="${jobsDir}/process/test_001_0.1.item"/>
-		<get src="${jobsDirSVN}/process/test_001_0.1.properties" dest="${jobsDir}/process/test_001_0.1.properties"/>
-		<get src="${jobsDirSVN}/process/test_002_0.1.item" dest="${jobsDir}/process/test_002_0.1.item"/>
-		<get src="${jobsDirSVN}/process/test_002_0.1.properties" dest="${jobsDir}/process/test_002_0.1.properties"/>
-		<get src="${jobsDirSVN}/process/test_003_0.1.item" dest="${jobsDir}/process/test_003_0.1.item"/>
-		<get src="${jobsDirSVN}/process/test_003_0.1.properties" dest="${jobsDir}/process/test_003_0.1.properties"/>
-		<get src="${jobsDirSVN}/process/test_004_0.1.item" dest="${jobsDir}/process/test_004_0.1.item"/>
-		<get src="${jobsDirSVN}/process/test_004_0.1.properties" dest="${jobsDir}/process/test_004_0.1.properties"/>
-		<get src="${talendProjectFile}" dest="${jobsDir}/talend.project"/>
-		<mkdir dir="${libDir}"/>
-		<get src="${libDirSVN}/aopalliance.jar" dest="${libDir}/aopalliance.jar"/>
-		<get src="${libDirSVN}/commons-logging-1.1.jar" dest="${libDir}/commons-logging-1.1.jar"/>
-		<get src="${libDirSVN}/guice-2.0.jar" dest="${libDir}/guice-2.0.jar"/>
-		<get src="${libDirSVN}/jaxen-1.1.1.jar" dest="${libDir}/jaxen-1.1.1.jar"/>
-		<get src="${libDirSVN}/log4j-1.2.14.jar" dest="${libDir}/log4j-1.2.14.jar"/>
-		<get src="${libDirSVN}/freemarker-2.3.11.jar" dest="${libDir}/freemarker-2.3.11.jar"/>
-		<get src="${libDirSVN}/milyn-commons-1.2.2.jar" dest="${libDir}/milyn-commons-1.2.2.jar"/>
-		<get src="${libDirSVN}/milyn-edisax-parser-1.2.2.jar" dest="${libDir}/milyn-edisax-parser-1.2.2.jar"/>
-		<get src="${libDirSVN}/milyn-smooks-core-1.2.2.jar" dest="${libDir}/milyn-smooks-core-1.2.2.jar"/>
-		<get src="${libDirSVN}/milyn-smooks-edi-1.2.2.jar" dest="${libDir}/milyn-smooks-edi-1.2.2.jar"/>
-		<get src="${libDirSVN}/milyn-commons-1.2.1.jar" dest="${libDir}/milyn-commons-1.2.1.jar"/>
-		<get src="${libDirSVN}/milyn-edisax-parser-1.2.1.jar" dest="${libDir}/milyn-edisax-parser-1.2.1.jar"/>
-		<get src="${libDirSVN}/milyn-smooks-core-1.2.1.jar" dest="${libDir}/milyn-smooks-core-1.2.1.jar"/>
-		<get src="${libDirSVN}/milyn-smooks-edi-1.2.1.jar" dest="${libDir}/milyn-smooks-edi-1.2.1.jar"/>
-		<mkdir dir="${resDir}"/>
-		<mkdir dir="${resDir}/messages"/>
-		<get src="${resDirSVN}/messages/test1.edi" dest="${resDir}/messages/test1.edi"/>
-		<get src="${resDirSVN}/messages/test2.edi" dest="${resDir}/messages/test2.edi"/>
-		<get src="${resDirSVN}/messages/test3.edi" dest="${resDir}/messages/test3.edi"/>
-		<get src="${resDirSVN}/smooks-mapping.xml" dest="${resDir}/smooks-mapping.xml"/>
-		<get src="${resDirSVN}/test.edi" dest="${resDir}/test.edi"/>
-		
-		<get src="${readmeFile}" dest="${mainDir}/readme.txt"/>
-		<zip destfile="tSmooksInput.zip" basedir="${mainDir}"/>
-		<delete dir="tSmooksInput"/>
-	</target>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="sandbox-sopera-di-smooks">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit4_4.3.1/junit.jar"/>
+    </path>
+    <path id="sandbox-sopera-di-smooks.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="lib/antlr-2.7.7.jar"/>
+        <pathelement location="lib/commons-collections-3.1.jar"/>
+        <pathelement location="lib/commons-lang-2.1.jar"/>
+        <pathelement location="lib/commons-logging-1.1.jar"/>
+        <pathelement location="lib/flute-1.3.jar"/>
+        <pathelement location="lib/freemarker-2.3.11.jar"/>
+        <pathelement location="lib/groovy-all-1.5.0.jar"/>
+        <pathelement location="lib/jackson-core-lgpl-1.0.1.jar"/>
+        <pathelement location="lib/javassist-3.7.ga.jar"/>
+        <pathelement location="lib/jline-0.9.93.jar"/>
+        <pathelement location="lib/jta-1.1.jar"/>
+        <pathelement location="lib/milyn-commons-1.2.1.jar"/>
+        <pathelement location="lib/milyn-edisax-parser-1.2.1.jar"/>
+        <pathelement location="lib/milyn-magger-1.2.1.jar"/>
+        <pathelement location="lib/milyn-scribe-core-1.2.1.jar"/>
+        <pathelement location="lib/milyn-scribe-hibernate-1.2.1.jar"/>
+        <pathelement location="lib/milyn-scribe-ibatis-1.2.1.jar"/>
+        <pathelement location="lib/milyn-scribe-jpa-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-calc-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-core-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-css-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-csv-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-edi-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-ejc-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-javabean-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-json-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-misc-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-persistence-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-routing-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-rules-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-scripting-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-servlet-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-templating-1.2.1.jar"/>
+        <pathelement location="lib/milyn-smooks-validation-1.2.1.jar"/>
+        <pathelement location="lib/milyn-tinak-1.2.1.jar"/>
+        <pathelement location="lib/mvel2-2.0.9.jar"/>
+        <pathelement location="lib/nekohtml-0.9.5.jar"/>
+        <pathelement location="lib/ognl-2.7.3.jar"/>
+        <pathelement location="lib/opencsv-1.8.jar"/>
+        <pathelement location="lib/persistence-api-1.0.jar"/>
+        <pathelement location="lib/sac-1.3.jar"/>
+        <pathelement location="lib/slf4j-api-1.5.2.jar"/>
+        <pathelement location="lib/stringtemplate-2.2.jar"/>
+        <pathelement location="lib/xercesImpl-2.9.1.jar"/>
+        <pathelement location="lib/xml-apis-1.0.b2.jar"/>
+        <pathelement location="lib/xpp3_min-1.1.3.4.O.jar"/>
+        <pathelement location="lib/xstream-1.2.2.jar"/>
+        <pathelement location="hsqldb/hsqldb.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="target" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="resources" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="sandbox-sopera-di-smooks.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="target"/>
+            <classpath refid="sandbox-sopera-di-smooks.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="resources"/>
+            <classpath refid="sandbox-sopera-di-smooks.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="DbETLTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.java.example.DbETLTest" todir="${junit.output.dir}"/>
+            <classpath refid="sandbox-sopera-di-smooks.classpath"/>
+        </junit>
+    </target>
+    <target name="Main">
+        <java classname="main.java.example.Main" failonerror="true" fork="yes">
+            <classpath refid="sandbox-sopera-di-smooks.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
 </project>
