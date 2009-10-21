@@ -62,13 +62,13 @@
 				REQUIRED="true" />
      <IMPORT NAME="freemarker-2.3.11.jar" MODULE="freemarker-2.3.11.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.1.jar"
+     <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-edisax-parser-1.2.1.jar" MODULE="milyn-edisax-parser-1.2.1.jar"
+     <IMPORT NAME="milyn-edisax-parser-1.2.1.jar" MODULE="milyn-edisax-parser-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-core-1.2.1.jar" MODULE="milyn-smooks-core-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-core-1.2.1.jar" MODULE="milyn-smooks-core-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.2.jar"
 				REQUIRED="true" />
      <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
 				REQUIRED="true" />
