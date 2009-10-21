@@ -6,7 +6,7 @@ import org.milyn.SmooksException;
 import org.xml.sax.SAXException;
 
 public interface SmooksTransform {
-	public void setMappingFileName(String mappingFileName);
+	public void setConfigFileName(String mappingFileName);
 
 	public void setInputFileName(String inputFileName);
 
