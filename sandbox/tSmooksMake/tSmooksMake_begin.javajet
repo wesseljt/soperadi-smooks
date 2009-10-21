@@ -26,21 +26,30 @@
     CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
     INode node = (INode)codeGenArgument.getArgument();
     String cid = node.getUniqueName();	
-   // List<Map<String, String>> schemas = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__SCHEMAS__");
     String inputFileName = ElementParameterParser.getValue(node, "__INPUT_FILE__");
     String mappingFileName = ElementParameterParser.getValue(node, "__MAPPING_FILE__");
     String outputFileName = ElementParameterParser.getValue(node, "__OUTPUT_FILE__");
-    //boolean useediuri = ElementParameterParser.getValue(node,"__IS_EDI__").equals("true");
-    
-    //List< ? extends IConnection> connections = node.getOutgoingSortedConnections();
+    List<Map<String, String>> paths = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__PATH__");
+%>
+   org.sopera.di.smooks.impl.SmooksTransformImpl smooksTransformImpl_<%=cid%> = 
+   		new org.sopera.di.smooks.impl.SmooksTransformImpl();
+   smooksTransformImpl_<%=cid%>.setConfigFileName(<%=mappingFileName%>);
+   
+<%    
+    for(Map<String, String> pathMap : paths) {
+    	String target = pathMap.get("TARGET");
+    	String source = pathMap.get("SOURSE");
+    	boolean useInMap = pathMap.get("USE_IN_MAP").equals("true");
     
 %>
-	System.out.println("Begin in process!");
-	
+	smooksTransformImpl_<%=cid%>.setMappingResource(<%=target%>,<%=source%>);
+<%
+	} 
+%>
 
-   org.sopera.di.smooks.impl.SmooksTransformImpl smooksTransformImpl_<%=cid%> = new org.sopera.di.smooks.impl.SmooksTransformImpl();
+   System.out.println("Begin in process!");
+
    smooksTransformImpl_<%=cid%>.setInputFileName(<%=inputFileName%>);
-   smooksTransformImpl_<%=cid%>.setMappingFileName(<%=mappingFileName%>);
    smooksTransformImpl_<%=cid%>.setOutputFileName(<%=outputFileName%>);
    smooksTransformImpl_<%=cid%>.runSmooksTransform();
  
