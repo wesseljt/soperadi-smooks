@@ -62,15 +62,23 @@
 
       <IMPORTS> 
       
-     <IMPORT NAME="milyn-smooks-core-1.2.2.jar" MODULE="milyn-smooks-core-1.2.2.jar"
+     <IMPORT NAME="commons-logging-1.1.jar" MODULE="commons-logging-1.1.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-commons-1.2.2.jar" MODULE="milyn-commons-1.2.2.jar"
+     <IMPORT NAME="freemarker-2.3.11.jar" MODULE="freemarker-2.3.11.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-ejc-1.2.1.jar" MODULE="milyn-smooks-ejc-1.2.1.jar"
+     <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.1.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-routing-1.2.1.jar" MODULE="milyn-smooks-routing-1.2.1.jar"
+     <IMPORT NAME="milyn-edisax-parser-1.2.1.jar" MODULE="milyn-edisax-parser-1.2.1.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="hsqldb.jar" MODULE="hsqldb.jar"
+     <IMPORT NAME="milyn-smooks-core-1.2.1.jar" MODULE="milyn-smooks-core-1.2.1.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="guice-2.0.jar" MODULE="guice-2.0.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="aopalliance.jar" MODULE="aopalliance.jar"
 				REQUIRED="true" />
      <IMPORT NAME="sandbox.sopera.di.jar" MODULE="sandbox.sopera.di.jar"
 				REQUIRED="true" />
