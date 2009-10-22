@@ -21,8 +21,8 @@ public class SmooksTransformImpl implements SmooksTransform {
 		return configFileName;
 	}
 
-	public void setConfigFileName(String mappingFileName) {
-		this.configFileName = mappingFileName;
+	public void setConfigFileName(String configFileName) {
+		this.configFileName = configFileName;
 	}
 
 	public String getInputFileName() {
