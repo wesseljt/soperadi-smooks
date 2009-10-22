@@ -14,5 +14,8 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/freemarker-2.3.11.jar"/>
+	<classpathentry kind="lib" path="lib/milyn-smooks-csv-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/opencsv-1.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
