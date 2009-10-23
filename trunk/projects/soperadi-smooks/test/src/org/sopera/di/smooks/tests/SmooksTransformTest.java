@@ -1,0 +1,97 @@
+package org.sopera.di.smooks.tests;
+
+import java.io.IOException;
+import junit.framework.TestSuite;
+import org.milyn.SmooksException;
+import org.sopera.di.smooks.impl.SmooksTransformImpl;
+import org.xml.sax.SAXException;
+
+public class SmooksTransformTest extends ProjectTest {
+	public SmooksTransformTest(String name) {
+		super(name);
+	}
+
+	public static TestSuite suite() {
+		TestSuite suite = new TestSuite();
+		suite.addTest(new SmooksTransformTest("testRunCsvToXml"));
+		suite.addTest(new SmooksTransformTest("testFillMappingFile"));
+		suite.addTest(new SmooksTransformTest("testRunEdiToXml"));
+		suite.addTest(new SmooksTransformTest("testRunXmlToXml"));
+		return suite;
+	}
+
+	public void testFillMappingFile() throws IOException, SAXException {
+		SmooksTransformImpl smooksTransform = new SmooksTransformImpl();
+		assertNotNull(smooksTransform);
+		smooksTransform
+				.setConfigFileName("test/resources/csv-to-xml/smooks--config.xml");
+		assertEquals("test/resources/csv-to-xml/smooks--config.xml",
+				smooksTransform.getConfigFileName());
+		try {
+			smooksTransform.runSmooksTransform();
+			fail("!");
+		} catch (RuntimeException e) {
+			assertTrue(true);
+		}
+	}
+
+	public void testRunCsvToXml() throws IOException, SAXException,
+			SmooksException, InterruptedException {
+		SmooksTransformImpl smooksTransform = new SmooksTransformImpl();
+		assertNotNull(smooksTransform);
+		smooksTransform
+				.setConfigFileName("test/resources/csv-to-xml/smooks-config.xml");
+		assertEquals("test/resources/csv-to-xml/smooks-config.xml",
+				smooksTransform.getConfigFileName());
+		smooksTransform
+				.setInputFileName("test/resources/csv-to-xml/input-message.csv");
+		assertEquals("test/resources/csv-to-xml/input-message.csv",
+				smooksTransform.getInputFileName());
+		smooksTransform.setOutputFileName("test/resources/csv-to-xml/out.xml");
+		assertEquals("test/resources/csv-to-xml/out.xml", smooksTransform
+				.getOutputFileName());
+		smooksTransform.setMappingResource("!!!not-csv-to-xml!!!",
+				"not-mapping");
+		smooksTransform.runSmooksTransform();
+	}
+
+	public void testRunEdiToXml() throws SmooksException, IOException,
+			SAXException {
+		SmooksTransformImpl smooksTransform = new SmooksTransformImpl();
+		assertNotNull(smooksTransform);
+		smooksTransform
+				.setConfigFileName("test/resources/edi-to-xml/smooks-config.xml");
+		assertEquals("test/resources/edi-to-xml/smooks-config.xml",
+				smooksTransform.getConfigFileName());
+		smooksTransform
+				.setInputFileName("test/resources/edi-to-xml/input-message.edi");
+		assertEquals("test/resources/edi-to-xml/input-message.edi",
+				smooksTransform.getInputFileName());
+		smooksTransform.setOutputFileName("test/resources/edi-to-xml/out.xml");
+		assertEquals("test/resources/edi-to-xml/out.xml", smooksTransform
+				.getOutputFileName()); 
+		smooksTransform.setMappingResource("!!!smooks_mapping!!!",
+				"test/resources/edi-to-xml/smooks-mapping.xml");
+		smooksTransform.runSmooksTransform();
+	}
+
+	public void testRunXmlToXml() throws IOException, SAXException,
+			SmooksException, InterruptedException {
+		SmooksTransformImpl smooksTransform = new SmooksTransformImpl();
+		assertNotNull(smooksTransform);
+		smooksTransform
+				.setConfigFileName("test/resources/xml-to-xml/smooks-config.xml");
+		assertEquals("test/resources/xml-to-xml/smooks-config.xml",
+				smooksTransform.getConfigFileName());
+		smooksTransform
+				.setInputFileName("test/resources/xml-to-xml/input-message.xml");
+		assertEquals("test/resources/xml-to-xml/input-message.xml",
+				smooksTransform.getInputFileName());
+		smooksTransform.setOutputFileName("test/resources/xml-to-xml/out.xml");
+		assertEquals("test/resources/xml-to-xml/out.xml", smooksTransform
+				.getOutputFileName());
+		smooksTransform.setMappingResource("!!!not-xml-to-xml!!!",
+				"not-mapping");
+		smooksTransform.runSmooksTransform();
+	}
+}
