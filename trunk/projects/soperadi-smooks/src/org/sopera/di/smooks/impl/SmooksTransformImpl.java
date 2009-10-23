@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.milyn.Smooks;
 import org.sopera.di.smooks.SmooksTransform;
 
 public class SmooksTransformImpl implements SmooksTransform {
@@ -46,8 +47,9 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 		// setMappingResource(targetID, sourseName);
 		// Instantiate Smooks with the config...
-		fillMappingFile();
-		org.milyn.Smooks smooks = new org.milyn.Smooks(getConfigFileName());
+		fillMappingFile(); 
+		// org.milyn.Smooks smooks = new org.milyn.Smooks(getConfigFileName());
+		Smooks smooks = new Smooks(getConfigFileName());
 
 		try {
 			// Create an exec context - no profiles....
@@ -98,9 +100,10 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Can't find mapping file");
+			throw new RuntimeException("Can't find config file.");
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("IO exception has taken place.");
 		}
 
 	}
