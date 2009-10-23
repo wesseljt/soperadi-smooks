@@ -87,9 +87,13 @@
 				REQUIRED="true" />
      <IMPORT NAME="aopalliance.jar" MODULE="aopalliance.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-csv-1.1.2.jar" MODULE="milyn-smooks-csv-1.1.2.jar"
+     <IMPORT NAME="milyn-smooks-csv-1.2.1.jar" MODULE="milyn-smooks-csv-1.2.1.jar"
 				REQUIRED="true" />
      <IMPORT NAME="opencsv-1.8.jar" MODULE="opencsv-1.8.jar"
+				REQUIRED="true" />
+	<IMPORT NAME="milyn-smooks-templating-1.2.2.jar" MODULE="milyn-smooks-templating-1.2.2.jar"
+				REQUIRED="true" />
+	<IMPORT NAME="milyn-smooks-javabean-1.2.2.jar" MODULE="milyn-smooks-javabean-1.2.2.jar"
 				REQUIRED="true" />
 	  </IMPORTS> 
   </CODEGENERATION>  
