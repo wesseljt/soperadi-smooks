@@ -48,7 +48,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 		// setMappingResource(targetID, sourseName);
 		// Instantiate Smooks with the config...
-		fillMappingFile(mappingResource); 
+		fillMappingFile(mappingResource);
 		// org.milyn.Smooks smooks = new org.milyn.Smooks(getConfigFileName());
 		Smooks smooks = new Smooks(getConfigFileName());
 
@@ -93,7 +93,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 					String type = (String) iterator.next();
 					s = s.replaceAll(type, mappingResource.get(type));
 				}
-				file.append(s).append("\n");
+				file.append(s).append("\r\n");
 			}
 			configReader.close();
 			mappingWriter = new FileWriter(getConfigFileName());
