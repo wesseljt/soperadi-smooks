@@ -16,7 +16,7 @@
 	<classpathentry kind="lib" path="lib/csv-to-xml/opencsv-1.8.jar"/>
 	<classpathentry kind="lib" path="lib/edi-to-xml/milyn-edisax-parser-1.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/edi-to-xml/milyn-smooks-edi-1.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/xml-to-xml/freemarker-2.3.11.jar"/>
 	<classpathentry kind="lib" path="lib/xml-to-xml/milyn-smooks-templating-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/freemarker-2.3.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
