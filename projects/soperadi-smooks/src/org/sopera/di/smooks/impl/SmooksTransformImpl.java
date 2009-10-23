@@ -17,6 +17,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 	private String outputFileName;
 	private String configFileName;
 	private HashMap<String, String> mappingResource = new HashMap<String, String>();
+	private HashMap<String, String> mappingResource2 = new HashMap<String, String>();
 
 	public String getConfigFileName() {
 		return configFileName;
@@ -47,7 +48,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 		// setMappingResource(targetID, sourseName);
 		// Instantiate Smooks with the config...
-		fillMappingFile(); 
+		fillMappingFile(mappingResource); 
 		// org.milyn.Smooks smooks = new org.milyn.Smooks(getConfigFileName());
 		Smooks smooks = new Smooks(getConfigFileName());
 
@@ -65,7 +66,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 					new javax.xml.transform.stream.StreamSource(
 							new java.io.FileInputStream(getInputFileName())),
 					streamResult);
-
+			fillMappingFile(mappingResource2);
 			return true;
 		} finally {
 			smooks.close();
@@ -74,9 +75,10 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 	public void setMappingResource(String targetID, String sourseName) {
 		mappingResource.put(targetID, sourseName);
+		mappingResource2.put(sourseName, targetID);
 	}
 
-	protected void fillMappingFile() {
+	protected void fillMappingFile(HashMap<String, String> mappingResource) {
 		FileReader configReader;
 		StringBuilder file = new StringBuilder();
 		FileWriter mappingWriter;
@@ -97,7 +99,6 @@ public class SmooksTransformImpl implements SmooksTransform {
 			mappingWriter = new FileWriter(getConfigFileName());
 			mappingWriter.append(file.toString());
 			mappingWriter.close();
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Can't find config file.");
