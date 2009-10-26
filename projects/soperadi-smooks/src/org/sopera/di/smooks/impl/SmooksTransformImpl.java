@@ -17,7 +17,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 	private String outputFileName;
 	private String configFileName;
 	private HashMap<String, String> mappingResource = new HashMap<String, String>();
-	private HashMap<String, String> mappingResource2 = new HashMap<String, String>();
+	private HashMap<String, String> mappingResourceInverted = new HashMap<String, String>();
 
 	public String getConfigFileName() {
 		return configFileName;
@@ -66,7 +66,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 					new javax.xml.transform.stream.StreamSource(
 							new java.io.FileInputStream(getInputFileName())),
 					streamResult);
-			fillMappingFile(mappingResource2);
+			fillMappingFile(mappingResourceInverted);
 			return true;
 		} finally {
 			smooks.close();
@@ -75,7 +75,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 	public void setMappingResource(String targetID, String sourseName) {
 		mappingResource.put(targetID, sourseName);
-		mappingResource2.put(sourseName, targetID);
+		mappingResourceInverted.put(sourseName, targetID);
 	}
 
 	protected void fillMappingFile(HashMap<String, String> mappingResource) {
