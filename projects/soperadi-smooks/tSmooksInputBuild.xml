@@ -23,6 +23,7 @@
         <pathelement location="${lib_dir}/milyn-commons-1.2.2.jar"/>
         <pathelement location="${lib_dir}/commons-logging-1.1.jar"/>
         <pathelement location="${lib_dir}/jaxen-1.1.1.jar"/>
+        <pathelement location="${lib_dir}/freemarker-2.3.11.jar"/>
     </path>
 	<taskdef name="svn" classpathref="project.classpath" classname="org.tigris.subversion.svnant.SvnTask"/>
 	<target name="init">
@@ -31,11 +32,17 @@
 		<mkdir dir="${project_dir}"/>
 		<mkdir dir="${temp_dir}"/>
 		<mkdir dir="${temp_dir}/bin"/>
+		<mkdir dir="${temp_dir}/lib"/>
 	</target>
 	<target name="copyLib" depends="init">
 		<svn javahl="false" svnkit="true">
-			<checkout url="${svn_repository}/projects/soperadi-smooks/lib" destPath="${lib_dir}"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/lib/common" destPath="${lib_dir}"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/lib/tSmooksInput" destPath="${temp_dir}/lib"/>
 		</svn>
+		<copy todir="${lib_dir}">
+			<fileset dir="${temp_dir}/lib"/>
+		</copy>
+		<delete dir="${temp_dir}/lib"/>
 	</target>
 	<target name="compile" depends="copyLib">
 		<svn javahl="false" svnkit="true">
@@ -50,20 +57,10 @@
 			<info target="${svn_repository}" propPrefix="Revision."/>
 			<checkout url="${svn_repository}/components/tSmooksInput" destPath="${component_dir}"/>
 			<checkout url="${svn_repository}/jobs/tSmooksInput/TALENDDEMOSJAVA" destPath="${jobs_dir}"/>
-			<checkout url="${svn_repository}/projects/soperadi-smooks/test/resources" destPath="${res_dir}"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/test/resources/edi-to-xml-input" destPath="${res_dir}"/>
 		</svn>
 		<move file="${component_dir}/readme.txt" tofile="${project_dir}/readme.txt"/>
 		<replace file="${project_dir}/readme.txt" token="!MAX_REVISION!" value="${Revision.rev}"/>
-		<delete>
-			<fileset dir="${res_dir}">
-				<exclude name="CUS.xml"/>
-				<exclude name="HDR.xml"/>
-				<exclude name="ORD.xml"/>
-				<exclude name="smooks-mapping.xml"/>
-				<exclude name="test.edi"/>
-				<exclude name="messages/*.edi"/>
-			</fileset>
-		</delete>
 		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin"/>
 		<delete dir="${temp_dir}"/>
 		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
