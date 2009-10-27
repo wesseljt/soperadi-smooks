@@ -1,0 +1,67 @@
+<Order>
+	<header>
+		<order_id>1</order_id>
+		<status_code>0</status_code>
+		<net_amount>59.97</net_amount>
+		<total_amount>1,625.72</total_amount>
+		<tax>4.95</tax>
+		<date>Wed Nov 15 13:45:28 EST 2006</date>
+	</header>
+	<customer_details>
+		<username>user3</username>
+		<name>
+			<firstname>Alexander</firstname>
+			<lastname>Pushkin</lastname>
+		</name>
+		<state>SD</state>
+	</customer_details>
+	<order_item>
+		<position>1</position>
+		<quantity>1</quantity>
+		<product_id>364</product_id>
+		<title>The 40-Year-Old Virgin</title>
+		<price>29.98</price>
+	</order_item>
+	<order_item>
+		<position>2</position>
+		<quantity>1</quantity>
+		<product_id>299</product_id>
+		<title>Pulp Fiction</title>
+		<price>29.99</price>
+	</order_item>
+	<order_item>
+		<position>3</position>
+		<quantity>20</quantity>
+		<product_id>111</product_id>
+		<title>Robinson Crusoe</title>
+		<price>480</price>
+	</order_item>
+	<order_item>
+		<position>4</position>
+		<quantity>10</quantity>
+		<product_id>364</product_id>
+		<title>From Russia with Love</title>
+		<price>252.50</price>
+	</order_item>
+	<order_item>
+		<position>5</position>
+		<quantity>25</quantity>
+		<product_id>299</product_id>
+		<title>You Only Live Twice</title>
+		<price>631.25</price>
+	</order_item>
+	<order_item>
+		<position>6</position>
+		<quantity>1</quantity>
+		<product_id>115</product_id>
+		<title>The Man with the Golden Gun</title>
+		<price>25.25</price>
+	</order_item>
+	<order_item>
+		<position>7</position>
+		<quantity>7</quantity>
+		<product_id>116</product_id>
+		<title>A View to a Kill</title>
+		<price>176.75</price>
+	</order_item>
+</Order>

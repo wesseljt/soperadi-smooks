@@ -1,0 +1,8 @@
+<Order>
+	<customer_details>
+		<username>user3</username> 
+		<name_firstname>Alexander</name_firstname>
+		<name_lastname>Pushkin</name_lastname>
+		<state>SD</state>
+	</customer_details>
+  </Order>
