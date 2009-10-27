@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="zipFiles" name="tSmooksComponent">
+	<property name="project_dir" value="tSmooks"/>
+	<property name="svn_repository" value="http://soperadi-smooks.googlecode.com/svn/trunk"/>
+	<property name="component_dir" value="${project_dir}/component/tSmooks"/>
+	<property name="jobs_dir" value="${project_dir}/job"/>
+	<property name="lib_dir" value="${project_dir}/lib"/>
+	<property name="res_dir" value="${project_dir}/resources"/>
+	<property name="temp_dir" value="${project_dir}/temp"/>
+	<path id="project.classpath">
+		<pathelement location="./lib/svnjavahl.jar"/>
+		<pathelement location="./lib/svnant.jar"/>
+		<pathelement location="./lib/svnClientAdapter.jar"/>
+	</path>
+	<path id="soperadi-smooks.classpath">
+		<pathelement location="${temp_dir}/bin"/>
+		<pathelement location="${lib_dir}/aopalliance.jar"/>
+		<pathelement location="${lib_dir}/commons-logging-1.1.jar"/>
+		<pathelement location="${lib_dir}/guice-2.0.jar"/>
+		<pathelement location="${lib_dir}/jaxen-1.1.1.jar"/>
+		<pathelement location="${lib_dir}/log4j-1.2.14.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-core-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-commons-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-csv-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/opencsv-1.8.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-edi-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-edisax-parser-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/freemarker-2.3.11.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-javabean-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-templating-1.2.2.jar"/>
+	</path>
+	<taskdef name="svn" classpathref="project.classpath" classname="org.tigris.subversion.svnant.SvnTask"/>
+	<target name="init">
+		<delete dir="${project_dir}"/>
+		<delete file="${project_dir}.zip"/>
+		<mkdir dir="${project_dir}"/>
+		<mkdir dir="${temp_dir}"/>
+		<mkdir dir="${temp_dir}/bin"/>
+		<mkdir dir="${temp_dir}/lib"/>
+	</target>
+	<target name="copyLib" depends="init">
+		<svn javahl="false" svnkit="true">
+			<checkout url="${svn_repository}/projects/soperadi-smooks/lib/common" destPath="${lib_dir}"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/lib/csv-to-xml" destPath="${temp_dir}/lib/csv-to-xml"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/lib/edi-to-xml" destPath="${temp_dir}/lib/edi-to-xml"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/lib/xml-to-xml" destPath="${temp_dir}/lib/xml-to-xml"/>
+		</svn>
+		<copy todir="${lib_dir}" flatten="true">
+			<fileset dir="${temp_dir}/lib"/>
+		</copy>
+		<delete dir="${lib_dir}/csv-to-xml"/>
+		<delete dir="${lib_dir}/edi-to-xml"/>
+		<delete dir="${lib_dir}/xml-to-xml"/>
+		<delete dir="${temp_dir}/lib"/>
+	</target>
+	<target name="compile" depends="copyLib">
+		<svn javahl="false" svnkit="true">
+			<checkout url="${svn_repository}/projects/soperadi-smooks/src/org/sopera/di/smooks" destPath="${temp_dir}"/>
+		</svn>
+		<javac srcdir="${temp_dir}" destdir="${temp_dir}/bin">
+			<classpath refid="soperadi-smooks.classpath"/>
+		</javac>
+	</target>
+	<target name="zipFiles" depends="compile">
+		<svn javahl="false" svnkit="true">
+			<info target="${svn_repository}" propPrefix="Revision."/>
+			<checkout url="${svn_repository}/sandbox/tSmooks" destPath="${component_dir}"/>
+			<checkout url="${svn_repository}/jobs/tSmooks/TALENDDEMOSJAVA" destPath="${jobs_dir}"/>
+			<checkout url="${svn_repository}/projects/soperadi-smooks/test/resources" destPath="${res_dir}"/>
+		</svn>
+		<delete dir="${res_dir}/edi-to-xml-input"/>
+		<delete file="${res_dir}/log4j.xml"/>
+		<delete file="${res_dir}/namespaces.xml"/>
+		<delete file="${res_dir}/order.xml"/>
+		<delete file="${res_dir}/smooks.edi"/>
+		<move file="${component_dir}/readme.txt" tofile="${project_dir}/readme.txt"/>
+		<replace file="${project_dir}/readme.txt" token="!MAX_REVISION!" value="${Revision.rev}"/>
+		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin"/>
+		<delete dir="${temp_dir}"/>
+		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
+		<delete dir="${project_dir}"/>
+	</target>
+</project>
