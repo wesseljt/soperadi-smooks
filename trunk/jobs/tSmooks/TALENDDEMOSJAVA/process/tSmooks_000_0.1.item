@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default" screenshot="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">
+  <context confirmationNeeded="false" name="Default"/>
+  <parameters>
+    <elementParameter field="DIRECTORY" name="COMP_DEFAULT_FILE_DIR" value="C:/TOS-All-r30698-V3.2.0/workspace" contextMode="false"/>
+    <elementParameter field="DIRECTORY" name="COMP_DEFAULT_PROJECT_DIR" value="C:/TOS-All-r30698-V3.2.0/workspace/TALENDDEMOSJAVA" contextMode="false"/>
+    <elementParameter field="TEXT" name="JOB_RUN_VM_ARGUMENTS" value=" -Xms256M -Xmx1024M" contextMode="false"/>
+    <elementParameter field="CHECK" name="displaySubjobs" value="true" contextMode="false"/>
+    <elementParameter field="TEXT" name="AUTHOR" value="rnminko@gmail.com" contextMode="false"/>
+    <elementParameter field="TEXT" name="STATUS" value="" contextMode="false"/>
+    <elementParameter field="TEXT" name="NAME" value="tSmooks_000" contextMode="false"/>
+    <elementParameter field="TEXT" name="VERSION" value="0.1" contextMode="false"/>
+    <elementParameter field="TEXT" name="PURPOSE" value="" contextMode="false"/>
+    <elementParameter field="TEXT" name="DESCRIPTION" value="" contextMode="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" contextMode="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" contextMode="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPTIONS" value="none" contextMode="false"/>
+    <elementParameter field="CHECK" name="IMPLICITCONTEXT_USE_PROJECT_SETTINGS" value="true" contextMode="false"/>
+    <elementParameter field="CHECK" name="STATANDLOG_USE_PROJECT_SETTINGS" value="true" contextMode="false"/>
+    <elementParameter field="CHECK" name="MULTI_THREAD_EXECATION" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="IMPLICIT_TCONTEXTLOAD" value="false" contextMode="false"/>
+    <elementParameter field="RADIO" name="FROM_FILE_FLAG_IMPLICIT_CONTEXT" value="false" contextMode="false"/>
+    <elementParameter field="RADIO" name="FROM_DATABASE_FLAG_IMPLICIT_CONTEXT" value="false" contextMode="false"/>
+    <elementParameter field="FILE" name="IMPLICIT_TCONTEXTLOAD_FILE" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:PROPERTY_TYPE" value="" contextMode="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:REPOSITORY_PROPERTY_TYPE" value="" contextMode="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE_IMPLICIT_CONTEXT" value="" contextMode="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION_IMPLICIT_CONTEXT" value="" contextMode="false"/>
+    <elementParameter field="TEXT" name="HOST_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="PORT_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="DBNAME_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="PASS_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="" contextMode="false"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="" contextMode="false"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="ON_STATCATCHER_FLAG" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="ON_LOGCATCHER_FLAG" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="ON_METERCATCHER_FLAG" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="ON_CONSOLE_FLAG" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="ON_FILES_FLAG" value="false" contextMode="false"/>
+    <elementParameter field="DIRECTORY" name="FILE_PATH" value="&quot;C:/TOS-All-r30698-V3.2.0/workspace/.metadata&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="FILENAME_STATS" value="&quot;stats_file.txt&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="FILENAME_LOGS" value="&quot;logs_file.txt&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="FILENAME_METTER" value="&quot;meter_file.txt&quot;" contextMode="false"/>
+    <elementParameter field="CHECK" name="ON_DATABASE_FLAG" value="false" contextMode="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE" value="tDBOutput" contextMode="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="ojdbc14-10g.jar" contextMode="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="TEXT" name="PASS" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_METER" value="&quot;&quot;" contextMode="false"/>
+    <elementParameter field="CHECK" name="CATCH_RUNTIME_ERRORS" value="true" contextMode="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_ERRORS" value="true" contextMode="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_WARNING" value="true" contextMode="false"/>
+    <elementParameter field="CHECK" name="CATCH_REALTIME_STATS" value="false" contextMode="false"/>
+  </parameters>
+  <node componentName="tSmooks" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooks_1" contextMode="false"/>
+    <elementParameter field="CHECK" name="START" value="true" contextMode="false"/>
+    <elementParameter field="FILE" name="INPUT_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/input-message2.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/smooks-config2.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/out1.xml&quot;" contextMode="false"/>
+    <elementParameter field="TABLE" name="PATH" contextMode="false">
+      <elementValue elementRef="TARGET" value="&quot;!!!smooks_mapping!!!&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/resources/edi-to-xml/smooks-mapping.xml&quot;"/>
+      <elementValue elementRef="USE_IN_MAP" value="true"/>
+      <elementValue elementRef="TARGET" value="&quot;!!!order!!!&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/order.xsl&quot;"/>
+      <elementValue elementRef="USE_IN_MAP" value="true"/>
+      <elementValue elementRef="TARGET" value="&quot;!!!BasicXslTransform!!!&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/BasicXslTransform.xsl&quot;"/>
+      <elementValue elementRef="USE_IN_MAP" value="true"/>
+    </elementParameter>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" contextMode="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" contextMode="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row" contextMode="false"/>
+    <elementParameter field="CHECK" name="INFORMATION" value="false" contextMode="false"/>
+    <elementParameter field="MEMO" name="COMMENT" value="" contextMode="false"/>
+  </node>
+  <note opaque="true" posX="64" posY="32" sizeHeight="129" sizeWidth="545" text="Demonstration of tSmooks without interaction with other components.&#xD;&#xA;&#xD;&#xA;Simply enter the necessary parameters and run the Job.&#xD;&#xA;&#xD;&#xA;The result is output file.">
+    <elementParameter field="COLOR" name="NOTE_COLOR" value="255;255;255" contextMode="false"/>
+    <elementParameter field="COLOR" name="NOTETXT_COLOR" value="0;0;0" contextMode="false"/>
+    <elementParameter field="RADIO" name="NOTETXT_LEFT" value="false" contextMode="false"/>
+    <elementParameter field="RADIO" name="NOTETXT_RIGHT" value="false" contextMode="false"/>
+    <elementParameter field="RADIO" name="NOTETXT_CENTER" value="true" contextMode="false"/>
+    <elementParameter field="RADIO" name="NOTELABEL_CENTER" value="true" contextMode="false"/>
+    <elementParameter field="RADIO" name="NOTETXT_TOP" value="false" contextMode="false"/>
+    <elementParameter field="RADIO" name="NOTETXT_BOTTOM" value="false" contextMode="false"/>
+    <elementParameter field="TEXT" name="NOTE_FONT" value="Time New Roman" contextMode="false"/>
+    <elementParameter field="TEXT" name="FONT_SIZE" value="10" contextMode="false"/>
+    <elementParameter field="CHECK" name="FONT_BOLD" value="false" contextMode="false"/>
+    <elementParameter field="CHECK" name="FONT_ITALIC" value="false" contextMode="false"/>
+    <elementParameter field="COLOR" name="NOTE_LINECOLOR" value="237;201;122" contextMode="false"/>
+  </note>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooks_1" contextMode="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="160;190;240" contextMode="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="220;220;250" contextMode="false"/>
+  </subjob>
+</talendfile:ProcessType>
