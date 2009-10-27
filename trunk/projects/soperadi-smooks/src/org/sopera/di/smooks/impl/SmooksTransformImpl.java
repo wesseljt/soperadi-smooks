@@ -59,6 +59,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 		fillMappingFile(mappingResource);
 		// org.milyn.Smooks smooks = new org.milyn.Smooks(getConfigFileName());
 		Smooks smooks = new Smooks(getConfigFileName());
+		fillMappingFile(mappingResourceInverted);
 
 		try {
 			// Create an exec context - no profiles....
@@ -74,7 +75,6 @@ public class SmooksTransformImpl implements SmooksTransform {
 					new javax.xml.transform.stream.StreamSource(
 							new java.io.FileInputStream(getInputFileName())),
 					streamResult);
-			fillMappingFile(mappingResourceInverted);
 			return true;
 		} finally {
 			smooks.close();
