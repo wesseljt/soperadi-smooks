@@ -40,7 +40,7 @@
    		<PARAMETER NAME="INPUT_FILE" FIELD="FILE" NUM_ROW="2" REQUIRED="true" REPOSITORY_VALUE="FILE_PATH">
 			<DEFAULT>"__COMP_DEFAULT_FILE_DIR__/in.xml"</DEFAULT>
    		</PARAMETER>
-   		<PARAMETER NAME="MAPPING_FILE" FIELD="FILE" NUM_ROW="3" REQUIRED="true" REPOSITORY_VALUE="FILE_PATH">
+   		<PARAMETER NAME="CONFIG_FILE" FIELD="FILE" NUM_ROW="3" REQUIRED="true" REPOSITORY_VALUE="FILE_PATH">
 			<DEFAULT>"__COMP_DEFAULT_FILE_DIR__/smooks_mapping.xml"</DEFAULT>
    		</PARAMETER>    
    		<PARAMETER NAME="OUTPUT_FILE" FIELD="FILE" NUM_ROW="4" REQUIRED="true" REPOSITORY_VALUE="FILE_PATH">
@@ -69,9 +69,17 @@
 
       <IMPORTS> 
       
+     <IMPORT NAME="aopalliance.jar" MODULE="aopalliance.jar"
+				REQUIRED="true" />
+ 	 <IMPORT NAME="antlr-2.7.2.jar" MODULE="antlr-2.7.2.jar"
+				REQUIRED="true" />
      <IMPORT NAME="commons-logging-1.1.jar" MODULE="commons-logging-1.1.jar"
 				REQUIRED="true" />
+	 <IMPORT NAME="commons-codec-1.2.jar" MODULE="commons-codec-1.2.jar"
+				REQUIRED="true" />
      <IMPORT NAME="freemarker-2.3.11.jar" MODULE="freemarker-2.3.11.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="guice-2.0.jar" MODULE="guice-2.0.jar"
 				REQUIRED="true" />
      <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.1.jar"
 				REQUIRED="true" />
@@ -81,19 +89,17 @@
 				REQUIRED="true" />
      <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
-				REQUIRED="true" />
-     <IMPORT NAME="guice-2.0.jar" MODULE="guice-2.0.jar"
-				REQUIRED="true" />
-     <IMPORT NAME="aopalliance.jar" MODULE="aopalliance.jar"
-				REQUIRED="true" />
      <IMPORT NAME="milyn-smooks-csv-1.2.1.jar" MODULE="milyn-smooks-csv-1.2.1.jar"
 				REQUIRED="true" />
+	 <IMPORT NAME="milyn-smooks-templating-1.2.2.jar" MODULE="milyn-smooks-templating-1.2.2.jar"
+				REQUIRED="true" />
+	 <IMPORT NAME="milyn-smooks-javabean-1.2.2.jar" MODULE="milyn-smooks-javabean-1.2.2.jar"
+				REQUIRED="true" />
+	 <IMPORT NAME="mvel2-2.0.12.jar" MODULE="mvel2-2.0.12.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
+				REQUIRED="true" />
      <IMPORT NAME="opencsv-1.8.jar" MODULE="opencsv-1.8.jar"
-				REQUIRED="true" />
-	<IMPORT NAME="milyn-smooks-templating-1.2.2.jar" MODULE="milyn-smooks-templating-1.2.2.jar"
-				REQUIRED="true" />
-	<IMPORT NAME="milyn-smooks-javabean-1.2.2.jar" MODULE="milyn-smooks-javabean-1.2.2.jar"
 				REQUIRED="true" />
 	  </IMPORTS> 
   </CODEGENERATION>  
