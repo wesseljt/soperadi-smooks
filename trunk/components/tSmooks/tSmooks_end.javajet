@@ -1,0 +1,33 @@
+/*******************************************************************************
+ * Copyright (c) 2009 SOPERA GmbH
+ * All rights reserved. 
+ * This program and the accompanying materials are made available
+ * under the terms of the GNU Lesser General Public License v 3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl-3.0.txt
+ ******************************************************************************/
+<%@ jet 
+	imports="
+		org.talend.core.model.process.INode 
+		org.talend.core.model.process.ElementParameterParser 
+		org.talend.core.model.metadata.IMetadataTable 
+		org.talend.core.model.metadata.IMetadataColumn 
+		org.talend.core.model.process.IConnection
+		org.talend.core.model.process.IConnectionCategory
+		org.talend.designer.codegen.config.CodeGeneratorArgument
+		org.talend.core.model.metadata.types.JavaTypesManager
+		org.talend.core.model.metadata.types.JavaType
+		java.util.List 
+    	java.util.Map		
+	" 
+%>
+<% 
+    CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
+    INode node = (INode)codeGenArgument.getArgument();
+    String cid = node.getUniqueName();
+    String outputFileName = ElementParameterParser.getValue(node, "__OUTPUT_FILE__");
+    
+%>
+    String outputFileName<%=cid%> = <%=outputFileName%>;
+    globalMap.put("<%=cid%>_OUTPUT_FILE_NAME", outputFileName<%=cid%>);  
+    System.out.println("End in process!");

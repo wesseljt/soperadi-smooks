@@ -65,7 +65,7 @@
 	<target name="zipFiles" depends="compile">
 		<svn javahl="false" svnkit="true">
 			<info target="${svn_repository}" propPrefix="Revision."/>
-			<checkout url="${svn_repository}/sandbox/tSmooks" destPath="${component_dir}"/>
+			<checkout url="${svn_repository}/component/tSmooks" destPath="${component_dir}"/>
 			<checkout url="${svn_repository}/jobs/tSmooks/TALENDDEMOSJAVA" destPath="${jobs_dir}"/>
 			<checkout url="${svn_repository}/projects/soperadi-smooks/test/resources" destPath="${res_dir}"/>
 		</svn>
