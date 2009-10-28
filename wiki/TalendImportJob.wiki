@@ -2,7 +2,7 @@
 
 = Introduction =
 
-You can download ready jobs from our project. They will help you to undertand a principles of working with SoperaDI-Smooks component that you need.
+You can download ready jobs from our project. They will help you to understand a principles of working with SoperaDI-Smooks component that you need.
 
 
 = Details =
