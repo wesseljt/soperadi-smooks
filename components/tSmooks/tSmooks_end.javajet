@@ -31,3 +31,10 @@
     String outputFileName<%=cid%> = <%=outputFileName%>;
     globalMap.put("<%=cid%>_OUTPUT_FILE_NAME", outputFileName<%=cid%>);  
     System.out.println("End in process!");
+    } // try main block
+	catch (java.lang.Exception e) {
+		System.err.println("There is an Exception in <%=cid %>!");
+		System.err.println("The process is interrupted.");
+		System.err.println();
+		throw e;
+	}

@@ -27,23 +27,25 @@
     INode node = (INode)codeGenArgument.getArgument();
     String cid = node.getUniqueName();	
     String inputFileName = ElementParameterParser.getValue(node, "__INPUT_FILE__");
-    String mappingFileName = ElementParameterParser.getValue(node, "__MAPPING_FILE__");
+    String configFileName = ElementParameterParser.getValue(node, "__CONFIG_FILE__");
     String outputFileName = ElementParameterParser.getValue(node, "__OUTPUT_FILE__");
     List<Map<String, String>> paths = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node, "__PATH__");
 %>
+try { // try main block
    org.sopera.di.smooks.impl.SmooksTransformImpl smooksTransformImpl_<%=cid%> = 
    		new org.sopera.di.smooks.impl.SmooksTransformImpl();
-   smooksTransformImpl_<%=cid%>.setConfigFileName(<%=mappingFileName%>);
+   smooksTransformImpl_<%=cid%>.setConfigFileName(<%=configFileName%>);
    
 <%    
     for(Map<String, String> pathMap : paths) {
     	String target = pathMap.get("TARGET");
     	String source = pathMap.get("SOURSE");
     	boolean useInMap = pathMap.get("USE_IN_MAP").equals("true");
-    
+    	if (useInMap) {
 %>
 	smooksTransformImpl_<%=cid%>.setMappingResource(<%=target%>,<%=source%>);
 <%
+		}
 	} 
 %>
 
