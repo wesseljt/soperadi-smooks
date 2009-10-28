@@ -51,7 +51,7 @@
 		<delete dir="${lib_dir}/csv-to-xml"/>
 		<delete dir="${lib_dir}/edi-to-xml"/>
 		<delete dir="${lib_dir}/xml-to-xml"/>
-		<delete dir="${lib_dir}/xml-to-xml/xslt"/>
+		<delete dir="${lib_dir}/xslt"/>
 		<delete dir="${temp_dir}/lib"/>
 	</target>
 	<target name="compile" depends="copyLib">
@@ -76,11 +76,11 @@
 		<delete file="${res_dir}/smooks.edi"/>
 		<move file="${component_dir}/readme.txt" tofile="${project_dir}/readme.txt"/>
 		<replace file="${project_dir}/readme.txt" token="!MAX_REVISION!" value="${Revision.rev}"/>
-            <rename src="${res_dir}/xml-xslt" dest="${res_dir}/task000-xml-xslt"/>
-            <rename src="${res_dir}/edi-to-xml" dest="${res_dir}/task001-edi-to-xml"/>
-            <rename src="${res_dir}/csv-to-xml" dest="${res_dir}/task002-csv-to-xml"/>
-            <rename src="${res_dir}/xml-to-xml" dest="${res_dir}/task003-xml-to-xml"/>
-            <rename src="${res_dir}/edi-to-xml-to-xml" dest="${res_dir}/task004-edi-to-xml-to-xml"/>
+            <move file="${res_dir}/xml-xslt" tofile="${res_dir}/task000-xml-xslt"/>
+            <move file="${res_dir}/edi-to-xml" tofile="${res_dir}/task001-edi-to-xml"/>
+            <move file="${res_dir}/csv-to-xml" tofile="${res_dir}/task002-csv-to-xml"/>
+            <move file="${res_dir}/xml-to-xml" tofile="${res_dir}/task003-xml-to-xml"/>
+            <move file="${res_dir}/edi-to-xml-to-xml" tofile="${res_dir}/task004-edi-to-xml-to-xml"/>
 		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin"/>
 		<delete dir="${temp_dir}"/>
 		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
