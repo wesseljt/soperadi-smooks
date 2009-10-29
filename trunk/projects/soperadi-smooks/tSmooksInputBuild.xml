@@ -8,9 +8,7 @@
 	<property name="res_dir" value="${project_dir}/resources"/>
 	<property name="temp_dir" value="${project_dir}/temp"/>
 	<path id="project.classpath">
-		<pathelement location="./lib/svnjavahl.jar"/>
-		<pathelement location="./lib/svnant.jar"/>
-		<pathelement location="./lib/svnClientAdapter.jar"/>
+		<pathelement path="classpath"/>
 	</path>
 	<path id="soperadi-smooks.classpath">
         <pathelement location="${temp_dir}/bin"/>
