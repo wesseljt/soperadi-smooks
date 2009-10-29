@@ -81,15 +81,15 @@
 				REQUIRED="true" />
      <IMPORT NAME="guice-2.0.jar" MODULE="guice-2.0.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-commons-1.2.1.jar" MODULE="milyn-commons-1.2.1.jar"
+     <IMPORT NAME="milyn-commons-1.2.2.jar" MODULE="milyn-commons-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-edisax-parser-1.2.1.jar" MODULE="milyn-edisax-parser-1.2.1.jar"
+     <IMPORT NAME="milyn-edisax-parser-1.2.2.jar" MODULE="milyn-edisax-parser-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-core-1.2.1.jar" MODULE="milyn-smooks-core-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-core-1.2.2.jar" MODULE="milyn-smooks-core-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-edi-1.2.1.jar" MODULE="milyn-smooks-edi-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-edi-1.2.2.jar" MODULE="milyn-smooks-edi-1.2.2.jar"
 				REQUIRED="true" />
-     <IMPORT NAME="milyn-smooks-csv-1.2.1.jar" MODULE="milyn-smooks-csv-1.2.1.jar"
+     <IMPORT NAME="milyn-smooks-csv-1.2.2.jar" MODULE="milyn-smooks-csv-1.2.2.jar"
 				REQUIRED="true" />
 	 <IMPORT NAME="milyn-smooks-templating-1.2.2.jar" MODULE="milyn-smooks-templating-1.2.2.jar"
 				REQUIRED="true" />
