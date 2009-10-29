@@ -58,7 +58,6 @@ public class SmooksTransformImpl implements SmooksTransform {
 			// Instantiate Smooks with the config...
 			fillMappingFile(mappingResource);
 			smooks = new Smooks(getConfigFileName());
-			fillMappingFile(mappingResourceInverted);
 
 			// Create an exec context - no profiles....
 			org.milyn.container.ExecutionContext executionContext = smooks
