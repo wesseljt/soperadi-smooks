@@ -53,15 +53,13 @@ public class SmooksTransformImpl implements SmooksTransform {
 
 	public boolean runSmooksTransform() throws java.io.IOException,
 			org.xml.sax.SAXException, org.milyn.SmooksException {
-
-		// setMappingResource(targetID, sourseName);
-		// Instantiate Smooks with the config...
-		fillMappingFile(mappingResource);
-		// org.milyn.Smooks smooks = new org.milyn.Smooks(getConfigFileName());
-		Smooks smooks = new Smooks(getConfigFileName());
-		fillMappingFile(mappingResourceInverted);
-
+		Smooks smooks = null;
 		try {
+			// Instantiate Smooks with the config...
+			fillMappingFile(mappingResource);
+			smooks = new Smooks(getConfigFileName());
+			fillMappingFile(mappingResourceInverted);
+
 			// Create an exec context - no profiles....
 			org.milyn.container.ExecutionContext executionContext = smooks
 					.createExecutionContext();
@@ -77,7 +75,9 @@ public class SmooksTransformImpl implements SmooksTransform {
 					streamResult);
 			return true;
 		} finally {
-			smooks.close();
+			if (smooks != null)
+				smooks.close();
+			fillMappingFile(mappingResourceInverted);
 		}
 	}
 
