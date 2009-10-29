@@ -75,18 +75,18 @@
   <node componentName="tSmooks" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooks_1" contextMode="false"/>
     <elementParameter field="CHECK" name="START" value="true" contextMode="false"/>
-    <elementParameter field="FILE" name="INPUT_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/input-message2.xml&quot;" contextMode="false"/>
-    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/smooks-config2.xml&quot;" contextMode="false"/>
-    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/out1.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="INPUT_FILE" value="&quot;C:/resources/task000/input-message2.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/resources/task000/smooks-config2.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/task000/out.xml&quot;" contextMode="false"/>
     <elementParameter field="TABLE" name="PATH" contextMode="false">
       <elementValue elementRef="TARGET" value="&quot;!!!smooks_mapping!!!&quot;"/>
-      <elementValue elementRef="SOURSE" value="&quot;C:/resources/edi-to-xml/smooks-mapping.xml&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/resources/task000/smooks-mapping.xml&quot;"/>
       <elementValue elementRef="USE_IN_MAP" value="true"/>
       <elementValue elementRef="TARGET" value="&quot;!!!order!!!&quot;"/>
-      <elementValue elementRef="SOURSE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/order.xsl&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/resources/task000/order.xsl&quot;"/>
       <elementValue elementRef="USE_IN_MAP" value="true"/>
       <elementValue elementRef="TARGET" value="&quot;!!!BasicXslTransform!!!&quot;"/>
-      <elementValue elementRef="SOURSE" value="&quot;C:/workspace/soperadi-smooks/test/resources/xml-xslt/BasicXslTransform.xsl&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/resources/task000/BasicXslTransform.xsl&quot;"/>
       <elementValue elementRef="USE_IN_MAP" value="true"/>
     </elementParameter>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" contextMode="false"/>

@@ -1,26 +1,11 @@
 <?xml version="1.0"?>
-<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
-                      xmlns:ftl="http://www.milyn.org/xsd/smooks/freemarker-1.1.xsd">
+<smooks-resource-list
+	xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+	xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.1.xsd">
 
-    <params>
-        <param name="stream.filter.type">SAX</param>
-        <param name="default.serialization.on">false</param>
-    </params>
-
-    <resource-config selector="customer_details">
-        <resource>org.milyn.delivery.DomModelCreator</resource>
-    </resource-config>
-
-    <ftl:freemarker applyOnElement="customer_details">
-        <ftl:template><!--<Order>
-	<customer_details>
-		<username>${customer_details.username}</username> 
-		<name_firstname>${customer_details.name.firstname}</name_firstname>
-		<name_lastname>${customer_details.name.lastname}</name_lastname>
-		<state>${customer_details.state}</state>
-	</customer_details>
-  </Order>--></ftl:template>
-    </ftl:freemarker>
-
+    <!--
+    Configure the EDI Reader to process the message stream into a stream of SAX events.
+    -->
+    <edi:reader mappingModel="!!!smooks_mapping!!!" />
 
 </smooks-resource-list>
