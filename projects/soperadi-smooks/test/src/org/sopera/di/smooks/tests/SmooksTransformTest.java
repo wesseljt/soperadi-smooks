@@ -37,7 +37,7 @@ public class SmooksTransformTest extends ProjectTest {
 				smooksTransform.getConfigFileName());
 		try {
 			smooksTransform.runSmooksTransform();
-			fail("!");
+			fail("Should be RuntimeException!");
 		} catch (RuntimeException e) {
 			assertTrue(true);
 		}
@@ -60,7 +60,7 @@ public class SmooksTransformTest extends ProjectTest {
 				.getOutputFileName());
 		smooksTransform.setMappingResource("!!!not-csv-to-xml!!!",
 				"not-mapping");
-		smooksTransform.runSmooksTransform();
+		assertTrue(smooksTransform.runSmooksTransform());
 	}
 
 	public void testRunEdiToXml() throws SmooksException, IOException,
@@ -80,7 +80,7 @@ public class SmooksTransformTest extends ProjectTest {
 				.getOutputFileName()); 
 		smooksTransform.setMappingResource("!!!smooks_mapping!!!",
 				"test/resources/edi-to-xml/smooks-mapping.xml");
-		smooksTransform.runSmooksTransform();
+		assertTrue(smooksTransform.runSmooksTransform());
 	}
 
 	public void testRunXmlToXml() throws IOException, SAXException,
@@ -100,6 +100,6 @@ public class SmooksTransformTest extends ProjectTest {
 				.getOutputFileName());
 		smooksTransform.setMappingResource("!!!not-xml-to-xml!!!",
 				"not-mapping");
-		smooksTransform.runSmooksTransform();
+		assertTrue(smooksTransform.runSmooksTransform());
 	}
 }
