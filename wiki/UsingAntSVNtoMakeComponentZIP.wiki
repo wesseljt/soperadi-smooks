@@ -9,6 +9,7 @@ This page describes how to make ZIP-archive of *tSmooksInput* component from SVN
 
 ==Requirements==
 
+  # [http://java.sun.com/javase/downloads/index.jsp Java SE Development Kit 6]
   # [http://ant.apache.org/bindownload.cgi Ant] version 1.7.1.
   # [http://subversion.tigris.org Subversion] client compatible with your platform (version 1.6.5).
   # [http://subclipse.tigris.org/svnant.html SvnAnt] version 1.3.0.
@@ -20,20 +21,21 @@ This page describes how to make ZIP-archive of *tSmooksInput* component from SVN
   # You need only *bin* and *lib* directories. Copy them to directory you need.
   # Add the *bin* directory to your path.
   # Set the *ANT_HOME* environment variable to the directory where you installed [http://ant.apache.org/bindownload.cgi Ant].
+  # Set the *CLASSPATH* environment variable to the directory where *lib* directory is present.
 
 
 ==[http://subversion.tigris.org Subversion] client installing==
 
   # Download [http://subversion.tigris.org Subversion] client, which compatible with your platform.
-  # Install Subversion with help of it documentation (if you need, of course).
-  # Add the *bin* directory to your path.
+  # Install [http://subversion.tigris.org Subversion] with help of it documentation (if you need, of course).
+  # Add the *bin* directory to your *path*.
 
 
 ==[http://subclipse.tigris.org/svnant.html SvnAnt] installing==
 
   # Download [http://subclipse.tigris.org/svnant.html SvnAnt].
   # Unzip archive to the directory you need.
-  # Add the *lib* directory to your *CLASSPATH* environment variable.
+  # Copy jar-files from the *lib* directory to the *%ANT_HOME%/lib*.
 
 
 ==Making component ZIP-archive with [http://ant.apache.org/bindownload.cgi Ant]==
