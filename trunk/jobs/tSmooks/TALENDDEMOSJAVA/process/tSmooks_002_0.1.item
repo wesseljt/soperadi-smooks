@@ -73,9 +73,9 @@
   <node componentName="tSmooks" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooks_1" contextMode="false"/>
     <elementParameter field="CHECK" name="START" value="true" contextMode="false"/>
-    <elementParameter field="FILE" name="INPUT_FILE" value="&quot;C:/resources/csv-to-xml/input-message.csv&quot;" contextMode="false"/>
-    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/resources/csv-to-xml/smooks-config.xml&quot;" contextMode="false"/>
-    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/out.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="INPUT_FILE" value="&quot;C:/resources/task002/input-message.csv&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/resources/task002/smooks-config.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/task002/out.xml&quot;" contextMode="false"/>
     <elementParameter field="TABLE" name="PATH" contextMode="false"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" contextMode="false"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" contextMode="false"/>

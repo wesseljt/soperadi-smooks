@@ -73,8 +73,8 @@
   <node componentName="tSmooks" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooks_2" contextMode="false"/>
     <elementParameter field="FILE" name="INPUT_FILE" value="((String)globalMap.get(&quot;tSmooks_1_OUTPUT_FILE_NAME&quot;))" contextMode="false"/>
-    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/edi-to-xml-to-xml/smooks-config1.xml&quot;" contextMode="false"/>
-    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/edi-to-xml-to-xml/smooksout2.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/resources/task004/smooks-config2.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/task004/smooksout2.xml&quot;" contextMode="false"/>
     <elementParameter field="TABLE" name="PATH" contextMode="false"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" contextMode="false"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" contextMode="false"/>
@@ -158,7 +158,7 @@
   <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="0">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileList_1" contextMode="false"/>
     <elementParameter field="CHECK" name="START" value="true" contextMode="false"/>
-    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/workspace/soperadi-smooks/test/resources/edi-to-xml-to-xml/messages&quot;" contextMode="false"/>
+    <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/resources/task004/messages&quot;" contextMode="false"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES" contextMode="false"/>
     <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false" contextMode="false"/>
     <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES" contextMode="false"/>
@@ -177,11 +177,11 @@
   <node componentName="tSmooks" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="0">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSmooks_1" contextMode="false"/>
     <elementParameter field="FILE" name="INPUT_FILE" value="((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))" contextMode="false"/>
-    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/edi-to-xml-to-xml/smooks-config.xml&quot;" contextMode="false"/>
-    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/workspace/soperadi-smooks/test/resources/edi-to-xml-to-xml/smooksout1.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="CONFIG_FILE" value="&quot;C:/resources/task004/smooks-config1.xml&quot;" contextMode="false"/>
+    <elementParameter field="FILE" name="OUTPUT_FILE" value="&quot;C:/resources/task004/smooksout1.xml&quot;" contextMode="false"/>
     <elementParameter field="TABLE" name="PATH" contextMode="false">
       <elementValue elementRef="TARGET" value="&quot;!!!smooks_mapping!!!&quot;"/>
-      <elementValue elementRef="SOURSE" value="&quot;C:/workspace/soperadi-smooks/test/resources/edi-to-xml-to-xml/smooks-mapping.xml&quot;"/>
+      <elementValue elementRef="SOURSE" value="&quot;C:/resources/task004/smooks-mapping.xml&quot;"/>
       <elementValue elementRef="USE_IN_MAP" value="true"/>
     </elementParameter>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" contextMode="false"/>
