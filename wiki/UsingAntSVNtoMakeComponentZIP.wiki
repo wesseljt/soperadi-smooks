@@ -42,8 +42,6 @@ This page describes how to make ZIP-archive of *tSmooksInput* component from SVN
 
   # Create directory, where you want to make component archive.
   # Copy *tSmooksInputBuild.xml* file to this directory, if you want to build *tSmooksInput* component, or *tSmooksBuild.xml* to build *tSmooks* component.
-  # Create subdirectory *lib*.
-  # Copy [http://subclipse.tigris.org/svnant.html SvnAnt] libraries to this directory. You need: *svnant.jar, svnClientAdapter.jar, svnjavahl.jar, svnkit.jar*
   # Open command line in this directory and type "ant -f tSmooksInputBuild.xml" for *tSmooksInput*, or type "ant -f tSmooksBuild.xml" for *tSmooks* component.
   
 If you did all steps correctly, than you would have zip-file with needed component in your directory.
