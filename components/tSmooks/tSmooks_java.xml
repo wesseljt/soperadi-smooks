@@ -101,6 +101,10 @@
 				REQUIRED="true" />
      <IMPORT NAME="opencsv-1.8.jar" MODULE="opencsv-1.8.jar"
 				REQUIRED="true" />
+     <IMPORT NAME="milyn-smooks-scripting-1.2.2.jar" MODULE="milyn-smooks-scripting-1.2.2.jar"
+				REQUIRED="true" />
+     <IMPORT NAME="groovy-all-1.5.0.jar" MODULE="groovy-all-1.5.0.jar"
+				REQUIRED="true" />
 	  </IMPORTS> 
   </CODEGENERATION>  
   <RETURNS> 
