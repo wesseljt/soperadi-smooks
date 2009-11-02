@@ -1,26 +1,58 @@
-<?xml version="1.0"?>
-<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
-                      xmlns:ftl="http://www.milyn.org/xsd/smooks/freemarker-1.1.xsd">
-
-    <params>
-        <param name="stream.filter.type">SAX</param>
-        <param name="default.serialization.on">false</param>
-    </params>
-
-    <resource-config selector="customer_details">
-        <resource>org.milyn.delivery.DomModelCreator</resource>
-    </resource-config>
-
-    <ftl:freemarker applyOnElement="customer_details">
-        <ftl:template><!--<Order>
-	<customer_details>
-		<username>${customer_details.username}</username> 
-		<name_firstname>${customer_details.name.firstname}</name_firstname>
-		<name_lastname>${customer_details.name.lastname}</name_lastname>
-		<state>${customer_details.state}</state>
-	</customer_details>
-  </Order>--></ftl:template>
-    </ftl:freemarker>
-
-
+<?xml version="1.0" ?> 
+<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd" xmlns:ftl="http://www.milyn.org/xsd/smooks/freemarker-1.1.xsd">
+	<params>
+		<param name="stream.filter.type">SAX</param> 
+		<param name="default.serialization.on">false</param> 
+	</params> 
+	<resource-config selector="Order,header,customer_details,order_item">
+		<resource>org.milyn.delivery.DomModelCreator</resource> 
+	</resource-config> 
+	<ftl:freemarker applyOnElement="Order">
+		<ftl:template>
+			<!--
+				<Order>
+					<?TEMPLATE-SPLIT-PI?>
+				</Order>
+			--> 
+		</ftl:template>
+	</ftl:freemarker>
+	<ftl:freemarker applyOnElement="header">
+		<ftl:template>
+			<!--
+				<header>
+					<order_id>${.vars["header"].order_id}</order_id>
+					<status_code>${.vars["header"].status_code}</status_code> 
+					<net_amount>${.vars["header"].net_amount}</net_amount> 
+					<total_amount>${.vars["header"].total_amount}</total_amount> 
+					<tax>${.vars["header"].tax}</tax> 
+					<date>${.vars["header"].date}</date>
+				</header>
+			--> 
+		</ftl:template>
+	</ftl:freemarker>
+	<ftl:freemarker applyOnElement="customer_details">
+		<ftl:template>
+			<!--
+				<customer_details>
+					<username>${.vars["customer_details"].username}</username>
+					<name_firstname>${.vars["customer_details"].name.firstname}</name_firstname>
+					<name_lastname>${.vars["customer_details"].name.lastname}</name_lastname>
+					<state>${.vars["customer_details"].state}</state>
+				</customer_details>
+			--> 
+		</ftl:template>
+	</ftl:freemarker>
+	<ftl:freemarker applyOnElement="order_item">
+		<ftl:template>
+			<!--
+				<order_item>
+					<position>${.vars["order_item"].position}</position>
+					<quantity>${.vars["order_item"].quantity}</quantity>
+					<product_id>${.vars["order_item"].product_id}</product_id>
+					<title>${.vars["order_item"].title}</title>
+					<price>${.vars["order_item"].price}</price>
+				</order_item>
+			--> 
+		</ftl:template>
+	</ftl:freemarker>
 </smooks-resource-list>
