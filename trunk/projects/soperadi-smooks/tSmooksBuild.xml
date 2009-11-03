@@ -7,6 +7,7 @@
 	<property name="lib_dir" value="${project_dir}/lib"/>
 	<property name="res_dir" value="${project_dir}/resources"/>
 	<property name="temp_dir" value="${project_dir}/temp"/>
+              <property name="jar.class.path" value="milyn-smooks-core-1.2.2.jar"/>
 	<path id="project.classpath">
 		<pathelement path="classpath"/>	
 	</path>
@@ -79,7 +80,11 @@
             <move file="${res_dir}/csv-to-xml" tofile="${res_dir}/task002-csv-to-xml"/>
             <move file="${res_dir}/xml-to-xml" tofile="${res_dir}/task003-xml-to-xml"/>
             <move file="${res_dir}/edi-to-xml-to-xml" tofile="${res_dir}/task004-edi-to-xml-to-xml"/>
-		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin"/>
+		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin">
+		               <manifest>
+		                        <attribute name="Class-Path" value="${jar.class.path}"/>
+                		</manifest>
+		</jar>
 		<delete dir="${temp_dir}"/>
 		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
 		<delete dir="${project_dir}"/>
