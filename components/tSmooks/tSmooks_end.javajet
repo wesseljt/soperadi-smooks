@@ -30,7 +30,7 @@
 %>
     String outputFileName<%=cid%> = <%=outputFileName%>;
     globalMap.put("<%=cid%>_OUTPUT_FILE_NAME", outputFileName<%=cid%>);  
-    System.out.println("End in process!");
+    System.out.println("<%=cid%>: End of Smooks transformation!");
     } // try main block
 	catch (java.lang.Exception e) {
 		System.err.println("There is an Exception in <%=cid %>!");
