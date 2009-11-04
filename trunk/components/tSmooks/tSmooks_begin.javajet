@@ -49,7 +49,7 @@ try { // try main block
 	} 
 %>
 
-   System.out.println("Begin in process!");
+   System.out.println("<%=cid%>: Begin in process!");
 
    smooksTransformImpl_<%=cid%>.setInputFileName(<%=inputFileName%>);
    smooksTransformImpl_<%=cid%>.setOutputFileName(<%=outputFileName%>);
