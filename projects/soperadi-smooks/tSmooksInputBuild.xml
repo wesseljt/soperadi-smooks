@@ -7,21 +7,17 @@
 	<property name="lib_dir" value="${project_dir}/lib"/>
 	<property name="res_dir" value="${project_dir}/resources"/>
 	<property name="temp_dir" value="${project_dir}/temp"/>
+	<property name="jar.class.path" value="milyn-smooks-core-1.2.2.jar"/>
 	<path id="project.classpath">
 		<pathelement path="classpath"/>
 	</path>
 	<path id="soperadi-smooks.classpath">
         <pathelement location="${temp_dir}/bin"/>
-        <pathelement location="${lib_dir}/aopalliance.jar"/>
-        <pathelement location="${lib_dir}/guice-2.0.jar"/>
-        <pathelement location="${lib_dir}/log4j-1.2.14.jar"/>
-        <pathelement location="${lib_dir}/milyn-smooks-core-1.2.2.jar"/>
-        <pathelement location="${lib_dir}/milyn-smooks-edi-1.2.2.jar"/>
-        <pathelement location="${lib_dir}/milyn-edisax-parser-1.2.2.jar"/>
-        <pathelement location="${lib_dir}/milyn-commons-1.2.2.jar"/>
-        <pathelement location="${lib_dir}/commons-logging-1.1.jar"/>
-        <pathelement location="${lib_dir}/jaxen-1.1.1.jar"/>
-        <pathelement location="${lib_dir}/freemarker-2.3.11.jar"/>
+		<pathelement location="${lib_dir}/milyn-commons-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-edisax-parser-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/jaxen-1.1.1.jar"/>
+		<pathelement location="${lib_dir}/guice-2.0.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-core-1.2.2.jar"/>
     </path>
 	<taskdef name="svn" classpathref="project.classpath" classname="org.tigris.subversion.svnant.SvnTask"/>
 	<target name="init">
@@ -59,7 +55,11 @@
 		</svn>
 		<move file="${component_dir}/readme.txt" tofile="${project_dir}/readme.txt"/>
 		<replace file="${project_dir}/readme.txt" token="!MAX_REVISION!" value="${Revision.rev}"/>
-		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin"/>
+		<jar destfile="${lib_dir}/org.sopera.di.smooks.jar" basedir="${temp_dir}/bin">
+			<manifest>
+				<attribute name="Class-Path" value="${jar.class.path}"/>
+			</manifest>
+		</jar>
 		<delete dir="${temp_dir}"/>
 		<zip destfile="${project_dir}.zip" basedir="${project_dir}"/>
 		<delete dir="${project_dir}"/>
