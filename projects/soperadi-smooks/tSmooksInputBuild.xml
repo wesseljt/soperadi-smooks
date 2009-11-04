@@ -7,7 +7,7 @@
 	<property name="lib_dir" value="${project_dir}/lib"/>
 	<property name="res_dir" value="${project_dir}/resources"/>
 	<property name="temp_dir" value="${project_dir}/temp"/>
-	<property name="jar.class.path" value="milyn-smooks-core-1.2.2.jar"/>
+	<property name="jar.class.path" value="antlr-2.7.2.jar aopalliance.jar commons-codec-1.2.jar commons-logging-1.1.jar freemarker-2.3.11.jar groovy-all-1.5.0.jar guice-2.0.jar jaxen-1.1.1.jar milyn-commons-1.2.2.jar milyn-edisax-parser-1.2.2.jar milyn-smooks-core-1.2.2.jar milyn-smooks-csv-1.2.2.jar milyn-smooks-edi-1.2.2.jar milyn-smooks-javabean-1.2.2.jar milyn-smooks-scripting-1.2.2.jar milyn-smooks-templating-1.2.2.jar mvel2-2.0.12.jar opencsv-1.8.jar"/>
 	<path id="project.classpath">
 		<pathelement path="classpath"/>
 	</path>
