@@ -1,4 +1,5 @@
 #summary This page contains examples of how tSmooks component works.
+#labels Featured
 
 <font size="4">
 <wiki:toc max_depth="2" />
@@ -14,6 +15,11 @@ You can find some examples of how tSmooks component works on this page.
 
 ===Description===
 
+In the beginning we created in Talend a simple Java job using only *tSmooks* component. The component implements the Smooks data EDI-to-XML transformation.
+Then we complicated the scenario and used standard Talend component to provide data into the Talend flow.
+*TSmooks* component performs data conversion and stores the result in the file.  Then the resulting file name it saves in a Talend Job global Map. Next job component uses file name as parameter.
+
+
 <wiki:video url="http://www.youtube.com/watch?v=7hJBUUPRz3I" width="956" height="600">
 <br>
 <br>
@@ -21,6 +27,8 @@ You can find some examples of how tSmooks component works on this page.
 ==Scenario 2: Interaction with the standard components. Complex Iterate-EDI-to-XML-to-XML transform.==
 
 ===Description===
+
+This scenario demonstrates interaction  tSmooks with standard Talend components by triggered and Itarete connectors. We use two *tSmooks* components in this Job, the first for the EDI-to-XML processing, the second for XML-to-XML transformation. The resulting data we provide into Talend flow and display it on the Log.
 
 <wiki:video url="http://www.youtube.com/watch?v=iqV1yfqPx-M" width="956" height="600">
 <br>
