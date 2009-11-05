@@ -28,7 +28,7 @@ Then we complicated the scenario and used standard Talend component to provide d
 
 ===Description===
 
-This scenario demonstrates interaction  tSmooks with standard Talend components by triggered and Itarete connectors. We use two *tSmooks* components in this Job, the first for the EDI-to-XML processing, the second for XML-to-XML transformation. The resulting data we provide into Talend flow and display it on the Log.
+This scenario demonstrates interaction  tSmooks with standard Talend components by triggered and Iterate connectors. We use two *tSmooks* components in this Job, the first for the EDI-to-XML processing, the second for XML-to-XML transformation. The resulting data we provide into Talend flow and display it on the Log.
 
 <wiki:video url="http://www.youtube.com/watch?v=iqV1yfqPx-M" width="956" height="600">
 <br>
