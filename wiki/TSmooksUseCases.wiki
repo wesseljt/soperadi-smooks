@@ -1,0 +1,30 @@
+#summary This page describes use cases of tSmooks component.
+
+<wiki:toc max_depth="3" />
+
+
+= Introduction =
+
+*TSmooks* is a component, which provide [http://smooks.org Smooks] capabilities into [http://talend.com Talend]. You can find different possible use cases of *tSmooks* component on this page.
+
+
+= Details =
+
+==EDI-to-XML==
+
+
+==CVS-to-XML==
+
+
+==XML-to-XML==
+
+===Using of Freemarker===
+
+
+===Using of XSLT===
+
+
+===Using of Groovy===
+
+
+You can find more information about tSmooks component in [http://soperadi-smooks.googlecode.com/files/SmooksComponents.pdf SmooksComponents.pdf]
