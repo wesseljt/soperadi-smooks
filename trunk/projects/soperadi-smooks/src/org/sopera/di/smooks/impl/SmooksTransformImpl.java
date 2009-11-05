@@ -19,6 +19,13 @@ import java.util.Iterator;
 import org.milyn.Smooks;
 import org.sopera.di.smooks.SmooksTransform;
 
+/**
+ * This class contains methods of tSmooks component. These methods are needed to
+ * set up the component properties and to run transformation of some data.
+ * 
+ * @author Alexander
+ * 
+ */
 public class SmooksTransformImpl implements SmooksTransform {
 
 	private String inputFileName;
@@ -51,12 +58,19 @@ public class SmooksTransformImpl implements SmooksTransform {
 		this.outputFileName = outputFileName;
 	}
 
+	/**
+	 * This is the main method of tSmooks component. It provides creating of
+	 * smooks object, instantiating it with the config, setting properties of
+	 * smooks object and filtering the input message to the output file.
+	 * 
+	 * @return returns <b>true</b>, if execution of the method was successful.
+	 */
 	public boolean runSmooksTransform() throws java.io.IOException,
 			org.xml.sax.SAXException, org.milyn.SmooksException {
 		Smooks smooks = null;
 		try {
 			// Instantiate Smooks with the config...
-			fillMappingFile(mappingResource);
+			substituteParams(mappingResource);
 			smooks = new Smooks(getConfigFileName());
 
 			// Create an exec context - no profiles....
@@ -76,7 +90,7 @@ public class SmooksTransformImpl implements SmooksTransform {
 		} finally {
 			if (smooks != null)
 				smooks.close();
-			fillMappingFile(mappingResourceInverted);
+			substituteParams(mappingResourceInverted);
 		}
 	}
 
@@ -85,7 +99,16 @@ public class SmooksTransformImpl implements SmooksTransform {
 		mappingResourceInverted.put(sourseName, targetID);
 	}
 
-	protected void fillMappingFile(HashMap<String, String> mappingResource) {
+	/**
+	 * Substitution of parameters in config file. Config file contains some
+	 * names of necessary parameters. This method substitute these names with
+	 * real file locations. Compliance between names and locations is in the
+	 * parameter <b>mappingResource</b>
+	 * 
+	 * @param mappingResource
+	 *            contains parameter names and associated with them file locations.
+	 */
+	protected void substituteParams(HashMap<String, String> mappingResource) {
 		FileReader configReader;
 		StringBuilder file = new StringBuilder();
 		FileWriter mappingWriter;

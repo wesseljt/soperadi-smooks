@@ -29,7 +29,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.google.inject.Inject;
 
 /**
- * This class transforms the EDI-message data in the flow of SAX-events. Run as
+ * This class transforms the EDI-message data to the flow of SAX-events. Run as
  * a thread, EDIProcess filling the structure {@link StringTagsImpl} using the
  * present location {@link SAXLocation} to determine the necessary data.
  * Iteratively perform recording sessions, after each session, waiting the
@@ -40,7 +40,7 @@ import com.google.inject.Inject;
  * 
  */
 public class EDIProcessImpl extends DefaultHandler implements EDIProcess {
-	private StringTags res; // TugString resource
+	private StringTags res; // TagString resource
 	private String tagKey; // Current tag
 	private EDIParser parser; // Parser
 	private InputStream edi; // EDI-massage stream
