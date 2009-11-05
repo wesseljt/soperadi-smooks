@@ -13,6 +13,13 @@ import java.io.IOException;
 import org.milyn.SmooksException;
 import org.xml.sax.SAXException;
 
+/**
+ * Basic interface for tSmooks component. Defines the most important methods for
+ * this component.
+ * 
+ * @author Alexander
+ * 
+ */
 public interface SmooksTransform {
 	public void setConfigFileName(String mappingFileName);
 
