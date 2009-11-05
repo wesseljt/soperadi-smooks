@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+    <column comment="" default="" key="false" label="username"
+        length="-1" nullable="true" originalDbColumnName="username"
+        pattern="" precision="-1" talendType="id_String" type=""/>
+    <column comment="" default="" key="false" label="firstname"
+        length="-1" nullable="true" originalDbColumnName="firstname"
+        pattern="" precision="-1" talendType="id_String" type=""/>
+    <column comment="" default="" key="false" label="lastname"
+        length="-1" nullable="true" originalDbColumnName="lastname"
+        pattern="" precision="-1" talendType="id_String" type=""/>
+</schema>
