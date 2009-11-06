@@ -11,7 +11,11 @@
 = Details =
 
 ==EDI-to-XML==
-
+*Description*<br>
+We can use *tSmooks* to perform data transformation from EDI-message format to XML.<br>
+*Necessary resources:*<br>
+milyn-edisax-parser-1.2.2.jar<br>
+milyn-smooks-edi-1.2.2.jar<br>
 
 ==CVS-to-XML==
 
