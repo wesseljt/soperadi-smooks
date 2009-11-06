@@ -103,7 +103,7 @@ public class ComponentFacadeTest extends ProjectTest {
 	 * method.
 	 */
 	public void testSetEDI() {
-		String edi = (new File("").getAbsolutePath())+"\\test\\resources\\smooks.edi";
+		String edi = (new File("").getAbsolutePath())+"/test/resources/smooks.edi";
 		assertNotNull("Can't find EDI file", edi);
 		inputFlow.setEDI(edi);
 	}
@@ -137,7 +137,7 @@ public class ComponentFacadeTest extends ProjectTest {
 	 * method.
 	 */
 	public void testSetMapping() {
-		String mapping = (new File("").getAbsolutePath())+"\\test\\resources\\smooks-mapping.xml";
+		String mapping = (new File("").getAbsolutePath())+"\\test\\resources\\edi-to-xml-input\\smooks-mapping.xml";
 		assertNotNull("Can't find mapping file", mapping);
 		inputFlow.setMapping(mapping);
 	}
