@@ -118,7 +118,7 @@ public class EDIProcessTest extends ProjectTest{
 	}
 	
 	public void testSetMapping() throws FileNotFoundException, SAXException {
-		InputStream mapping = new FileInputStream("test/resources/smooks-mapping.xml");
+		InputStream mapping = new FileInputStream("test/resources/edi-to-xml-input/smooks-mapping.xml");
 		assertNotNull("Can't find EDI file", mapping);
 		//parser.setMapping(mapping);
 	}
