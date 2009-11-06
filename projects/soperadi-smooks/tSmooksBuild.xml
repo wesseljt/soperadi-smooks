@@ -41,7 +41,6 @@
 		<delete dir="${lib_dir}/csv-to-xml"/>
 		<delete dir="${lib_dir}/edi-to-xml"/>
 		<delete dir="${lib_dir}/xml-to-xml"/>
-		<delete dir="${lib_dir}/xslt"/>
 		<delete dir="${temp_dir}/lib"/>
 	</target>
 	<target name="compile" depends="copyLib">
