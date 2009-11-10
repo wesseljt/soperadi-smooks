@@ -82,9 +82,10 @@ We can use *Groovy* scripts to perform XML-to-XML transformation.
 
 ====Required libraries====
 
-  # 
-  # 
-  # 
+  # groovy-all-1.5.0.jar
+  # milyn-smooks-scripting-1.2.2.jar
+  # milyn-smooks-javabean-1.2.2.jar
+  # milyn-smooks-templating-1.2.2.jar
 
 
 
