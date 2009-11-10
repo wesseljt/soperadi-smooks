@@ -24,7 +24,9 @@ public class SmooksTransformTest extends ProjectTest {
 		suite.addTest(new SmooksTransformTest("testRunCsvToXml"));
 		suite.addTest(new SmooksTransformTest("testFillMappingFile"));
 		suite.addTest(new SmooksTransformTest("testRunEdiToXml"));
+		suite.addTest(new SmooksTransformTest("testRunXmlToXmlXslt"));
 		suite.addTest(new SmooksTransformTest("testRunXmlToXml"));
+		suite.addTest(new SmooksTransformTest("testRunXmlToXmlGroovy"));
 		return suite;
 	}
 
@@ -77,7 +79,7 @@ public class SmooksTransformTest extends ProjectTest {
 				smooksTransform.getInputFileName());
 		smooksTransform.setOutputFileName("test/resources/edi-to-xml/out.xml");
 		assertEquals("test/resources/edi-to-xml/out.xml", smooksTransform
-				.getOutputFileName()); 
+				.getOutputFileName());
 		smooksTransform.setMappingResource("!!!smooks_mapping!!!",
 				"test/resources/edi-to-xml/smooks-mapping.xml");
 		assertTrue(smooksTransform.runSmooksTransform());
@@ -102,4 +104,47 @@ public class SmooksTransformTest extends ProjectTest {
 				"not-mapping");
 		assertTrue(smooksTransform.runSmooksTransform());
 	}
+
+	public void testRunXmlToXmlGroovy() throws IOException, SAXException,
+			SmooksException, InterruptedException {
+		SmooksTransformImpl smooksTransform = new SmooksTransformImpl();
+		assertNotNull(smooksTransform);
+		smooksTransform
+				.setConfigFileName("test/resources/xml-xslt/smooks-config2.xml");
+		assertEquals("test/resources/xml-xslt/smooks-config2.xml",
+				smooksTransform.getConfigFileName());
+		smooksTransform
+				.setInputFileName("test/resources/xml-xslt/input-message2.xml");
+		assertEquals("test/resources/xml-xslt/input-message2.xml",
+				smooksTransform.getInputFileName());
+		smooksTransform.setOutputFileName("test/resources/xml-xslt/out2.xml");
+		assertEquals("test/resources/xml-xslt/out2.xml", smooksTransform
+				.getOutputFileName());
+		smooksTransform.setMappingResource("!!!groovy!!!",
+				"test/resources/xml-xslt/DateFormatter.groovy");
+		smooksTransform.setMappingResource("!!!order!!!",
+		"test/resources/xml-xslt/order.xsl");
+		assertTrue(smooksTransform.runSmooksTransform());
+	}
+
+	public void testRunXmlToXmlXslt() throws IOException, SAXException,
+			SmooksException, InterruptedException {
+		SmooksTransformImpl smooksTransform = new SmooksTransformImpl();
+		assertNotNull(smooksTransform);
+		smooksTransform
+				.setConfigFileName("test/resources/xml-xslt/smooks-config1.xml");
+		assertEquals("test/resources/xml-xslt/smooks-config1.xml",
+				smooksTransform.getConfigFileName());
+		smooksTransform
+				.setInputFileName("test/resources/xml-xslt/input-message1.xml");
+		assertEquals("test/resources/xml-xslt/input-message1.xml",
+				smooksTransform.getInputFileName());
+		smooksTransform.setOutputFileName("test/resources/xml-xslt/out3.xml");
+		assertEquals("test/resources/xml-xslt/out3.xml", smooksTransform
+				.getOutputFileName());
+		smooksTransform.setMappingResource("!!!BasicXslTransform!!!",
+				"test/resources/xml-xslt/BasicXslTransform.xsl");
+		assertTrue(smooksTransform.runSmooksTransform());
+	}
+
 }
