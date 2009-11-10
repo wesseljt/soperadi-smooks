@@ -17,7 +17,6 @@ You need these libraries for all use cases:
   # commons-logging-1.1.jar
   # guice-2.0.jar
   # jaxen-1.1.1.jar
-  # log4j-1.2.14.jar
   # milyn-commons-1.2.2.jar
   # milyn-smooks-core-1.2.2.jar
 
