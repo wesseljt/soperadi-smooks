@@ -42,6 +42,7 @@ public class MainTestClass extends ProjectTest {
 		suite.addTestSuite(SAXLocationTest.class);
 		suite.addTestSuite(XPathParsingTest.class);
 		suite.addTestSuite(ModuleTest.class);
+		suite.addTest(SmooksTransformTest.suite());
 		//suite.addTest();
 		//suite.addTestSuite(EDIParserTest.class);
 		return suite;
