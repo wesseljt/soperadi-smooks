@@ -2,7 +2,6 @@
 
 <wiki:toc max_depth="3" />
 
-
 = Introduction =
 
 *TSmooks* is a component, which provide [http://smooks.org Smooks] capabilities into [http://talend.com Talend]. You can find different possible use cases of *tSmooks* component on this page.
@@ -10,25 +9,83 @@
 
 = Details =
 
-==EDI-to-XML==
-*Description*<br>
-We can use *tSmooks* to perform data transformation from EDI-message format to XML.<br>
-*Necessary resources:*<br>
-milyn-edisax-parser-1.2.2.jar<br>
-milyn-smooks-edi-1.2.2.jar<br>
+==Required libraries==
 
-==CVS-to-XML==
+You need these libraries for all use cases:
+
+  # aopalliance.jar
+  # commons-logging-1.1.jar
+  # guice-2.0.jar
+  # jaxen-1.1.1.jar
+  # log4j-1.2.14.jar
+  # milyn-commons-1.2.2.jar
+  # milyn-smooks-core-1.2.2.jar
+
+
+==EDI-to-XML==
+
+====Description====
+
+We can use *tSmooks* to perform data transformation from EDI-message format to XML.
+
+====Required libraries====
+
+  # milyn-edisax-parser-1.2.2.jar
+  # milyn-smooks-edi-1.2.2.jar
+
+
+==CSV-to-XML==
+
+====Description====
+
+We can use *tSmooks* to perform data transformation from CSV-message format to XML.
+
+====Required libraries====
+
+  # milyn-smooks-csv-1.2.2.jar
+  # opencsv-1.8.jar
 
 
 ==XML-to-XML==
 
+You can perform XML-to-XML transformation with help of different technologies. To use them you will need some external libraries.
+
 ===Using of Freemarker===
 
+====Description====
+
+We can use *Freemarker* to perform XML-to-XML transformation.
+
+====Required libraries====
+
+  # freemarker-2.3.11.jar
+  # milyn-smooks-javabean-1.2.2.jar
+  # milyn-smooks-templating-1.2.2.jar
 
 ===Using of XSLT===
 
+====Description====
+
+We can use *XSLT* to perform XML-to-XML transformation.
+
+====Required libraries====
+
+  # milyn-smooks-templating-1.2.2.jar
+  # milyn-smooks-javabean-1.2.2.jar
+
 
 ===Using of Groovy===
+
+====Description====
+
+We can use *Groovy* scripts to perform XML-to-XML transformation.
+
+====Required libraries====
+
+  # 
+  # 
+  # 
+
 
 
 You can find more information about tSmooks component in [http://soperadi-smooks.googlecode.com/files/SmooksComponents.pdf SmooksComponents.pdf]
