@@ -1,4 +1,5 @@
 #summary This page describes use cases of tSmooks component.
+#labels Featured
 
 <wiki:toc max_depth="3" />
 
