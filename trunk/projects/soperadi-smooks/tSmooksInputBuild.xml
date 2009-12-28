@@ -13,11 +13,11 @@
 	</path>
 	<path id="soperadi-smooks.classpath">
         <pathelement location="${temp_dir}/bin"/>
-		<pathelement location="${lib_dir}/milyn-commons-1.2.2.jar"/>
-		<pathelement location="${lib_dir}/milyn-edisax-parser-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-commons-1.2.4.jar"/>
+		<pathelement location="${lib_dir}/milyn-edisax-parser-1.2.4.jar"/>
 		<pathelement location="${lib_dir}/jaxen-1.1.1.jar"/>
 		<pathelement location="${lib_dir}/guice-2.0.jar"/>
-		<pathelement location="${lib_dir}/milyn-smooks-core-1.2.2.jar"/>
+		<pathelement location="${lib_dir}/milyn-smooks-core-1.2.4.jar"/>
     </path>
 	<taskdef name="svn" classpathref="project.classpath" classname="org.tigris.subversion.svnant.SvnTask"/>
 	<target name="init">
