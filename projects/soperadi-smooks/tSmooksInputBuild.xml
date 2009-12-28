@@ -7,7 +7,7 @@
 	<property name="lib_dir" value="${project_dir}/lib"/>
 	<property name="res_dir" value="${project_dir}/resources"/>
 	<property name="temp_dir" value="${project_dir}/temp"/>
-	<property name="jar.class.path" value="aopalliance.jar commons-logging-1.1.jar guice-2.0.jar jaxen-1.1.1.jar milyn-commons-1.2.2.jar milyn-edisax-parser-1.2.2.jar milyn-smooks-core-1.2.2.jar milyn-smooks-edi-1.2.2.jar"/>
+	<property name="jar.class.path" value="aopalliance.jar commons-logging-1.1.jar guice-2.0.jar jaxen-1.1.1.jar milyn-commons-1.2.4.jar milyn-edisax-parser-1.2.4.jar milyn-smooks-core-1.2.4.jar milyn-smooks-edi-1.2.4.jar"/>
 	<path id="project.classpath">
 		<pathelement path="classpath"/>
 	</path>

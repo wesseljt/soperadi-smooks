@@ -10,14 +10,19 @@
 	<classpathentry kind="lib" path="lib/common/guice-2.0.jar"/>
 	<classpathentry kind="lib" path="lib/common/jaxen-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/common/log4j-1.2.14.jar"/>
-	<classpathentry kind="lib" path="lib/common/milyn-commons-1.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/common/milyn-smooks-core-1.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/csv-to-xml/milyn-smooks-csv-1.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/csv-to-xml/opencsv-1.8.jar"/>
-	<classpathentry kind="lib" path="lib/edi-to-xml/milyn-edisax-parser-1.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/edi-to-xml/milyn-smooks-edi-1.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/xml-to-xml/milyn-smooks-templating-1.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/xml-to-xml/freemarker-2.3.11.jar"/>
-	<classpathentry kind="lib" path="lib/xml-to-xml/milyn-smooks-javabean-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/common/milyn-commons-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/common/milyn-smooks-core-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/edi-to-xml/milyn-edisax-parser-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/edi-to-xml/milyn-smooks-edi-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/csv-to-xml/milyn-smooks-csv-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/commons-codec-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/groovy-all-1.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/milyn-smooks-javabean-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/milyn-smooks-scripting-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/milyn-smooks-templating-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/xml-to-xml/mvel2-2.0.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
