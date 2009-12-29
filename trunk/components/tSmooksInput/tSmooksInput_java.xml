@@ -58,7 +58,25 @@
   
   <CODEGENERATION>
       <IMPORTS> 
-          <IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
+     		<IMPORT NAME="org.sopera.di.smooks.jar" MODULE="org.sopera.di.smooks.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="aopalliance.jar" MODULE="aopalliance.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="commons-logging-1.1.jar" MODULE="commons-logging-1.1.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="guice-2.0.jar" MODULE="guice-2.0.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="jaxen-1.1.1.jar" MODULE="jaxen-1.1.1.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="milyn-commons-1.2.4.jar" MODULE="milyn-commons-1.2.4.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="milyn-edisax-parser-1.2.4.jar" MODULE="milyn-edisax-parser-1.2.4.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="milyn-smooks-core-1.2.4.jar" MODULE="milyn-smooks-core-1.2.4.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="milyn-smooks-csv-1.2.4.jar" MODULE="milyn-smooks-csv-1.2.4.jar"
+				REQUIRED="true" />
+     		<IMPORT NAME="milyn-smooks-edi-1.2.4.jar" MODULE="milyn-smooks-edi-1.2.4.jar"
 				REQUIRED="true" />
 	  </IMPORTS> 
   </CODEGENERATION>  
