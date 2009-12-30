@@ -34,7 +34,9 @@ import java.util.HashMap;
 public class ComponentFacadeImpl implements ComponentFacade {
 
 	private Thread writer;
-	private EDIProcess parser = EDIProcess.INSTANCE; // Parser
+	//private EDIProcess parser = EDIProcess.INSTANCE; // Parser
+	private EDIProcess parser = Guice.createInjector(new ComponentModule()).getInstance(EDIProcess.class);
+
 	@Inject
 	private StringTags res;
 	private InputStream EDI; // EDI-massage stream
